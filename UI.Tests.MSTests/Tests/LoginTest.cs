@@ -26,15 +26,17 @@ namespace ReportPortal
         }
 
         [TestMethod]
-        public void LogInTest()
+        [DataRow("superadmin", "erebus")]
+        [DataRow("default", "1q2w3e")]
+        public void LogInTest(string login, string password)
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
             OpenMainPage("http://localhost:8080");
             loginPage = new LoginPage(Browser.GetBrowser());
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
-            loginPage.EnterLogin("superadmin");
-            loginPage.EnterPassword("erebus");
+            loginPage.EnterLogin(login);
+            loginPage.EnterPassword(password);
             loginPage.LogInButton.Click();
             AllDashboardsPage allDashboardsPage = new AllDashboardsPage(Browser.GetBrowser());
             Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
