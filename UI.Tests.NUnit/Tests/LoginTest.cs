@@ -10,20 +10,45 @@ using UI.Core._Business.Pages;
 namespace ReportPortal
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
         private LoginPage loginPage;
 
         [Test]
-        public void LogInLogInWithEpamButtonDisplayedTest()
+        public void LogInLogInButtonDisplayedTest()
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
             OpenMainPage("http://localhost:8080");
             loginPage = new LoginPage(Browser.GetBrowser());
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
-            var logInWithEpam = loginPage.LogInWithEpam.Displayed;
-            Assert.True(logInWithEpam);
+            var logInButton = loginPage.LogInButton.Displayed;
+            Assert.True(logInButton);
+        }
+
+        [Test]
+        public void LogInPasswordFieldDisplayedTest()
+        {
+            var logger = new ConsoleLogger();
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
+            OpenMainPage("http://localhost:8080");
+            loginPage = new LoginPage(Browser.GetBrowser());
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
+            var passwordField = loginPage.PasswordField.Displayed;
+            Assert.True(passwordField);
+        }
+
+        [Test]
+        public void LogInLogInFieldDisplayedTest()
+        {
+            var logger = new ConsoleLogger();
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
+            OpenMainPage("http://localhost:8080");
+            loginPage = new LoginPage(Browser.GetBrowser());
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
+            var logInField = loginPage.LogInField.Displayed;
+            Assert.True(logInField);
         }
 
         [TestCase("superadmin", "erebus")]
