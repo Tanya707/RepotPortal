@@ -8,12 +8,12 @@ namespace ReportPortal
     [Binding]
     public class LoginTestContext
     {
-        private LoginContext loginContext => new(Browser.GetBrowser());
+        private LoginContext loginContext => new();
 
         [Given(@"Open page")]
         public LoginContext LogInTest()
         {
-            Browser.NavigateTo("https://rp.epam.com");
+            //Browser.NavigateTo("https://rp.epam.com");
             return loginContext;
         }
 

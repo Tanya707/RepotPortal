@@ -10,14 +10,8 @@ namespace Framework.Core.Contexts
 {
     public class LoginContext
     {
-
         protected IWebDriver driver;
         private readonly By logInWithEpam = By.XPath("//button[contains(@class, 'bigButton__big-button')]");
-
-        public LoginContext(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
 
         public IWebElement LogInWithEpam => driver.FindElement(logInWithEpam);
 

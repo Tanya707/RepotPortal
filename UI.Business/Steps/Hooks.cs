@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using TestProject.Enums;
 
 namespace Framework.Core.Tests
 {
@@ -17,13 +18,14 @@ namespace Framework.Core.Tests
         [BeforeTestRun]
         public void SetUp(FeatureContext featureContext)
         {
-            Browser.WindowMaximise();
+            WebDriverFactory.InitializeDriver(BrowserList.Chrome)
+                .Manage().Window.Maximize();
         }
 
         [AfterTestRun]
         public void TearDown(FeatureContext featureContext)
         {
-            Browser.Quit();
+            WebDriverFactory.CloseDriver();
         }
 
     }

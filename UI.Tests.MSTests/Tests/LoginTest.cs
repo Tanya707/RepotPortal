@@ -11,15 +11,16 @@ namespace ReportPortal
     [TestClass]
     public class LoginTest : BaseTest
     {
-        private LoginPage loginPage;
+        private LoginPage loginPage =  new LoginPage();
+        private AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
 
         [TestMethod]
         public void LogInButtonTest()
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
             var logInButton = loginPage.LogInButton.Displayed;
             Assert.IsTrue(logInButton);
@@ -32,13 +33,11 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
             loginPage.EnterLogin(login);
             loginPage.EnterPassword(password);
             loginPage.LogInButton.Click();
-            AllDashboardsPage allDashboardsPage = new AllDashboardsPage(Browser.GetBrowser());
             Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
             Assert.IsTrue(allDashboardsPage.LaunchesButton.Displayed);

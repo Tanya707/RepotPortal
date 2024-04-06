@@ -13,15 +13,15 @@ namespace ReportPortal
     [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
-        private LoginPage loginPage;
+        private LoginPage loginPage = new LoginPage();
+        private AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
 
         [Test]
         public void LogInLogInButtonDisplayedTest()
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
             var logInButton = loginPage.LogInButton.Displayed;
             Assert.True(logInButton);
@@ -32,8 +32,7 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
             var passwordField = loginPage.PasswordField.Displayed;
             Assert.True(passwordField);
@@ -44,8 +43,7 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
             var logInField = loginPage.LogInField.Displayed;
             Assert.True(logInField);
@@ -57,13 +55,11 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            OpenMainPage("http://localhost:8080");
-            loginPage = new LoginPage(Browser.GetBrowser());
+            loginPage.GoToBaseUrl("http://localhost:8080");
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
             loginPage.EnterLogin(login);
             loginPage.EnterPassword(password);
             loginPage.LogInButton.Click();
-            AllDashboardsPage allDashboardsPage = new AllDashboardsPage(Browser.GetBrowser());
             Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
             Assert.True(allDashboardsPage.LaunchesButton.Displayed);

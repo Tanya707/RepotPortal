@@ -6,28 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestProject.Enums;
 
 namespace Framework.Core.Tests
 {
     public class BaseTest
     {
-        public IWebDriver Driver;
-
         [TestInitialize]
         public void SetUp()
         {
-            Browser.WindowMaximise();
-        }
-
-        public void OpenMainPage(string url)
-        {
-            Browser.NavigateTo(url);
+            WebDriverFactory.InitializeDriver(BrowserList.Chrome);
+            WebDriverFactory.WindowMaximise();
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            Browser.Quit();
+            WebDriverFactory.CloseDriver();
+            WebDriverFactory.FinishHim();
         }
 
     }
