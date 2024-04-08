@@ -1,4 +1,7 @@
-﻿using Core.Logger;
+﻿using Core.Helpers;
+using Core.Logger;
+using Core.Models;
+using Framework.Core.Pages;
 using Framework.Core.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -14,6 +17,7 @@ namespace Framework.Core.Tests
 {
     public class BaseTest
     {
+        protected Settings settings = SettingHelper.LoadFromAppSettings();
 
         [OneTimeSetUp]
         public void SetUp()

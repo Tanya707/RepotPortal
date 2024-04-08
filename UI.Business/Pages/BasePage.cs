@@ -10,6 +10,6 @@ namespace UI.Business.Pages
 {
     public abstract class BasePage
     {
-        protected static IWebDriver Driver = WebDriverFactory.GetDriver();
+        protected IWebDriver Driver = WebDriverFactory.GetDriver();
     }
 }

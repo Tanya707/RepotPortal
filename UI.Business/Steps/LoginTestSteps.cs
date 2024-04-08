@@ -2,10 +2,10 @@ using Framework.Core.Contexts;
 using Framework.Core.Tests;
 using Framework.Core.Utilities;
 using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+using Reqnroll;
+//using TechTalk.SpecFlow;
 namespace ReportPortal
 {
-    [Binding]
     public class LoginTestContext
     {
         private LoginContext loginContext => new();

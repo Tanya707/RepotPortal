@@ -21,7 +21,8 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            loginPage.GoToBaseUrl("http://localhost:8080");
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
             var logInButton = loginPage.LogInButton.Displayed;
             Assert.True(logInButton);
@@ -32,7 +33,8 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            loginPage.GoToBaseUrl("http://localhost:8080");
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
             var passwordField = loginPage.PasswordField.Displayed;
             Assert.True(passwordField);
@@ -43,23 +45,43 @@ namespace ReportPortal
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            loginPage.GoToBaseUrl("http://localhost:8080");
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
             var logInField = loginPage.LogInField.Displayed;
             Assert.True(logInField);
         }
 
-        [TestCase("superadmin", "erebus")]
-        [TestCase("default", "1q2w3e")]
-        public void LogInTest(string login, string password)
+        [Test]
+        public void LogInTestSuperadmin()
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            loginPage.GoToBaseUrl("http://localhost:8080");
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
-            loginPage.EnterLogin(login);
-            loginPage.EnterPassword(password);
+            loginPage.EnterLogin(settings.SuperadminUser.UserName);
+            loginPage.EnterPassword(settings.SuperadminUser.Password);
             loginPage.LogInButton.Click();
+            AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
+            Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
+            Assert.True(allDashboardsPage.LaunchesButton.Displayed);
+        }
+
+
+        [Test]
+        public void LogInTestDefault(string login, string password)
+        {
+            var logger = new ConsoleLogger();
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
+            LoginPage loginPage = new LoginPage();
+            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
+            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
+            loginPage.EnterLogin(settings.DefaultUser.UserName);
+            loginPage.EnterPassword(settings.DefaultUser.UserName);
+            loginPage.LogInButton.Click();
+            AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
             Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
             Assert.True(allDashboardsPage.LaunchesButton.Displayed);
