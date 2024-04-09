@@ -13,78 +13,49 @@ namespace ReportPortal
     [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
-        private LoginPage loginPage = new LoginPage();
-        private AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
-
         [Test]
         public void LogInLogInButtonDisplayedTest()
         {
-            var logger = new ConsoleLogger();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            LoginPage loginPage = new LoginPage();
-            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
-            var logInButton = loginPage.LogInButton.Displayed;
-            Assert.True(logInButton);
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            Assert.IsTrue(loginPage.CheckLogInButton());
         }
 
         [Test]
         public void LogInPasswordFieldDisplayedTest()
         {
-            var logger = new ConsoleLogger();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            LoginPage loginPage = new LoginPage();
-            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
-            var passwordField = loginPage.PasswordField.Displayed;
-            Assert.True(passwordField);
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            Assert.True(loginPage.CheckPasswordField());
         }
 
         [Test]
         public void LogInLogInFieldDisplayedTest()
         {
-            var logger = new ConsoleLogger();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            LoginPage loginPage = new LoginPage();
-            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check field"));
-            var logInField = loginPage.LogInField.Displayed;
-            Assert.True(logInField);
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            Assert.True(loginPage.CheckLogInButton());
         }
 
         [Test]
         public void LogInTestSuperadmin()
         {
-            var logger = new ConsoleLogger();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            LoginPage loginPage = new LoginPage();
-            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
-            loginPage.EnterLogin(settings.SuperadminUser.UserName);
-            loginPage.EnterPassword(settings.SuperadminUser.Password);
-            loginPage.LogInButton.Click();
-            AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
-            Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
-            Assert.True(allDashboardsPage.LaunchesButton.Displayed);
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            Assert.IsTrue(allDashboardsPage.CheckLaunchesButton());
         }
 
 
         [Test]
         public void LogInTestDefault()
         {
-            var logger = new ConsoleLogger();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
-            LoginPage loginPage = new LoginPage();
-            loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Log in"));
-            loginPage.EnterLogin(settings.DefaultUser.UserName);
-            loginPage.EnterPassword(settings.DefaultUser.UserName);
-            loginPage.LogInButton.Click();
-            AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
-            Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
-            Assert.True(allDashboardsPage.LaunchesButton.Displayed);
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            Assert.IsFalse(allDashboardsPage.CheckLaunchesButton());
         }
     }
 }
