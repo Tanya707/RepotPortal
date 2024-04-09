@@ -11,7 +11,7 @@ using UI.Core._Business.Pages;
 namespace ReportPortal
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.All)]
+    //[Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
         [Test]
@@ -59,8 +59,12 @@ namespace ReportPortal
             Assert.IsFalse(allDashboardsPage.CheckLaunchesButton());
         }
 
-        [Test]
-        public void FilterByLaunchName()
+        [TestCase("Demo Api Tests")]
+        [TestCase("Demo Api")]
+        [TestCase("Api Tests")]
+        [TestCase("Tests")]
+        [TestCase("Demo")]
+        public void FilterByLaunchName(string launchName)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -69,12 +73,16 @@ namespace ReportPortal
             allDashboardsPage.CLickOnLaunchesButton();
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
             allLaunchesPage.ClickOnFilterByButton();
-            allLaunchesPage.EnterLaunchName("Api");
-            Assert.IsTrue(allLaunchesPage.CheckLaunchNames("Api"));
+            allLaunchesPage.EnterLaunchName(launchName);
+            Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
         }
 
-        [Test]
-        public void FilterByTotal()
+        [TestCase(10)]
+        [TestCase(15)]
+        [TestCase(20)]
+        [TestCase(25)]
+        [TestCase(30)]
+        public void FilterByTotal(int total)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -85,12 +93,16 @@ namespace ReportPortal
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
-            allLaunchesPage.EnterSecondFilterField("10");
-            Assert.IsTrue(allLaunchesPage.CheckTotalValues("10"));
+            allLaunchesPage.EnterSecondFilterField(total.ToString());
+            Assert.IsTrue(allLaunchesPage.CheckTotalValues(total.ToString()));
         }
 
-        [Test]
-        public void FilterByPassed()
+        [TestCase(10)]
+        [TestCase(5)]
+        [TestCase(20)]
+        [TestCase(1)]
+        [TestCase(30)]
+        public void FilterByPassed(int passed)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -101,8 +113,8 @@ namespace ReportPortal
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
-            allLaunchesPage.EnterSecondFilterField("10");
-            Assert.IsTrue(allLaunchesPage.CheckPassedValues("10"));
+            allLaunchesPage.EnterSecondFilterField(passed.ToString());
+            Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed.ToString()));
         }
     }
 }

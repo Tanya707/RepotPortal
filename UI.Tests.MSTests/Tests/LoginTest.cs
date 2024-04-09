@@ -1,13 +1,6 @@
-using Core.Helpers;
-using Core.Logger;
-using Core.Models;
-using Framework.Core.Pages;
 using Framework.Core.Tests;
-using Framework.Core.Utilities;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using OpenQA.Selenium;
+using Gherkin;
 using UI.Business.Steps;
-using UI.Core._Business.Pages;
 namespace ReportPortal
 {
     [TestClass]
@@ -43,7 +36,12 @@ namespace ReportPortal
         }
 
         [TestMethod]
-        public void FilterByLaunchName()
+        [DataRow("Demo Api Tests")]
+        [DataRow("Demo Api")]
+        [DataRow("Api Tests")]
+        [DataRow("Tests")]
+        [DataRow("Demo")]
+        public void FilterByLaunchName(string launchName)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -52,12 +50,17 @@ namespace ReportPortal
             allDashboardsPage.CLickOnLaunchesButton();
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
             allLaunchesPage.ClickOnFilterByButton();
-            allLaunchesPage.EnterLaunchName("Api");
-            Assert.IsTrue(allLaunchesPage.CheckLaunchNames("Api"));
+            allLaunchesPage.EnterLaunchName(launchName);
+            Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
         }
 
         [TestMethod]
-        public void FilterByTotal()
+        [DataRow(10)]
+        [DataRow(15)]
+        [DataRow(20)]
+        [DataRow(25)]
+        [DataRow(30)]
+        public void FilterByTotal(int total)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -68,12 +71,17 @@ namespace ReportPortal
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
-            allLaunchesPage.EnterSecondFilterField("10");
-            Assert.IsTrue(allLaunchesPage.CheckTotalValues("10"));
+            allLaunchesPage.EnterSecondFilterField(total.ToString());
+            Assert.IsTrue(allLaunchesPage.CheckTotalValues(total.ToString()));
         }
 
         [TestMethod]
-        public void FilterByPassed()
+        [DataRow(10)]
+        [DataRow(5)]
+        [DataRow(20)]
+        [DataRow(1)]
+        [DataRow(30)]
+        public void FilterByPassed(int passed)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
@@ -84,8 +92,8 @@ namespace ReportPortal
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
-            allLaunchesPage.EnterSecondFilterField("10");
-            Assert.IsTrue(allLaunchesPage.CheckPassedValues("10"));
+            allLaunchesPage.EnterSecondFilterField(passed.ToString());
+            Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed.ToString()));
         }
     }
 }
