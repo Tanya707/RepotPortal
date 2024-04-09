@@ -2,7 +2,10 @@
 
 
 using Framework.Core.Utilities;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System;
+
 namespace Core.Helpers
 {
     public static class Waiter
@@ -16,7 +19,5 @@ namespace Core.Helpers
             wait = new WebDriverWait(Driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
             wait.Until(_ => condition.Invoke());
         }
-
     }
-
 }

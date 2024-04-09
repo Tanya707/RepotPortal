@@ -11,11 +11,7 @@ namespace UI.Core._Business.Pages
 {
     public class AllDashboardsPage : BasePage
     {
-        private IWebDriver Driver = WebDriverFactory.GetDriver();
-        private readonly By launchesButton = By.XPath("//a[contains(@href,'launches')]");
-        private readonly By logInButton = By.XPath("//button[@type='submit']");
-        private readonly By logInField = By.XPath("//input[@type='text']");
-        private readonly By passwordField = By.XPath("//input[@type='password']");
+        private readonly By launchesButton = By.XPath("(//a[contains(@class,'sidebarButton__nav-link')])[2]");
 
         public IWebElement LaunchesButton => Driver.FindElement(launchesButton);
     }

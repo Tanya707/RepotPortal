@@ -1,11 +1,5 @@
 using Core.Logger;
-using Core.Models;
-using Framework.Core.Contexts;
 using Framework.Core.Pages;
-using Framework.Core.Utilities;
-using NUnit.Framework.Internal;
-using OpenQA.Selenium;
-using Reqnroll;
 using UI.Core._Business.Pages;
 namespace ReportPortal
 {
@@ -18,19 +12,20 @@ namespace ReportPortal
 
         public LoginPage OpenLogInPage(string url)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
+            logger.Log(new LogEntry(LoggingEventType.Information, "Open page"));
             loginPage.GoToBaseUrl(url);
             return loginPage;
         }
 
         public bool CheckLogInButton()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
+            logger.Log(new LogEntry(LoggingEventType.Information, "Check button"));
             return loginPage.LogInButton.Displayed;
         }
 
         public AllDashboardsPage LogIn(string username, string password)
         {
+            logger.Log(new LogEntry(LoggingEventType.Information, "Enter credentials"));
             loginPage.EnterLogin(username);
             loginPage.EnterPassword(password);
             loginPage.LogInButton.Click();
@@ -38,12 +33,12 @@ namespace ReportPortal
         }
         public bool CheckPasswordField()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
+            logger.Log(new LogEntry(LoggingEventType.Information, "Check Password Field"));
             return loginPage.PasswordField.Displayed;
         }
         public bool CheckLogInField()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "2. Check button"));
+            logger.Log(new LogEntry(LoggingEventType.Information, "Log In Field"));
             return loginPage.LogInField.Displayed;
         }
     }

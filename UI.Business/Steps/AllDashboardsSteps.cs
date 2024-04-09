@@ -1,12 +1,6 @@
 using Core.Helpers;
 using Core.Logger;
-using Core.Models;
-using Framework.Core.Contexts;
-using Framework.Core.Pages;
-using Framework.Core.Utilities;
-using NUnit.Framework.Internal;
-using OpenQA.Selenium;
-using Reqnroll;
+using UI.Business.Pages;
 using UI.Core._Business.Pages;
 namespace ReportPortal
 {
@@ -14,12 +8,21 @@ namespace ReportPortal
     {
         private AllDashboardsPage allDashboardsPage = new AllDashboardsPage();
         private ConsoleLogger logger = new ConsoleLogger();
+        private AllLaunchesPage allLaunchesPage = new AllLaunchesPage();
 
         public bool CheckLaunchesButton()
         {
             Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "3. Check Page"));
+            logger.Log(new LogEntry(LoggingEventType.Information, "Check Page"));
             return allDashboardsPage.LaunchesButton.Displayed;
+        }
+
+        public AllLaunchesPage CLickOnLaunchesButton()
+        {
+            Waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
+            logger.Log(new LogEntry(LoggingEventType.Information, "Click on launch button"));
+            allDashboardsPage.LaunchesButton.Click();
+            return allLaunchesPage;
         }
     }
 }

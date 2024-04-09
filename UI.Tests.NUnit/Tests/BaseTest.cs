@@ -19,14 +19,14 @@ namespace Framework.Core.Tests
     {
         protected Settings settings = SettingHelper.LoadFromAppSettings();
 
-        [OneTimeSetUp]
+        [SetUp]
         public void SetUp()
         {
             WebDriverFactory.InitializeDriver(BrowserList.Chrome);
             WebDriverFactory.WindowMaximise();
         }
 
-        [OneTimeTearDown]
+        [TearDown]
         public void TearDown()
         {
             WebDriverFactory.CloseDriver();
