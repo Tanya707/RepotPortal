@@ -1,6 +1,5 @@
 using Core.Logger;
-using Framework.Core.Pages;
-using UI.Core._Business.Pages;
+using UI.Business.Pages;
 namespace ReportPortal
 {
     public class LoginTestSteps

@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
-
-
 using Framework.Core.Utilities;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace Core.Helpers
 {

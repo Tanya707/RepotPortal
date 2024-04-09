@@ -1,19 +1,17 @@
 using Core.Helpers;
-using Core.Logger;
-using Framework.Core.Pages;
 using Framework.Core.Tests;
-using Framework.Core.Utilities;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using UI.Business.Steps;
-using UI.Core._Business.Pages;
 namespace ReportPortal
 {
     [TestFixture]
     //[Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
+
+        public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData().Total;
+        public static IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData().Passed;
+        public static IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.LaunchNameTestData().LaunchName;
+
         [Test]
         public void LogInButtonDisplayedTest()
         {
@@ -115,6 +113,52 @@ namespace ReportPortal
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(passed.ToString());
             Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed.ToString()));
+        }
+       
+        [TestCaseSource(nameof(TotalTestDataList))]
+        public void FilterByTotalQuery(string total)
+        {
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            allDashboardsPage.CLickOnLaunchesButton();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            allLaunchesPage.ClickOnFilterByButton();
+            allLaunchesPage.ChooseFilterByTotal();
+            allLaunchesPage.SelectEqual();
+            allLaunchesPage.EnterSecondFilterField(total);
+            Assert.IsTrue(allLaunchesPage.CheckTotalValues(total));
+        }
+
+        [TestCaseSource(nameof(PassedTestDataList))]
+        public void FilterByPassedQuery(string passed)
+        {
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            allDashboardsPage.CLickOnLaunchesButton();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            allLaunchesPage.ClickOnFilterByButton();
+            allLaunchesPage.ChooseFilterByPassed();
+            allLaunchesPage.SelectEqual();
+            allLaunchesPage.EnterSecondFilterField(passed);
+            Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed));
+        }
+
+        [TestCaseSource(nameof(LaunchNameTestDataList))]
+        public void FilterByLaunchNameQuery(string launchName)
+        {
+            LoginTestSteps loginPage = new LoginTestSteps();
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            allDashboardsPage.CLickOnLaunchesButton();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            allLaunchesPage.ClickOnFilterByButton();
+            allLaunchesPage.EnterLaunchName(launchName);
+            Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
         }
     }
 }

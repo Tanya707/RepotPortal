@@ -1,13 +1,6 @@
-﻿using Framework.Core.Utilities;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UI.Business.Pages;
+﻿using OpenQA.Selenium;
 
-namespace UI.Core._Business.Pages
+namespace UI.Business.Pages
 {
     public class AllDashboardsPage : BasePage
     {

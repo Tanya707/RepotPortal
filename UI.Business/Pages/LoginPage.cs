@@ -1,9 +1,6 @@
-﻿using Framework.Core.Utilities;
-using OpenQA.Selenium;
-using UI.Business.Pages;
-using UI.Core._Business.Pages;
+﻿using OpenQA.Selenium;
 
-namespace Framework.Core.Pages
+namespace UI.Business.Pages
 {
     public class LoginPage:BasePage
     {
