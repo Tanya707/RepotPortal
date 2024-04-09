@@ -10,8 +10,6 @@ namespace Core.Helpers
 {
     public class SettingHelper
     {
-        
-
         public static Settings LoadFromAppSettings()
         {
             string baseDirectory = AppContext.BaseDirectory;
