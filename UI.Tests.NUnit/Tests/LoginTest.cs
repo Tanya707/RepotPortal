@@ -71,7 +71,7 @@ namespace ReportPortal
 
 
         [Test]
-        public void LogInTestDefault(string login, string password)
+        public void LogInTestDefault()
         {
             var logger = new ConsoleLogger();
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "1. Open page"));
