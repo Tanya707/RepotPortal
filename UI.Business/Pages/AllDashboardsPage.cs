@@ -6,6 +6,8 @@ namespace UI.Business.Pages
     {
         private readonly By launchesButton = By.XPath("(//a[contains(@class,'sidebarButton__nav-link')])[2]");
 
+        public AllDashboardsPage(IWebDriver driver) : base(driver) { }
+
         public IWebElement LaunchesButton => Driver.FindElement(launchesButton);
     }
 }

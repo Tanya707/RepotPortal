@@ -1,5 +1,7 @@
 using Core.Helpers;
 using Framework.Core.Tests;
+using OpenQA.Selenium;
+using UI.Business.Pages;
 using UI.Business.Steps;
 namespace ReportPortal
 {
@@ -7,15 +9,14 @@ namespace ReportPortal
     [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
-
-        public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData().Total;
-        public static IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData().Passed;
-        public static IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.LaunchNameTestData().LaunchName;
+        public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData("UI.Tests.NUnit").Total;
+        public static IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData("UI.Tests.NUnit").Passed;
+        public static IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.LaunchNameTestData("UI.Tests.NUnit").LaunchName;
 
         [Test]
         public void LogInButtonDisplayedTest()
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             Assert.IsTrue(loginPage.CheckLogInButton());
         }
@@ -23,7 +24,7 @@ namespace ReportPortal
         [Test]
         public void PasswordFieldDisplayedTest()
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             Assert.True(loginPage.CheckPasswordField());
         }
@@ -31,7 +32,7 @@ namespace ReportPortal
         [Test]
         public void LogInFieldDisplayedTest()
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             Assert.True(loginPage.CheckLogInButton());
         }
@@ -39,10 +40,10 @@ namespace ReportPortal
         [Test]
         public void LogInTestSuperadmin()
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             Assert.IsTrue(allDashboardsPage.CheckLaunchesButton());
         }
 
@@ -50,10 +51,10 @@ namespace ReportPortal
         [Test]
         public void LogInTestDefault()
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             Assert.IsFalse(allDashboardsPage.CheckLaunchesButton());
         }
 
@@ -62,15 +63,14 @@ namespace ReportPortal
         [TestCase("Api Tests")]
         [TestCase("Tests")]
         [TestCase("Demo")]
-        [NonParallelizable]
         public void FilterByLaunchName(string launchName)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
             Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
@@ -81,15 +81,14 @@ namespace ReportPortal
         [TestCase(20)]
         [TestCase(25)]
         [TestCase(30)]
-        [NonParallelizable]
         public void FilterByTotal(int total)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
@@ -102,15 +101,14 @@ namespace ReportPortal
         [TestCase(20)]
         [TestCase(1)]
         [TestCase(30)]
-        [NonParallelizable]
         public void FilterByPassed(int passed)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
@@ -119,15 +117,14 @@ namespace ReportPortal
         }
 
         [TestCaseSource(nameof(TotalTestDataList))]
-        [NonParallelizable]
         public void FilterByTotalQuery(string total)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
@@ -136,15 +133,14 @@ namespace ReportPortal
         }
 
         [TestCaseSource(nameof(PassedTestDataList))]
-        [NonParallelizable]
         public void FilterByPassedQuery(string passed)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
@@ -153,15 +149,14 @@ namespace ReportPortal
         }
 
         [TestCaseSource(nameof(LaunchNameTestDataList))]
-        [NonParallelizable]
         public void FilterByLaunchNameQuery(string launchName)
         {
-            LoginTestSteps loginPage = new LoginTestSteps();
+            LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps();
+            AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
-            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps();
+            AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
             Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));

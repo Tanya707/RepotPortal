@@ -17,6 +17,7 @@ namespace UI.Business.Pages
         private readonly By totalValues = By.XPath("//a[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
         private readonly By passedValues = By.XPath("//a[@statuses='PASSED']");
 
+        public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
         public IWebElement AddFilterButton => Driver.FindElement(addFilterButton);
         public IWebElement LaunchNameField => Driver.FindElement(launchNameField);

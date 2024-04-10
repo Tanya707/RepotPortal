@@ -1,14 +1,15 @@
 ﻿using Core.Models;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Core.Helpers
 {
     public class TestDataHelper
     {
-        public static TotalTestData TotalTestData()
+        public static TotalTestData TotalTestData(string path)
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("..", "..", "..", "..", "Core", "Utilities");
+            string relativePath = Path.Combine("..", "..", "..", "..", path, "TestData");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("TotalTestData.json")
@@ -17,10 +18,10 @@ namespace Core.Helpers
             return configuration.Get<TotalTestData>();
         }
 
-        public static PassedTestData PassedTestData()
+        public static PassedTestData PassedTestData(string path)
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("..", "..", "..", "..", "Core", "Utilities");
+            string relativePath = Path.Combine("..", "..", "..", "..", path, "TestData");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("PassedTestData.json")
@@ -29,10 +30,10 @@ namespace Core.Helpers
             return configuration.Get<PassedTestData>();
         }
 
-        public static LaunchNameTestData LaunchNameTestData()
+        public static LaunchNameTestData LaunchNameTestData(string path)
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("..", "..", "..", "..", "Core", "Utilities");
+            string relativePath = Path.Combine("..", "..", "..", "..", path, "TestData");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("LaunchNameTestData.json")

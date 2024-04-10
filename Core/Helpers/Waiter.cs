@@ -1,16 +1,20 @@
 ﻿using OpenQA.Selenium;
-using Framework.Core.Utilities;
 using OpenQA.Selenium.Support.UI;
 
 namespace Core.Helpers
 {
-    public static class Waiter
+    public class Waiter
     {
-        private static IWebDriver Driver => new WebDriverFactory().GetDriver();
-        private static WebDriverWait wait;
+        private IWebDriver Driver;
+        private WebDriverWait wait;
         private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(10);
 
-        public static void WaitFor(Func<bool> condition, TimeSpan conditionTimeOut = default)
+        public Waiter(IWebDriver driver)
+        {
+            Driver = driver;
+        }
+
+        public void WaitFor(Func<bool> condition, TimeSpan conditionTimeOut = default)
         {
             wait = new WebDriverWait(Driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
             wait.Until(_ => condition.Invoke());

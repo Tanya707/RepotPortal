@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using TestProject.Enums;
+using UI.Business.Driver;
 
 namespace Framework.Core.Utilities
 {
     public class WebDriverFactory
     {
-        private static IWebDriver driver;
+        private IWebDriver driver;
 
         public IWebDriver GetDriver()
         {

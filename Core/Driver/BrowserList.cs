@@ -1,6 +1,4 @@
-﻿
-
-namespace TestProject.Enums
+﻿namespace UI.Business.Driver
 {
     public enum BrowserList
     {

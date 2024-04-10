@@ -14,6 +14,8 @@ namespace UI.Business.Pages
         public IWebElement LogInField => Driver.FindElement(logInField);
         public IWebElement PasswordField => Driver.FindElement(passwordField);
 
+        public LoginPage(IWebDriver driver) : base(driver) { }
+
         public void GoToBaseUrl(string url)
         {
             Driver.Navigate().GoToUrl(url);
