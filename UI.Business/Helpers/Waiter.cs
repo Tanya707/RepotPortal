@@ -6,7 +6,7 @@ namespace Core.Helpers
 {
     public static class Waiter
     {
-        private static IWebDriver Driver => WebDriverFactory.GetDriver();
+        private static IWebDriver Driver => new WebDriverFactory().GetDriver();
         private static WebDriverWait wait;
         private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(10);
 

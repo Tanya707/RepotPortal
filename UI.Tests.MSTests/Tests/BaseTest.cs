@@ -13,15 +13,15 @@ namespace Framework.Core.Tests
         [TestInitialize]
         public void SetUp()
         {
-            WebDriverFactory.InitializeDriver(BrowserList.Chrome);
-            WebDriverFactory.WindowMaximise();
+            new WebDriverFactory().InitializeDriver(BrowserList.Chrome);
+            new WebDriverFactory().WindowMaximise();
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            WebDriverFactory.CloseDriver();
-            WebDriverFactory.FinishHim();
+            new WebDriverFactory().CloseDriver();
+            new WebDriverFactory().FinishHim();
         }
 
     }

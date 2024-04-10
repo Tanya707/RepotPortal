@@ -4,7 +4,7 @@ using UI.Business.Steps;
 namespace ReportPortal
 {
     [TestFixture]
-    //[Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
 
@@ -62,6 +62,7 @@ namespace ReportPortal
         [TestCase("Api Tests")]
         [TestCase("Tests")]
         [TestCase("Demo")]
+        [NonParallelizable]
         public void FilterByLaunchName(string launchName)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -80,6 +81,7 @@ namespace ReportPortal
         [TestCase(20)]
         [TestCase(25)]
         [TestCase(30)]
+        [NonParallelizable]
         public void FilterByTotal(int total)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -100,6 +102,7 @@ namespace ReportPortal
         [TestCase(20)]
         [TestCase(1)]
         [TestCase(30)]
+        [NonParallelizable]
         public void FilterByPassed(int passed)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -114,8 +117,9 @@ namespace ReportPortal
             allLaunchesPage.EnterSecondFilterField(passed.ToString());
             Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed.ToString()));
         }
-       
+
         [TestCaseSource(nameof(TotalTestDataList))]
+        [NonParallelizable]
         public void FilterByTotalQuery(string total)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -132,6 +136,7 @@ namespace ReportPortal
         }
 
         [TestCaseSource(nameof(PassedTestDataList))]
+        [NonParallelizable]
         public void FilterByPassedQuery(string passed)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -148,6 +153,7 @@ namespace ReportPortal
         }
 
         [TestCaseSource(nameof(LaunchNameTestDataList))]
+        [NonParallelizable]
         public void FilterByLaunchNameQuery(string launchName)
         {
             LoginTestSteps loginPage = new LoginTestSteps();

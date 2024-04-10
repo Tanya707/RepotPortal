@@ -4,21 +4,21 @@ using TestProject.Enums;
 
 namespace Framework.Core.Utilities
 {
-    public static class WebDriverFactory
+    public class WebDriverFactory
     {
         private static IWebDriver driver;
 
-        public static IWebDriver GetDriver()
+        public IWebDriver GetDriver()
         {
             return driver;
         }
 
-        public static void CloseDriver()
+        public void CloseDriver()
         {
             driver.Quit();
             driver = null;
         }
-        public static IWebDriver InitializeDriver(Enum type)
+        public IWebDriver InitializeDriver(Enum type)
         {
             switch (type)
             {
@@ -35,12 +35,12 @@ namespace Framework.Core.Utilities
             }
         }
 
-        public static void WindowMaximise()
+        public void WindowMaximise()
         {
             driver.Manage().Window.Maximize();
         }
 
-        public static void FinishHim()
+        public void FinishHim()
         {
             driver?.Dispose();
         }
