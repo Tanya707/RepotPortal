@@ -2,6 +2,8 @@ using Core.Helpers;
 using Framework.Core.Tests;
 using UI.Business.Steps;
 
+[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
+
 namespace ReportPortal
 {
     [TestClass]
@@ -62,6 +64,7 @@ namespace ReportPortal
         [DataRow("Api Tests")]
         [DataRow("Tests")]
         [DataRow("Demo")]
+        [DoNotParallelize]
         public void FilterByLaunchName(string launchName)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -81,6 +84,7 @@ namespace ReportPortal
         [DataRow(20)]
         [DataRow(25)]
         [DataRow(30)]
+        [DoNotParallelize]
         public void FilterByTotal(int total)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
@@ -102,6 +106,7 @@ namespace ReportPortal
         [DataRow(20)]
         [DataRow(1)]
         [DataRow(30)]
+        [DoNotParallelize]
         public void FilterByPassed(int passed)
         {
             LoginTestSteps loginPage = new LoginTestSteps();
