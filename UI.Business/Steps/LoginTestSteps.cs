@@ -23,7 +23,7 @@ namespace ReportPortal
             return loginPage;
         }
 
-        public bool CheckLogInButton()
+        public bool IsLogInButtonDisplayed()
         {
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check button"));
             return loginPage.LogInButton.Displayed;
@@ -37,12 +37,12 @@ namespace ReportPortal
             loginPage.LogInButton.Click();
             return allDashboardsPage;
         }
-        public bool CheckPasswordField()
+        public bool IsPasswordFieldDisplayed()
         {
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Password Field"));
             return loginPage.PasswordField.Displayed;
         }
-        public bool CheckLogInField()
+        public bool IsLogInFieldDisplayed()
         {
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Log In Field"));
             return loginPage.LogInField.Displayed;

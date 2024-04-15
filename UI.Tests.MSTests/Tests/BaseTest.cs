@@ -9,7 +9,6 @@ namespace Framework.Core.Tests
     [TestClass]
     public class BaseTest
     {
-        public IWebDriver driver;
         protected WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
 
@@ -18,7 +17,7 @@ namespace Framework.Core.Tests
         public void SetUp()
         {
             webDriverFactory = new WebDriverFactory();
-            driver = webDriverFactory.InitializeDriver(BrowserList.Chrome);
+            webDriverFactory.InitializeDriver(BrowserList.Chrome);
             webDriverFactory.WindowMaximise();
         }
 
@@ -27,7 +26,6 @@ namespace Framework.Core.Tests
         {
             webDriverFactory.CloseDriver();
             webDriverFactory.FinishHim();
-            driver.Dispose();
         }
 
     }

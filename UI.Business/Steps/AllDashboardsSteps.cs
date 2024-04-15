@@ -19,7 +19,7 @@ namespace ReportPortal
 
         }
 
-        public bool CheckLaunchesButton()
+        public bool IsLaunchesButtonDisplayed()
         {
             waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
             logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Page"));

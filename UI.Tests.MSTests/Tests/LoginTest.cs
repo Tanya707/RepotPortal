@@ -35,7 +35,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
-            Assert.IsTrue(loginPage.CheckLogInButton());
+            Assert.IsTrue(loginPage.IsLogInButtonDisplayed());
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace ReportPortal
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
-            Assert.IsTrue(allDashboardsPage.CheckLaunchesButton());
+            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed());
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace ReportPortal
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
-            Assert.IsFalse(allDashboardsPage.CheckLaunchesButton());
+            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed());
         }
 
         [TestMethod]
