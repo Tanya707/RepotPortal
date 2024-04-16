@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Tests", "API.Tests\API.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Tests.MSTests", "UI.Tests.MSTests\UI.Tests.MSTests.csproj", "{C3256028-200B-4762-8625-BB476C66FDF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqnrollProject", "ReqnrollProject\ReqnrollProject.csproj", "{1960155E-E860-48F5-9961-A69D8F1D3A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Tests.ReqnrollProject", "UI.Tests.ReqnrollProject\UI.Tests.ReqnrollProject.csproj", "{1960155E-E860-48F5-9961-A69D8F1D3A2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

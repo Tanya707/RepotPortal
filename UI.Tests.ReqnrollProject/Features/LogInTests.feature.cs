@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace ReqnrollProject.Features
+namespace UI.Tests.ReqnrollProject.Features
 {
     using Reqnroll;
     using System;
@@ -65,7 +65,7 @@ namespace ReqnrollProject.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "LogInTests")))
             {
-                await global::ReqnrollProject.Features.LogInTestsFeature.FeatureSetupAsync(null);
+                await global::UI.Tests.ReqnrollProject.Features.LogInTestsFeature.FeatureSetupAsync(null);
             }
         }
         
