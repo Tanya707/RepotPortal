@@ -6,32 +6,32 @@ namespace ReportPortal
 {
     public class AllDashboardsSteps
     {
-        private AllDashboardsPage allDashboardsPage;
-        private ConsoleLogger logger = new ConsoleLogger();
-        private AllLaunchesPage allLaunchesPage;
-        private Waiter waiter;
+        private AllDashboardsPage _allDashboardsPage;
+        private ConsoleLogger _logger = new ConsoleLogger();
+        private AllLaunchesPage _allLaunchesPage;
+        private Waiter _waiter;
 
         public AllDashboardsSteps(IWebDriver driver)
         {
-            allDashboardsPage = new AllDashboardsPage(driver);
-            allLaunchesPage = new AllLaunchesPage(driver);
-            waiter = new Waiter(driver);
+            _allDashboardsPage = new AllDashboardsPage(driver);
+            _allLaunchesPage = new AllLaunchesPage(driver);
+            _waiter = new Waiter(driver);
 
         }
 
-        public bool CheckLaunchesButton()
+        public bool IsLaunchesButtonDisplayed()
         {
-            waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Page"));
-            return allDashboardsPage.LaunchesButton.Displayed;
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Page"));
+            return _allDashboardsPage.LaunchesButton.Displayed;
         }
 
         public AllLaunchesPage CLickOnLaunchesButton()
         {
-            waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on launch button"));
-            allDashboardsPage.LaunchesButton.Click();
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on launch button"));
+            _allDashboardsPage.LaunchesButton.Click();
+            return _allLaunchesPage;
         }
     }
 }

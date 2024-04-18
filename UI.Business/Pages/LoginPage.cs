@@ -4,15 +4,15 @@ namespace UI.Business.Pages
 {
     public class LoginPage:BasePage
     {
-        private readonly By logInWithEpamButton = By.XPath("//button[@type='button']");
-        private readonly By logInButton = By.XPath("//button[@type='submit']");
-        private readonly By logInField = By.XPath("//input[@type='text']");
-        private readonly By passwordField = By.XPath("//input[@type='password']");
+        private readonly By _logInWithEpamButton = By.XPath("//button[@type='button']");
+        private readonly By _logInButton = By.XPath("//button[@type='submit']");
+        private readonly By _logInField = By.XPath("//input[@type='text']");
+        private readonly By _passwordField = By.XPath("//input[@type='password']");
 
-        public IWebElement LogInWithEpam => Driver.FindElement(logInWithEpamButton);
-        public IWebElement LogInButton => Driver.FindElement(logInButton);
-        public IWebElement LogInField => Driver.FindElement(logInField);
-        public IWebElement PasswordField => Driver.FindElement(passwordField);
+        public IWebElement LogInWithEpam => Driver.FindElement(_logInWithEpamButton);
+        public IWebElement LogInButton => Driver.FindElement(_logInButton);
+        public IWebElement LogInField => Driver.FindElement(_logInField);
+        public IWebElement PasswordField => Driver.FindElement(_passwordField);
 
         public LoginPage(IWebDriver driver) : base(driver) { }
 

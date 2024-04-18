@@ -5,47 +5,47 @@ namespace ReportPortal
 {
     public class LoginTestSteps
     {
-        private LoginPage loginPage;
-        private ConsoleLogger logger = new ConsoleLogger();
-        private AllDashboardsPage allDashboardsPage;
+        private LoginPage _loginPage;
+        private ConsoleLogger _logger = new ConsoleLogger();
+        private AllDashboardsPage _allDashboardsPage;
 
         public LoginTestSteps(IWebDriver driver)
         {
-            allDashboardsPage = new AllDashboardsPage(driver);
-            loginPage = new LoginPage(driver);
+            _allDashboardsPage = new AllDashboardsPage(driver);
+            _loginPage = new LoginPage(driver);
 
         }
 
         public LoginPage OpenLogInPage(string url)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Open page"));
-            loginPage.GoToBaseUrl(url);
-            return loginPage;
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Open page"));
+            _loginPage.GoToBaseUrl(url);
+            return _loginPage;
         }
 
-        public bool CheckLogInButton()
+        public bool IsLogInButtonDisplayed()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check button"));
-            return loginPage.LogInButton.Displayed;
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check button"));
+            return _loginPage.LogInButton.Displayed;
         }
 
         public AllDashboardsPage LogIn(string username, string password)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Enter credentials"));
-            loginPage.EnterLogin(username);
-            loginPage.EnterPassword(password);
-            loginPage.LogInButton.Click();
-            return allDashboardsPage;
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Enter credentials"));
+            _loginPage.EnterLogin(username);
+            _loginPage.EnterPassword(password);
+            _loginPage.LogInButton.Click();
+            return _allDashboardsPage;
         }
-        public bool CheckPasswordField()
+        public bool IsPasswordFieldDisplayed()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Password Field"));
-            return loginPage.PasswordField.Displayed;
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Password Field"));
+            return _loginPage.PasswordField.Displayed;
         }
-        public bool CheckLogInField()
+        public bool IsLogInFieldDisplayed()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Log In Field"));
-            return loginPage.LogInField.Displayed;
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Log In Field"));
+            return _loginPage.LogInField.Displayed;
         }
     }
 }
