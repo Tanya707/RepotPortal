@@ -4,10 +4,10 @@ namespace UI.Business.Pages
 {
     public class LoginPage:BasePage
     {
-        private readonly By _logInWithEpamButton = By.XPath("//button[@type='button']");
-        private readonly By _logInButton = By.XPath("//button[@type='submit']");
-        private readonly By _logInField = By.XPath("//input[@type='text']");
-        private readonly By _passwordField = By.XPath("//input[@type='password']");
+        private readonly By _logInWithEpamButton = By.XPath("//*[@type='button']");
+        private readonly By _logInButton = By.XPath("//*[@type='submit']");
+        private readonly By _logInField = By.XPath("//*[@type='text']");
+        private readonly By _passwordField = By.XPath("//*[@type='password']");
 
         public IWebElement LogInWithEpam => Driver.FindElement(_logInWithEpamButton);
         public IWebElement LogInButton => Driver.FindElement(_logInButton);

@@ -5,17 +5,17 @@ namespace UI.Business.Pages
 {
     public class AllLaunchesPage : BasePage
     {
-        private readonly By _addFilterButton = By.XPath("//div[contains(@class,'launchFiltersToolbar__add-filter-button')]/button");
-        private readonly By _launchNameField = By.XPath("//input[contains(@class,'inputConditional')]");
-        private readonly By _moreButton= By.XPath("//div[contains(@class,'entitiesSelector__toggler')]");
-        private readonly By _totalCheckbox = By.XPath("//span[text()='Total']");
-        private readonly By _secondFilterField = By.XPath("(//input[contains(@class,'inputConditional')])[2]");
-        private readonly By _passedCheckbox = By.XPath("//span[text()='Passed']");
-        private readonly By _launchName = By.XPath("//div[contains(@class,'gridRow__grid-row-wrapper')]//div[contains(@class,'itemInfo__name')]//span");
-        private readonly By _condition = By.XPath("(//div[contains(@class,'inputConditional__conditions-selector')])[2]");
-        private readonly By _equalCondition = By.XPath("(//div[text()='Equals'])[2]");
-        private readonly By _totalValues = By.XPath("//a[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
-        private readonly By _passedValues = By.XPath("//a[@statuses='PASSED']");
+        private readonly By _addFilterButton = By.XPath("//*[contains(@class,'launchFiltersToolbar__add-filter-button')]/button");
+        private readonly By _launchNameField = By.XPath("//*[@placeholder = 'Enter name']");
+        private readonly By _moreButton= By.XPath("//*[contains(@class,'entitiesSelector__toggler')]");
+        private readonly By _totalCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Total']");
+        private readonly By _secondFilterField = By.XPath("//*[@placeholder = 'Enter quantity']");
+        private readonly By _passedCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Passed']");
+        private readonly By _launchName = By.XPath("//*[@class = 'itemInfo__name-link--oIaqj']/*[@class = 'tooltip__tooltip-trigger--FBBdw itemInfo__name--Nz97v']");
+        private readonly By _condition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]");
+        private readonly By _equalCondition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]//*[text()='Equals']");
+        private readonly By _totalValues = By.XPath("//*[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
+        private readonly By _passedValues = By.XPath("//*[@statuses='PASSED']");
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
