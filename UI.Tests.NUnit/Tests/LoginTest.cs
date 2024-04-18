@@ -18,6 +18,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't dispalyed");
         }
 
@@ -26,6 +27,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             Assert.True(loginPage.IsPasswordFieldDisplayed(), "Password field isn't dispalyed");
         }
 
@@ -34,6 +36,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             Assert.True(loginPage.IsLogInButtonDisplayed(), "Log in field isn't dispalyed");
         }
 
@@ -42,8 +45,10 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
+
             Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as superadmin");
         }
 
@@ -53,8 +58,10 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
+
             Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as default user");
         }
 
@@ -67,12 +74,14 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
+
             Assert.IsTrue(allLaunchesPage.CheckTotalValue(launchName), "Total value isn't correct after filtering");
         }
 
@@ -85,6 +94,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
@@ -93,6 +103,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(total.ToString());
+
             Assert.IsTrue(allLaunchesPage.CheckTotalValue(total.ToString()), "Total value isn't correct after filtering");
         }
 
@@ -105,6 +116,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
@@ -113,6 +125,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(passed.ToString());
+
             Assert.IsTrue(allLaunchesPage.CheckPassedValue(passed.ToString()), "Passed value isn't correct after filtering");
         }
 
@@ -121,6 +134,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
@@ -129,6 +143,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(total);
+
             Assert.IsTrue(allLaunchesPage.CheckTotalValue(total), "Total value isn't correct after filtering");
         }
 
@@ -137,6 +152,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
@@ -145,6 +161,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(passed);
+
             Assert.IsTrue(allLaunchesPage.CheckPassedValue(passed), "Passed value isn't correct after filtering");
         }
 
@@ -153,12 +170,14 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
             allDashboardsPage.CLickOnLaunchesButton();
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
+
             Assert.IsTrue(allLaunchesPage.CheckLaunchName(launchName), "Launch Name isn't correct after filtering");
         }
     }
