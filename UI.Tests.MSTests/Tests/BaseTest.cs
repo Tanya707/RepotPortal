@@ -26,7 +26,6 @@ namespace Framework.Core.Tests
         {
             webDriverFactory.CloseDriver();
             webDriverFactory.FinishHim();
-            driver.Dispose();
         }
 
     }
