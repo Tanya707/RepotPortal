@@ -35,7 +35,7 @@ namespace ReportPortal
         {
             LoginTestSteps loginPage = new LoginTestSteps(webDriverFactory.GetDriver());
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
-            Assert.IsTrue(loginPage.IsLogInButtonDisplayed());
+            Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't dispalyed");
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace ReportPortal
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
-            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed());
+            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as superadmin");
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace ReportPortal
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
             AllDashboardsSteps allDashboardsPage = new AllDashboardsSteps(webDriverFactory.GetDriver());
-            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed());
+            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as default user");
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace ReportPortal
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
-            Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
+            Assert.IsTrue(allLaunchesPage.CheckLaunchName(launchName), "Launch Name isn't correct after filtering");
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(total.ToString());
-            Assert.IsTrue(allLaunchesPage.CheckTotalValues(total.ToString()));
+            Assert.IsTrue(allLaunchesPage.CheckTotalValue(total.ToString()), "Total value isn't correct after filtering");
         }
 
         [TestMethod]
@@ -119,7 +119,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(passed.ToString());
-            Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed.ToString()));
+            Assert.IsTrue(allLaunchesPage.CheckPassedValue(passed.ToString()), "Passed value isn't correct after filtering");
         }
 
         [TestMethod]
@@ -135,7 +135,7 @@ namespace ReportPortal
             AllLaunchesSteps allLaunchesPage = new AllLaunchesSteps(webDriverFactory.GetDriver());
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
-            Assert.IsTrue(allLaunchesPage.CheckLaunchNames(launchName));
+            Assert.IsTrue(allLaunchesPage.CheckLaunchName(launchName), "Launch Name isn't correct after filtering");
         }
 
         [TestMethod]
@@ -153,7 +153,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(passed);
-            Assert.IsTrue(allLaunchesPage.CheckPassedValues(passed));
+            Assert.IsTrue(allLaunchesPage.CheckPassedValue(passed), "Passed value isn't correct after filtering");
         }
 
         [TestMethod]
@@ -171,7 +171,7 @@ namespace ReportPortal
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
             allLaunchesPage.EnterSecondFilterField(total);
-            Assert.IsTrue(allLaunchesPage.CheckTotalValues(total));
+            Assert.IsTrue(allLaunchesPage.CheckTotalValue(total), "Total value isn't correct after filtering");
         }
     }
 }

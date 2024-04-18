@@ -12,7 +12,6 @@ namespace Framework.Core.Tests
         protected WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
 
-
         [TestInitialize]
         public void SetUp()
         {
@@ -24,8 +23,7 @@ namespace Framework.Core.Tests
         [TestCleanup]
         public void TearDown()
         {
-            webDriverFactory.CloseDriver();
-            webDriverFactory.FinishHim();
+            webDriverFactory.CloseDriverAndFinishHim();
         }
 
     }

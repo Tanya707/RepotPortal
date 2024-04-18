@@ -13,9 +13,10 @@ namespace Framework.Core.Utilities
             return driver;
         }
 
-        public void CloseDriver()
+        public void CloseDriverAndFinishHim()
         {
             driver.Quit();
+            driver?.Dispose();
             driver = null;
         }
         public IWebDriver InitializeDriver(Enum type)
@@ -38,11 +39,6 @@ namespace Framework.Core.Utilities
         public void WindowMaximise()
         {
             driver.Manage().Window.Maximize();
-        }
-
-        public void FinishHim()
-        {
-            driver?.Dispose();
         }
 
     }

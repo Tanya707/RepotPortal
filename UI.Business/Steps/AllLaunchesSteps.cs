@@ -36,7 +36,7 @@ namespace UI.Business.Steps
             return _allLaunchesPage;
         }
 
-        public bool CheckLaunchNames(string name)
+        public bool CheckLaunchName(string name)
         {
             _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check launch name"));
             return _allLaunchesPage.launchNames.First().Text.Contains(name);
@@ -82,16 +82,14 @@ namespace UI.Business.Steps
             return _allLaunchesPage;
         }
 
-        public bool CheckTotalValues(string total)
+        public bool CheckTotalValue(string total)
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check total value"));
             Thread.Sleep(1000);
             return _allLaunchesPage.TotalValues.First().Text.Contains(total);
         }
 
-        public bool CheckPassedValues(string passed)
+        public bool CheckPassedValue(string passed)
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check passed value"));
             Thread.Sleep(1000);
             return _allLaunchesPage.PassedValues.First().Text.Contains(passed);
         }

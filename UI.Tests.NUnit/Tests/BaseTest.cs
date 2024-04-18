@@ -24,8 +24,7 @@ namespace Framework.Core.Tests
         [TearDown]
         public void TearDown()
         {
-            webDriverFactory.CloseDriver();
-            webDriverFactory.FinishHim();
+            webDriverFactory.CloseDriverAndFinishHim();
         }
 
     }
