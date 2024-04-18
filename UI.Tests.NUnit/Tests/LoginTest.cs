@@ -7,7 +7,7 @@ namespace ReportPortal
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
-    public class LoginTest : BaseTest
+    public class LoginTest : BaseTestNUnit
     {
         public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData("UI.Tests.NUnit").Total;
         public static IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData("UI.Tests.NUnit").Passed;

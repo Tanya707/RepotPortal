@@ -7,7 +7,7 @@ using UI.Business.Steps;
 namespace ReportPortal
 {
     [TestClass]
-    public class LoginTest : BaseTest
+    public class LoginTest : BaseTestMSTest
     {
         private static IEnumerable<object[]> GetLaunchNameTestDataList()
         {

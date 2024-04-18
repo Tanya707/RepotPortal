@@ -1,19 +1,19 @@
 ﻿using Core.Helpers;
 using Core.Models;
 using Framework.Core.Utilities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using UI.Business.Driver;
 
 namespace Framework.Core.Tests
 {
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    [TestFixture]
-    public abstract class BaseTest
+    [TestClass]
+    public class BaseTestMSTest
     {
         protected WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             webDriverFactory = new WebDriverFactory();
@@ -21,7 +21,7 @@ namespace Framework.Core.Tests
             webDriverFactory.WindowMaximise();
         }
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
             webDriverFactory.CloseDriverAndFinishHim();
