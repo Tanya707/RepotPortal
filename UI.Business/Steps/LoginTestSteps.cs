@@ -18,7 +18,7 @@ namespace ReportPortal
 
         public LoginPage OpenLogInPage(string url)
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Open page"));
+            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, $"Open page {url}"));
             _loginPage.GoToBaseUrl(url);
             return _loginPage;
         }
