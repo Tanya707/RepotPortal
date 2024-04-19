@@ -19,11 +19,11 @@ namespace Framework.Core.Utilities
             driver?.Dispose();
             driver = null;
         }
-        public IWebDriver InitializeDriver(Enum type)
+        public IWebDriver InitializeDriver(string type)
         {
             switch (type)
             {
-                case BrowserList.Chrome:
+                case "Chrome":
                     {
                         driver = new ChromeDriver();
                         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Models;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium.DefaultWaitHelpers;
 
@@ -8,7 +9,8 @@ namespace Core.Helpers
     {
         private IWebDriver _driver;
         private WebDriverWait _wait;
-        private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(10);
+        protected static ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
+        private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(configs.Timeout);
 
         public Waiter(IWebDriver driver)
         {
@@ -20,9 +22,9 @@ namespace Core.Helpers
             _wait = new WebDriverWait(_driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
             _wait.Until(_ => condition.Invoke());
         }
-            public void WaitForStaleElementReferenceException(IWebElement element, int timeoutInSeconds = 20)
+         public void WaitForStaleElementReferenceException(IWebElement element)
             {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
+            WebDriverWait wait = new WebDriverWait(_driver, ConditionTimeOutDefault);
 
             try
             {

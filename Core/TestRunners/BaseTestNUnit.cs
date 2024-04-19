@@ -4,7 +4,6 @@ using Framework.Core.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using UI.Business.Driver;
-
 namespace Framework.Core.Tests
 {
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
@@ -13,12 +12,13 @@ namespace Framework.Core.Tests
     {
         protected WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
+        protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
         [SetUp]
         public void SetUp()
         {
             webDriverFactory = new WebDriverFactory();
-            webDriverFactory.InitializeDriver(BrowserList.Chrome);
+            webDriverFactory.InitializeDriver(configs.Browser);
             webDriverFactory.WindowMaximise();
         }
 
