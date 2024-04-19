@@ -1,3 +1,4 @@
+using Core.Helpers;
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
@@ -13,7 +14,6 @@ namespace ReportPortal
         {
             _allDashboardsPage = new AllDashboardsPage(driver);
             _loginPage = new LoginPage(driver);
-
         }
 
         public LoginPage OpenLogInPage(string url)

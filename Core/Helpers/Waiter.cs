@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Selenium.DefaultWaitHelpers;
 
 namespace Core.Helpers
 {
@@ -18,6 +19,29 @@ namespace Core.Helpers
         {
             _wait = new WebDriverWait(_driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
             _wait.Until(_ => condition.Invoke());
+        }
+            public void WaitForStaleElementReferenceException(IWebElement element, int timeoutInSeconds = 20)
+            {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
+
+            try
+            {
+                wait.Until(_driver =>
+                {
+                    try
+                    {
+                        return !element.Displayed;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        return true;
+                    }
+                });
+            }
+            catch (WebDriverTimeoutException)
+            {
+                throw new WebDriverTimeoutException($"Timed out waiting for stale element reference exception for element located by: {element}");
+            }
         }
     }
 }
