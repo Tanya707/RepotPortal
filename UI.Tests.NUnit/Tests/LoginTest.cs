@@ -1,4 +1,5 @@
 using Core.Helpers;
+using Core.Models;
 using Framework.Core.Tests;
 using OpenQA.Selenium;
 using UI.Business.Pages;
@@ -9,9 +10,9 @@ namespace ReportPortal
     [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTestNUnit
     {
-        public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData("UI.Tests.NUnit").Total;
-        public static IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData("UI.Tests.NUnit").Passed;
-        public static IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.LaunchNameTestData("UI.Tests.NUnit").LaunchName;
+        public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TestData("UI.Tests.NUnit").Total;
+        public static IEnumerable<string> PassedTestDataList() => TestDataHelper.TestData("UI.Tests.NUnit").Passed;
+        public static IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.TestData("UI.Tests.NUnit").LaunchName;
 
         [Test]
         public void LogInButtonDisplayedTest()

@@ -11,21 +11,21 @@ namespace ReportPortal
     {
         private static IEnumerable<object[]> GetLaunchNameTestDataList()
         {
-            IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.LaunchNameTestData("UI.Tests.MSTests").LaunchName;
+            IEnumerable<string> LaunchNameTestDataList() => TestDataHelper.TestData("UI.Tests.MSTests").LaunchName;
             IEnumerable<object[]> objectEnumerable = LaunchNameTestDataList().Select(str => new object[] { str });
             return objectEnumerable;
         }
 
         private static IEnumerable<object[]> GetPassedTestDataList()
         {
-            IEnumerable<string> PassedTestDataList() => TestDataHelper.PassedTestData("UI.Tests.MSTests").Passed;
+            IEnumerable<string> PassedTestDataList() => TestDataHelper.TestData("UI.Tests.MSTests").Passed;
             IEnumerable<object[]> objectEnumerable = PassedTestDataList().Select(str => new object[] { str });
             return objectEnumerable;
         }
 
         private static IEnumerable<object[]> GetTotalTestDataList()
         {
-            IEnumerable<string> TotalTestDataList() => TestDataHelper.TotalTestData("UI.Tests.MSTests").Total;
+            IEnumerable<string> TotalTestDataList() => TestDataHelper.TestData("UI.Tests.MSTests").Total;
             IEnumerable<object[]> objectEnumerable = TotalTestDataList().Select(str => new object[] { str });
             return objectEnumerable;
         }
