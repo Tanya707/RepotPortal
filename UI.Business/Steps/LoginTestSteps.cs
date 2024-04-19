@@ -18,20 +18,20 @@ namespace ReportPortal
 
         public LoginPage OpenLogInPage(string url)
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, $"Open page {url}"));
+            LogInfoExtensions.Log(_logger, $"Open page {url}");
             _loginPage.GoToBaseUrl(url);
             return _loginPage;
         }
 
         public bool IsLogInButtonDisplayed()
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check button"));
+            LogInfoExtensions.Log(_logger, "Check button");
             return _loginPage.LogInButton.Displayed;
         }
 
         public AllDashboardsPage LogIn(string username, string password)
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Enter credentials"));
+            LogInfoExtensions.Log(_logger, "Enter credentials");
             _loginPage.EnterLogin(username);
             _loginPage.EnterPassword(password);
             _loginPage.LogInButton.Click();
@@ -39,12 +39,12 @@ namespace ReportPortal
         }
         public bool IsPasswordFieldDisplayed()
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Password Field"));
+            LogInfoExtensions.Log(_logger, "Check Password Field");
             return _loginPage.PasswordField.Displayed;
         }
         public bool IsLogInFieldDisplayed()
         {
-            _logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Log In Field"));
+            LogInfoExtensions.Log(_logger, "Log In Field");
             return _loginPage.LogInField.Displayed;
         }
     }
