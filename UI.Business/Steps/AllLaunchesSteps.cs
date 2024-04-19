@@ -5,20 +5,9 @@ using UI.Business.Pages;
 
 namespace UI.Business.Steps
 {
-    public class AllLaunchesSteps
+    public class AllLaunchesSteps:BaseSteps
     {
-        private AllDashboardsPage _allDashboardsPage;
-        private AllLaunchesPage _allLaunchesPage;
-        private Waiter _waiter;
-        private ILogger _logger = new ConsoleLogger();
-
-        public AllLaunchesSteps(IWebDriver driver) {
-
-            _allDashboardsPage = new AllDashboardsPage(driver);
-            _allLaunchesPage = new AllLaunchesPage(driver);
-            _waiter = new Waiter(driver);
-
-        }
+        public AllLaunchesSteps(IWebDriver driver) : base(driver) { }
 
         public AllLaunchesPage EnterLaunchName(string launchName)
         {

@@ -2,19 +2,12 @@ using Core.Helpers;
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
+using UI.Business.Steps;
 namespace ReportPortal
 {
-    public class LoginTestSteps
+    public class LoginTestSteps:BaseSteps
     {
-        private LoginPage _loginPage;
-        private ConsoleLogger _logger = new ConsoleLogger();
-        private AllDashboardsPage _allDashboardsPage;
-
-        public LoginTestSteps(IWebDriver driver)
-        {
-            _allDashboardsPage = new AllDashboardsPage(driver);
-            _loginPage = new LoginPage(driver);
-        }
+        public LoginTestSteps(IWebDriver driver) : base(driver) { }
 
         public LoginPage OpenLogInPage(string url)
         {

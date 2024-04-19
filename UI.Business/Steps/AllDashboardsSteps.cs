@@ -2,22 +2,12 @@ using Core.Helpers;
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
+using UI.Business.Steps;
 namespace ReportPortal
 {
-    public class AllDashboardsSteps
+    public class AllDashboardsSteps:BaseSteps
     {
-        private AllDashboardsPage _allDashboardsPage;
-        private ConsoleLogger _logger = new ConsoleLogger();
-        private AllLaunchesPage _allLaunchesPage;
-        private Waiter _waiter;
-
-        public AllDashboardsSteps(IWebDriver driver)
-        {
-            _allDashboardsPage = new AllDashboardsPage(driver);
-            _allLaunchesPage = new AllLaunchesPage(driver);
-            _waiter = new Waiter(driver);
-
-        }
+        public AllDashboardsSteps(IWebDriver driver) : base(driver) { }
 
         public bool IsLaunchesButtonDisplayed()
         {
