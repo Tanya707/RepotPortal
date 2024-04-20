@@ -2,7 +2,7 @@ using Core.Helpers;
 using Framework.Core.Tests;
 using UI.Business.Steps;
 
-[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 5, Scope = ExecutionScope.MethodLevel)]
 
 namespace ReportPortal
 {

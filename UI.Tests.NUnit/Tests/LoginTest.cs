@@ -4,10 +4,13 @@ using Framework.Core.Tests;
 using OpenQA.Selenium;
 using UI.Business.Pages;
 using UI.Business.Steps;
+
+[assembly: LevelOfParallelism(15)]
 namespace ReportPortal
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
+
     public class LoginTest : BaseTestNUnit
     {
         public static IEnumerable<string> TotalTestDataList() => TestDataHelper.TestData("UI.Tests.NUnit").Total;
@@ -83,7 +86,7 @@ namespace ReportPortal
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
 
-            Assert.IsTrue(allLaunchesPage.CheckTotalValue(launchName), "Total value isn't correct after filtering");
+            Assert.IsTrue(allLaunchesPage.CheckLaunchName(launchName), "Launch name isn't correct after filtering");
         }
 
         [TestCase(10)]

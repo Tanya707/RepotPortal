@@ -25,7 +25,7 @@ namespace Core.Helpers
          public void WaitForStaleElementReferenceException(IWebElement element)
             {
             WebDriverWait wait = new WebDriverWait(_driver, ConditionTimeOutDefault);
-
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             try
             {
                 wait.Until(_driver =>
@@ -33,6 +33,10 @@ namespace Core.Helpers
                     try
                     {
                         return !element.Displayed;
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        return true;
                     }
                     catch (StaleElementReferenceException)
                     {
