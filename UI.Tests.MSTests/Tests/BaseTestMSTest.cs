@@ -1,16 +1,20 @@
 ﻿using Core.Helpers;
 using Core.Models;
 using Framework.Core.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ReportPortal;
+using UI.Business.Steps;
 
 namespace Framework.Core.Tests
 {
     [TestClass]
     public class BaseTestMSTest
     {
-        protected WebDriverFactory webDriverFactory;
+        private WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
         protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
+        protected LoginTestSteps loginPage => new LoginTestSteps(webDriverFactory.GetDriver());
+        protected AllDashboardsSteps allDashboardsPage => new AllDashboardsSteps(webDriverFactory.GetDriver());
+        protected AllLaunchesSteps allLaunchesPage => new AllLaunchesSteps(webDriverFactory.GetDriver());
 
         [TestInitialize]
         public void SetUp()

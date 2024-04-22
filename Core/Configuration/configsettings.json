@@ -1,4 +1,5 @@
 {
-    "Browser": "Chrome",
-    "Timeout": 10
+  "Browser": "Chrome",
+  "Timeout": 10,
+  "PageLoadTimeout": 30
 }

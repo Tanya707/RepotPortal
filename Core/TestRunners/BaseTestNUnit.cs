@@ -2,8 +2,6 @@
 using Core.Models;
 using Framework.Core.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using UI.Business.Driver;
 namespace Framework.Core.Tests
 {
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

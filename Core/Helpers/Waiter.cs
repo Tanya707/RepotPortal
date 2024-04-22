@@ -1,7 +1,6 @@
 ﻿using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Selenium.DefaultWaitHelpers;
 
 namespace Core.Helpers
 {

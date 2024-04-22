@@ -1,4 +1,3 @@
-using Core.Helpers;
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;

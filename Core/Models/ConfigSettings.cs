@@ -5,5 +5,6 @@ namespace Core.Models
     {
         public string Browser { get; set; }
         public int Timeout { get; set; }
+        public int PageLoadTimeout { get; set; }
     }
 }

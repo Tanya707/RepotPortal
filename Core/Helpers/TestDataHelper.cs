@@ -1,6 +1,5 @@
 ﻿using Core.Models;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace Core.Helpers
 {
