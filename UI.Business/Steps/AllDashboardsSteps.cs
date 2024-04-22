@@ -17,7 +17,7 @@ namespace ReportPortal
         public AllLaunchesPage CLickOnLaunchesButton()
         {
             _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
-            LogInfoExtensions.Log(_logger, "Click on launch button");
+            LogInfoExtensions.LogInfo(_logger, "Click on launch button");
             _allDashboardsPage.LaunchesButton.Click();
             return _allLaunchesPage;
         }
