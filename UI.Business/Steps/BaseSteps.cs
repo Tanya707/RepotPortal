@@ -12,7 +12,6 @@ namespace UI.Business.Steps
         protected LoginPage _loginPage;
         protected Waiter _waiter;
         protected ILogger _logger = new ConsoleLogger();
-        protected IWebDriver _driver;
         protected BaseSteps(IWebDriver driver)
         {
             _allDashboardsPage = new AllDashboardsPage(driver);

@@ -11,7 +11,7 @@ namespace UI.Business.Pages
         private readonly By _totalCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Total']");
         private readonly By _secondFilterField = By.XPath("//*[@placeholder = 'Enter quantity']");
         private readonly By _passedCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Passed']");
-        private readonly By _launchName = By.XPath("//*[@class = 'itemInfo__name-link--oIaqj']/*[@class = 'tooltip__tooltip-trigger--FBBdw itemInfo__name--Nz97v']");
+        private readonly By _launchName = By.XPath("//*[contains(@class, 'itemInfo__name-link')]/*[contains(@class,'tooltip__tooltip-trigger')]");
         private readonly By _condition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]");
         private readonly By _equalCondition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]//*[text()='Equals']");
         private readonly By _totalValues = By.XPath("//*[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
