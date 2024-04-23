@@ -17,7 +17,6 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage EnterLaunchName(string launchName)
         {
             _waiter.WaitFor(() => _allLaunchesPage.LaunchNameField.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Enter launch name");
             _allLaunchesPage.EnterLaunchName(launchName);
             return _allLaunchesPage;
         }
@@ -26,7 +25,6 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage ClickOnFilterByButton()
         {
             _waiter.WaitFor(() => _allLaunchesPage.AddFilterButton.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Click on filter button");
             _allLaunchesPage.AddFilterButton.Click();
             return _allLaunchesPage;
         }
@@ -34,7 +32,6 @@ namespace UI.Business.StepsDefinitions
         [Then("Check Launch Names {string} contains")]
         public void CheckLaunchNameContains(string launchName)
         {
-            LogInfoExtensions.LogInfo(_logger, "Check launch name");
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.launchNames.First());
             Assert.IsTrue(_allLaunchesPage.launchNames.First().Text.Contains(launchName));
         }
@@ -57,7 +54,7 @@ namespace UI.Business.StepsDefinitions
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled);
             LogInfoExtensions.LogInfo(_logger, "Click on More button");
             _allLaunchesPage.MoreButton.Click();
-            LogInfoExtensions.LogInfo(_logger, "Choose Passe");
+            LogInfoExtensions.LogInfo(_logger, "Choose Passed");
             _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled);
             _allLaunchesPage.PassedCheckbox.Click();
             return _allLaunchesPage;
@@ -67,7 +64,6 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage EnterSecondFilterField(string value)
         {
             _waiter.WaitFor(() => _allLaunchesPage.SecondFilterField.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Enter launch name");
             _allLaunchesPage.EnterSecondFilterField(value);
             return _allLaunchesPage;
         }
@@ -75,7 +71,6 @@ namespace UI.Business.StepsDefinitions
         [When("Select Equal")]
         public AllLaunchesPage SelectEqual()
         {
-            LogInfoExtensions.LogInfo(_logger, "SelectEqual");
             _waiter.WaitFor(() => _allLaunchesPage.Condition.Enabled);
             _allLaunchesPage.ClickCondition();
             _waiter.WaitFor(() => _allLaunchesPage.EqualCondition.Enabled);

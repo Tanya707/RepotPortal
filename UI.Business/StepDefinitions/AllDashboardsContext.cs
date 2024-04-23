@@ -18,7 +18,6 @@ namespace UI.Business.StepsDefinitions
         public void IsLaunchesButtonDisplayed()
         {
             _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Check Page");
             Assert.IsTrue(_allDashboardsPage.LaunchesButton.Displayed);
         }
 
@@ -26,7 +25,6 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage CLickOnLaunchesButton()
         {
             _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Click on launch button");
             _allDashboardsPage.LaunchesButton.Click();
             return _allLaunchesPage;
         }
