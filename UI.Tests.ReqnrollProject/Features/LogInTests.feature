@@ -23,7 +23,7 @@ Scenario: FilterByLaunchName
 	And CLick On Launches Button
 	And Click On Filter By Button
 	And Enter Launch Name '<launchName>'
-	Then Check Launch Names '<launchName>'
+	Then Check Launch Names '<launchName>' contains
 
 	Examples:
     | launchName     | 
@@ -43,7 +43,7 @@ Scenario: FilterByTotal
 	And Choose Filter By Total
 	And Select Equal
 	And Enter Second Filter Field '<total>'
-	Then Check Total Values '<total>'
+	Then Check Total Values '<total>' contains
 
 	Examples:
     | total | 
@@ -62,7 +62,7 @@ Scenario: FilterByPassed
 	And Choose Filter By Passed
 	And Select Equal
 	And Enter Second Filter Field '<passed>'
-	Then Check Passed Values '<passed>'
+	Then Check Passed Values '<passed>' contains
 
 	Examples:
     | passed | 
@@ -82,8 +82,8 @@ Scenario Outline: FilterByLaunchNameAndTotal
 	And Choose Filter By Total
 	And Select Equal
 	And Enter Second Filter Field '<total>'
-	Then Check Launch Names '<launchName>'
-	Then Check Total Values '<total>'
+	Then Check Launch Names '<launchName>' contains
+	Then Check Total Values '<total>' contains
 
 	Examples:
 	| launchName     | total |

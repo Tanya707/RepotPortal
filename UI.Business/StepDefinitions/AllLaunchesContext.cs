@@ -31,8 +31,8 @@ namespace UI.Business.StepsDefinitions
             return _allLaunchesPage;
         }
 
-        [Then("Check Launch Names {string}")]
-        public void CheckLaunchName(string launchName)
+        [Then("Check Launch Names {string} contains")]
+        public void CheckLaunchNameContains(string launchName)
         {
             LogInfoExtensions.LogInfo(_logger, "Check launch name");
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.launchNames.First());
@@ -83,15 +83,15 @@ namespace UI.Business.StepsDefinitions
             return _allLaunchesPage;
         }
 
-        [Then("Check Total Values {string}")]
-        public void CheckTotalValue(string total)
+        [Then("Check Total Values {string} contains")]
+        public void CheckTotalValuesContains(string total)
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.TotalValues.First());
             Assert.IsTrue(_allLaunchesPage.TotalValues.First().Text.Contains(total));
         }
 
-        [Then("Check Passed Values {string}")]
-        public void CheckPassedValues(string passed)
+        [Then("Check Passed Values {string} contains")]
+        public void CheckPassedValuesContains(string passed)
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
             Assert.IsTrue(_allLaunchesPage.PassedValues.First().Text.Contains(passed));

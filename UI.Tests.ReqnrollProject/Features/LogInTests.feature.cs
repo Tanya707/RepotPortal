@@ -234,7 +234,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync(string.Format("Enter Launch Name \'{0}\'", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 26
- await testRunner.ThenAsync(string.Format("Check Launch Names \'{0}\'", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("Check Launch Names \'{0}\' contains", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -362,7 +362,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 46
- await testRunner.ThenAsync(string.Format("Check Total Values \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("Check Total Values \'{0}\' contains", total), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -477,7 +477,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", passed), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 65
- await testRunner.ThenAsync(string.Format("Check Passed Values \'{0}\'", passed), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("Check Passed Values \'{0}\' contains", passed), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -599,10 +599,10 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 85
- await testRunner.ThenAsync(string.Format("Check Launch Names \'{0}\'", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("Check Launch Names \'{0}\' contains", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 86
- await testRunner.ThenAsync(string.Format("Check Total Values \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("Check Total Values \'{0}\' contains", total), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
