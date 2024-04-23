@@ -1,37 +1,25 @@
-using Core.Helpers;
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
+using UI.Business.Steps;
 namespace ReportPortal
 {
-    public class AllDashboardsSteps
+    public class AllDashboardsSteps:BaseSteps
     {
-        private AllDashboardsPage allDashboardsPage;
-        private ConsoleLogger logger = new ConsoleLogger();
-        private AllLaunchesPage allLaunchesPage;
-        private Waiter waiter;
-
-        public AllDashboardsSteps(IWebDriver driver)
-        {
-            allDashboardsPage = new AllDashboardsPage(driver);
-            allLaunchesPage = new AllLaunchesPage(driver);
-            waiter = new Waiter(driver);
-
-        }
+        public AllDashboardsSteps(IWebDriver driver) : base(driver) { }
 
         public bool IsLaunchesButtonDisplayed()
         {
-            waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check Page"));
-            return allDashboardsPage.LaunchesButton.Displayed;
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
+            return _allDashboardsPage.LaunchesButton.Displayed;
         }
 
         public AllLaunchesPage CLickOnLaunchesButton()
         {
-            waiter.WaitFor(() => allDashboardsPage.LaunchesButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on launch button"));
-            allDashboardsPage.LaunchesButton.Click();
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
+            LogInfoExtensions.LogInfo(_logger, "Click on launch button");
+            _allDashboardsPage.LaunchesButton.Click();
+            return _allLaunchesPage;
         }
     }
 }

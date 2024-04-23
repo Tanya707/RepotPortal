@@ -1,31 +1,29 @@
 ﻿using Core.Helpers;
 using Core.Models;
 using Framework.Core.Utilities;
-using OpenQA.Selenium;
-using UI.Business.Driver;
-
+using NUnit.Framework;
 namespace Framework.Core.Tests
 {
-    [TestClass]
-    public class BaseTest
+    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [TestFixture]
+    public abstract class BaseTestNUnit
     {
         protected WebDriverFactory webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
+        protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
-
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             webDriverFactory = new WebDriverFactory();
-            webDriverFactory.InitializeDriver(BrowserList.Chrome);
+            webDriverFactory.InitializeDriver(configs.Browser);
             webDriverFactory.WindowMaximise();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
-            webDriverFactory.CloseDriver();
-            webDriverFactory.FinishHim();
+            webDriverFactory.CloseDriverAndFinishHim();
         }
 
     }

@@ -1,32 +1,35 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Helpers;
+using Core.Models;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using UI.Business.Driver;
 
 namespace Framework.Core.Utilities
 {
     public class WebDriverFactory
     {
         private IWebDriver driver;
+        protected static ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
         public IWebDriver GetDriver()
         {
             return driver;
         }
 
-        public void CloseDriver()
+        public void CloseDriverAndFinishHim()
         {
             driver.Quit();
+            driver?.Dispose();
             driver = null;
         }
-        public IWebDriver InitializeDriver(Enum type)
+        public IWebDriver InitializeDriver(string type)
         {
             switch (type)
             {
-                case BrowserList.Chrome:
+                case "Chrome":
                     {
                         driver = new ChromeDriver();
-                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-                        driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);
+                        driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(configs.PageLoadTimeout);
                         return driver;
                     }
 
@@ -38,11 +41,6 @@ namespace Framework.Core.Utilities
         public void WindowMaximise()
         {
             driver.Manage().Window.Maximize();
-        }
-
-        public void FinishHim()
-        {
-            driver?.Dispose();
         }
 
     }

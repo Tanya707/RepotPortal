@@ -1,5 +1,4 @@
-﻿using Framework.Core.Utilities;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace UI.Business.Pages
 {

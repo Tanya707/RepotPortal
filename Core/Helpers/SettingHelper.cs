@@ -8,13 +8,25 @@ namespace Core.Helpers
         public static Settings LoadFromAppSettings()
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("..", "..", "..", "..", "Core", "Configuration");
+            string relativePath = Path.Combine("Configuration");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("appsettings.json")
                 .Build();
 
             return configuration.Get<Settings>();
+        }
+
+        public static ConfigSettings LoadFromConfigSettings()
+        {
+            string baseDirectory = AppContext.BaseDirectory;
+            string relativePath = Path.Combine("Configuration");
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(baseDirectory, relativePath))
+                .AddJsonFile("configsettings.json")
+                .Build();
+
+            return configuration.Get<ConfigSettings>();
         }
     }
 }

@@ -5,31 +5,31 @@ namespace UI.Business.Pages
 {
     public class AllLaunchesPage : BasePage
     {
-        private readonly By addFilterButton = By.XPath("//div[contains(@class,'launchFiltersToolbar__add-filter-button')]/button");
-        private readonly By launchNameField = By.XPath("//input[contains(@class,'inputConditional')]");
-        private readonly By moreButton= By.XPath("//div[contains(@class,'entitiesSelector__toggler')]");
-        private readonly By totalCheckbox = By.XPath("//span[text()='Total']");
-        private readonly By secondFilterField = By.XPath("(//input[contains(@class,'inputConditional')])[2]");
-        private readonly By passedCheckbox = By.XPath("//span[text()='Passed']");
-        private readonly By launchName = By.XPath("//div[contains(@class,'gridRow__grid-row-wrapper')]//div[contains(@class,'itemInfo__name')]//span");
-        private readonly By condition = By.XPath("(//div[contains(@class,'inputConditional__conditions-selector')])[2]");
-        private readonly By equalCondition = By.XPath("(//div[text()='Equals'])[2]");
-        private readonly By totalValues = By.XPath("//a[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
-        private readonly By passedValues = By.XPath("//a[@statuses='PASSED']");
+        private readonly By _addFilterButton = By.XPath("//*[contains(@class,'launchFiltersToolbar__add-filter-button')]/button");
+        private readonly By _launchNameField = By.XPath("//*[@placeholder = 'Enter name']");
+        private readonly By _moreButton= By.XPath("//*[contains(@class,'entitiesSelector__toggler')]");
+        private readonly By _totalCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Total']");
+        private readonly By _secondFilterField = By.XPath("//*[@placeholder = 'Enter quantity']");
+        private readonly By _passedCheckbox = By.XPath("//*[contains(@class,'inputCheckbox') and text()='Passed']");
+        private readonly By _launchName = By.XPath("//*[contains(@class, 'itemInfo__name-link')]/*[contains(@class,'tooltip__tooltip-trigger')]");
+        private readonly By _condition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]");
+        private readonly By _equalCondition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]//*[text()='Equals']");
+        private readonly By _totalValues = By.XPath("//*[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
+        private readonly By _passedValues = By.XPath("//*[@statuses='PASSED']");
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
-        public IWebElement AddFilterButton => Driver.FindElement(addFilterButton);
-        public IWebElement LaunchNameField => Driver.FindElement(launchNameField);
-        public IWebElement MoreButton => Driver.FindElement(moreButton);
-        public IWebElement TotalCheckbox => Driver.FindElement(totalCheckbox);
-        public IWebElement SecondFilterField => Driver.FindElement(secondFilterField);
-        public IWebElement PassedCheckbox => Driver.FindElement(passedCheckbox);
-        public ReadOnlyCollection<IWebElement> launchNames => Driver.FindElements(launchName);
-        public IWebElement Condition => Driver.FindElement(condition);
-        public IWebElement EqualCondition => Driver.FindElement(equalCondition);
-        public ReadOnlyCollection<IWebElement> TotalValues => Driver.FindElements(totalValues);
-        public ReadOnlyCollection<IWebElement> PassedValues => Driver.FindElements(passedValues);
+        public IWebElement AddFilterButton => Driver.FindElement(_addFilterButton);
+        public IWebElement LaunchNameField => Driver.FindElement(_launchNameField);
+        public IWebElement MoreButton => Driver.FindElement(_moreButton);
+        public IWebElement TotalCheckbox => Driver.FindElement(_totalCheckbox);
+        public IWebElement SecondFilterField => Driver.FindElement(_secondFilterField);
+        public IWebElement PassedCheckbox => Driver.FindElement(_passedCheckbox);
+        public ReadOnlyCollection<IWebElement> launchNames => Driver.FindElements(_launchName);
+        public IWebElement Condition => Driver.FindElement(_condition);
+        public IWebElement EqualCondition => Driver.FindElement(_equalCondition);
+        public ReadOnlyCollection<IWebElement> TotalValues => Driver.FindElements(_totalValues);
+        public ReadOnlyCollection<IWebElement> PassedValues => Driver.FindElements(_passedValues);
 
         public void ClickAddFilterButton() => AddFilterButton.Click();
         public void ClickMoreButton() => MoreButton.Click();

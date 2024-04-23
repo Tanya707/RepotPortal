@@ -1,99 +1,84 @@
-﻿using Core.Helpers;
-using Core.Logger;
+﻿using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
 
 namespace UI.Business.Steps
 {
-    public class AllLaunchesSteps
+    public class AllLaunchesSteps:BaseSteps
     {
-        private AllDashboardsPage allDashboardsPage;
-        private ConsoleLogger logger = new ConsoleLogger();
-        private AllLaunchesPage allLaunchesPage;
-        private Waiter waiter;
-
-        public AllLaunchesSteps(IWebDriver driver) {
-
-            allDashboardsPage = new AllDashboardsPage(driver);
-            allLaunchesPage = new AllLaunchesPage(driver);
-            waiter = new Waiter(driver);
-
-        }
+        public AllLaunchesSteps(IWebDriver driver) : base(driver) { }
 
         public AllLaunchesPage EnterLaunchName(string launchName)
         {
-            waiter.WaitFor(() => allLaunchesPage.LaunchNameField.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Enter launch name"));
-            allLaunchesPage.EnterLaunchName(launchName);
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allLaunchesPage.LaunchNameField.Enabled);
+            LogInfoExtensions.LogInfo(_logger, "Enter launch name");
+            _allLaunchesPage.EnterLaunchName(launchName);
+            return _allLaunchesPage;
         }
 
         public AllLaunchesPage ClickOnFilterByButton()
         {
-            waiter.WaitFor(() => allLaunchesPage.AddFilterButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on filter button"));
-            allLaunchesPage.AddFilterButton.Click();
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allLaunchesPage.AddFilterButton.Enabled);
+            LogInfoExtensions.LogInfo(_logger, "Click on filter button");
+            _allLaunchesPage.AddFilterButton.Click();
+            return _allLaunchesPage;
         }
 
-        public bool CheckLaunchNames(string name)
+        public bool CheckLaunchName(string name)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check launch name"));
-            return allLaunchesPage.launchNames.First().Text.Contains(name);
+            return _allLaunchesPage.launchNames.First().Text.Contains(name);
         }
 
         public AllLaunchesPage ChooseFilterByTotal()
         {
-            waiter.WaitFor(() => allLaunchesPage.MoreButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on More button"));
-            allLaunchesPage.MoreButton.Click();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Choose Total"));
-            waiter.WaitFor(() => allLaunchesPage.TotalCheckbox.Enabled);
-            allLaunchesPage.TotalCheckbox.Click();
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled);
+            LogInfoExtensions.LogInfo(_logger, "Click on More button");
+            _allLaunchesPage.MoreButton.Click();
+            LogInfoExtensions.LogInfo(_logger, "Choose Total");
+            _waiter.WaitFor(() => _allLaunchesPage.TotalCheckbox.Enabled);
+            _allLaunchesPage.TotalCheckbox.Click();
+            return _allLaunchesPage;
         }
 
         public AllLaunchesPage ChooseFilterByPassed()
         {
-            waiter.WaitFor(() => allLaunchesPage.MoreButton.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Click on More button"));
-            allLaunchesPage.MoreButton.Click();
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Choose Passe"));
-            waiter.WaitFor(() => allLaunchesPage.PassedCheckbox.Enabled);
-            allLaunchesPage.PassedCheckbox.Click();
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled);
+            LogInfoExtensions.LogInfo(_logger,"Click on More button");
+            _allLaunchesPage.MoreButton.Click();
+            LogInfoExtensions.LogInfo(_logger, "Choose Passe");
+            _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled);
+            _allLaunchesPage.PassedCheckbox.Click();
+            return _allLaunchesPage;
         }
 
         public AllLaunchesPage EnterSecondFilterField(string value)
         {
-            waiter.WaitFor(() => allLaunchesPage.SecondFilterField.Enabled);
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Enter launch name"));
-            allLaunchesPage.EnterSecondFilterField(value);
-            return allLaunchesPage;
+            _waiter.WaitFor(() => _allLaunchesPage.SecondFilterField.Enabled);
+            LogInfoExtensions.LogInfo(_logger, "Enter launch name");
+            _allLaunchesPage.EnterSecondFilterField(value);
+            return _allLaunchesPage;
         }
 
         public AllLaunchesPage SelectEqual()
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "SelectEqual"));
-            waiter.WaitFor(() => allLaunchesPage.Condition.Enabled);
-            allLaunchesPage.ClickCondition();
-            waiter.WaitFor(() => allLaunchesPage.EqualCondition.Enabled);
-            allLaunchesPage.ClickEqualCondition();
-            return allLaunchesPage;
+            LogInfoExtensions.LogInfo(_logger, "SelectEqual");
+            _waiter.WaitFor(() => _allLaunchesPage.Condition.Enabled);
+            _allLaunchesPage.ClickCondition();
+            _waiter.WaitFor(() => _allLaunchesPage.EqualCondition.Enabled);
+            _allLaunchesPage.ClickEqualCondition();
+            return _allLaunchesPage;
         }
 
-        public bool CheckTotalValues(string total)
+        public bool CheckTotalValue(string total)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check total value"));
-            Thread.Sleep(1000);
-            return allLaunchesPage.TotalValues.First().Text.Contains(total);
+            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.TotalValues.First());
+            return _allLaunchesPage.TotalValues.First().Text.Contains(total);
         }
 
-        public bool CheckPassedValues(string passed)
+        public bool CheckPassedValue(string passed)
         {
-            logger.Log(new Core.Logger.LogEntry(LoggingEventType.Information, "Check passed value"));
-            Thread.Sleep(1000);
-            return allLaunchesPage.PassedValues.First().Text.Contains(passed);
+            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
+            return _allLaunchesPage.PassedValues.First().Text.Contains(passed);
         }
     }
 }
