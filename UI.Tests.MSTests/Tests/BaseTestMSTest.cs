@@ -13,7 +13,7 @@ namespace Framework.Core.Tests
         protected Settings settings = SettingHelper.LoadFromAppSettings();
         protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
         protected LoginTestSteps loginPage => new LoginTestSteps(webDriverFactory.GetDriver());
-        protected AllDashboardsSteps allDashboardsPage => new AllDashboardsSteps(webDriverFactory.GetDriver());
+        protected AllDashboardsContext allDashboardsPage => new AllDashboardsContext(webDriverFactory.GetDriver());
         protected AllLaunchesSteps allLaunchesPage => new AllLaunchesSteps(webDriverFactory.GetDriver());
 
         [TestInitialize]

@@ -2,7 +2,7 @@
 using Core.Models;
 using Framework.Core.Utilities;
 using OpenQA.Selenium;
-using ReportPortal;
+
 using Reqnroll;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 using UI.Business.Driver;
 using UI.Business.Pages;
 
-namespace ReqnrollProject.StepDefinitions
+namespace UI.Business.Hooks
 {
     [Binding]
     public class Hooks
     {
+        protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
         readonly ScenarioContext _scenarioContext;
         protected WebDriverFactory _webDriverFactory;
 
@@ -28,8 +29,8 @@ namespace ReqnrollProject.StepDefinitions
 
         [BeforeScenario]
         public void SetUp()
-        {    
-            _webDriverFactory.InitializeDriver(BrowserList.Chrome);
+        {
+            _webDriverFactory.InitializeDriver(configs.Browser);
             _webDriverFactory.WindowMaximise();
             var driver = _webDriverFactory.GetDriver();
             _scenarioContext.Set(driver);
@@ -38,8 +39,7 @@ namespace ReqnrollProject.StepDefinitions
         [AfterScenario]
         public void TearDown()
         {
-            _webDriverFactory.CloseDriver();
-            _webDriverFactory.FinishHim();
+            _webDriverFactory.CloseDriverAndFinishHim();
         }
     }
 }
