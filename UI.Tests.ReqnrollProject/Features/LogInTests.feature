@@ -1,23 +1,20 @@
+	@mytag
 Feature: LogInTests
 
 Background:
 Given Open Log In Page
 
-	@mytag
 Scenario: LogInButtonTest
 	Then Is Log In Button Displayed
 
-	@mytag
 Scenario: LogInTestSuperadmin
 	When Log In Superadmin
 	Then Is Launches Button Displayed
 
-	@mytag
 Scenario: LogInTestDefaultUser
 	When Log In DefaultUser
 	Then Is Launches Button Displayed
 
-	@mytag
 Scenario: FilterByLaunchName
 	When Log In Superadmin
 	And CLick On Launches Button
@@ -35,7 +32,6 @@ Scenario: FilterByLaunchName
 	| Demo		     |
 
 
-	@mytag
 Scenario: FilterByTotal
 	When Log In Superadmin
 	And CLick On Launches Button
@@ -54,7 +50,6 @@ Scenario: FilterByTotal
 	| 30	|
 
 
-	@mytag
 Scenario: FilterByPassed
 	When Log In Superadmin
 	And CLick On Launches Button
@@ -72,7 +67,6 @@ Scenario: FilterByPassed
 	| 1	     |
 	| 30	 |
 
-		@mytag
 Scenario Outline: FilterByLaunchNameAndTotal
 	When Log In Superadmin
 	And CLick On Launches Button
