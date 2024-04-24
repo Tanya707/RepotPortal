@@ -1,8 +1,8 @@
 using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
-using UI.Business.Steps;
-namespace ReportPortal
+
+namespace UI.Business.Steps
 {
     public class LoginTestSteps:BaseSteps
     {

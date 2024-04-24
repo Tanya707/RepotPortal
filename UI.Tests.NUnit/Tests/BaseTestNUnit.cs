@@ -1,9 +1,9 @@
 ﻿using Core.Helpers;
 using Core.Models;
-using Framework.Core.Utilities;
-using ReportPortal;
+using Core.WebDriverFactory;
 using UI.Business.Steps;
-namespace Framework.Core.Tests
+
+namespace UI.Tests.NUnit
 {
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [TestFixture]
@@ -21,7 +21,7 @@ namespace Framework.Core.Tests
         {
             webDriverFactory = new WebDriverFactory();
             webDriverFactory.InitializeDriver(configs.Browser);
-            webDriverFactory.WindowMaximise();
+            webDriverFactory.WindowMaximize();
         }
 
         [TearDown]
