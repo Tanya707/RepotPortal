@@ -25,7 +25,7 @@ namespace UI.Business.Pages
         public IWebElement TotalCheckbox => Driver.FindElement(_totalCheckbox);
         public IWebElement SecondFilterField => Driver.FindElement(_secondFilterField);
         public IWebElement PassedCheckbox => Driver.FindElement(_passedCheckbox);
-        public ReadOnlyCollection<IWebElement> launchNames => Driver.FindElements(_launchName);
+        public ReadOnlyCollection<IWebElement> LaunchNames => Driver.FindElements(_launchName);
         public IWebElement Condition => Driver.FindElement(_condition);
         public IWebElement EqualCondition => Driver.FindElement(_equalCondition);
         public ReadOnlyCollection<IWebElement> TotalValues => Driver.FindElements(_totalValues);
