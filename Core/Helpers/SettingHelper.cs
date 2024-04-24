@@ -3,12 +3,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Core.Helpers
 {
-    public class SettingHelper
+    public static class SettingHelper
     {
+        private static readonly string baseDirectory = AppContext.BaseDirectory;
+        private static readonly string relativePath = Path.Combine("Configuration");
+
         public static Settings LoadFromAppSettings()
         {
-            string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("Configuration");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("appsettings.json")
@@ -19,8 +20,6 @@ namespace Core.Helpers
 
         public static ConfigSettings LoadFromConfigSettings()
         {
-            string baseDirectory = AppContext.BaseDirectory;
-            string relativePath = Path.Combine("Configuration");
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(baseDirectory, relativePath))
                 .AddJsonFile("configsettings.json")

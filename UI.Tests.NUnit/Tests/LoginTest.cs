@@ -1,7 +1,6 @@
-using Framework.Core.Tests;
 
 [assembly: LevelOfParallelism(6)]
-namespace ReportPortal
+namespace UI.Tests.NUnit
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
@@ -13,7 +12,7 @@ namespace ReportPortal
         {
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
-            Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't dispalyed");
+            Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't displayed");
         }
 
         [Test]
@@ -21,7 +20,7 @@ namespace ReportPortal
         {
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
-            Assert.True(loginPage.IsPasswordFieldDisplayed(), "Password field isn't dispalyed");
+            Assert.True(loginPage.IsPasswordFieldDisplayed(), "Password field isn't displayed");
         }
 
         [Test]
@@ -29,7 +28,7 @@ namespace ReportPortal
         {
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
-            Assert.True(loginPage.IsLogInButtonDisplayed(), "Log in field isn't dispalyed");
+            Assert.True(loginPage.IsLogInButtonDisplayed(), "Log in field isn't displayed");
         }
 
         [Test]
@@ -39,7 +38,7 @@ namespace ReportPortal
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
 
-            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as superadmin");
+            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't displayed after log in as superadmin");
         }
 
 
@@ -50,7 +49,7 @@ namespace ReportPortal
 
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
 
-            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as default user");
+            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't displayed after log in as default user");
         }
     }
 }

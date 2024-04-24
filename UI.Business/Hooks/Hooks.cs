@@ -1,16 +1,7 @@
 ﻿using Core.Helpers;
 using Core.Models;
-using Framework.Core.Utilities;
-using OpenQA.Selenium;
-
 using Reqnroll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UI.Business.Driver;
-using UI.Business.Pages;
+using Core.WebDriverFactory;
 
 namespace UI.Business.Hooks
 {
@@ -31,7 +22,7 @@ namespace UI.Business.Hooks
         public void SetUp()
         {
             _webDriverFactory.InitializeDriver(configs.Browser);
-            _webDriverFactory.WindowMaximise();
+            _webDriverFactory.WindowMaximize();
             var driver = _webDriverFactory.GetDriver();
             _scenarioContext.Set(driver);
         }

@@ -1,4 +1,4 @@
-﻿namespace UI.Business.Driver
+﻿namespace Core.Driver
 {
     public enum BrowserList
     {

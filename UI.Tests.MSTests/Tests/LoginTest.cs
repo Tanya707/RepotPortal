@@ -1,8 +1,7 @@
-using Framework.Core.Tests;
 
 [assembly: Parallelize(Workers = 5, Scope = ExecutionScope.MethodLevel)]
 
-namespace ReportPortal
+namespace UI.Tests.MSTests
 {
     [TestClass]
     public class LoginTest : BaseTestMSTest

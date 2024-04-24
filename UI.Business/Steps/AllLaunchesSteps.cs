@@ -26,7 +26,7 @@ namespace UI.Business.Steps
 
         public bool CheckLaunchName(string name)
         {
-            return _allLaunchesPage.launchNames.First().Text.Contains(name);
+            return _allLaunchesPage.LaunchNames.First().Text.Contains(name);
         }
 
         public AllLaunchesPage ChooseFilterByTotal()

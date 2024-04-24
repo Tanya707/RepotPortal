@@ -1,34 +1,32 @@
 ﻿using Core.Helpers;
 using Core.Models;
-using Framework.Core.Utilities;
-using ReportPortal;
+using Core.WebDriverFactory;
 using UI.Business.Steps;
 
-namespace Framework.Core.Tests
+namespace UI.Tests.MSTests
 {
     [TestClass]
     public class BaseTestMSTest
     {
-        private WebDriverFactory webDriverFactory;
+        private WebDriverFactory _webDriverFactory;
         protected Settings settings = SettingHelper.LoadFromAppSettings();
         protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
-        protected LoginTestSteps loginPage => new LoginTestSteps(webDriverFactory.GetDriver());
-        protected AllDashboardsContext allDashboardsPage => new AllDashboardsContext(webDriverFactory.GetDriver());
-        protected AllLaunchesSteps allLaunchesPage => new AllLaunchesSteps(webDriverFactory.GetDriver());
+        protected LoginTestSteps loginPage => new LoginTestSteps(_webDriverFactory.GetDriver());
+        protected AllDashboardsSteps allDashboardsPage => new AllDashboardsSteps(_webDriverFactory.GetDriver());
+        protected AllLaunchesSteps allLaunchesPage => new AllLaunchesSteps(_webDriverFactory.GetDriver());
 
         [TestInitialize]
         public void SetUp()
         {
-            webDriverFactory = new WebDriverFactory();
-            webDriverFactory.InitializeDriver(configs.Browser);
-            webDriverFactory.WindowMaximise();
+            _webDriverFactory = new WebDriverFactory();
+            _webDriverFactory.InitializeDriver(configs.Browser);
+            _webDriverFactory.WindowMaximize();
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            webDriverFactory.CloseDriverAndFinishHim();
+            _webDriverFactory.CloseDriverAndFinishHim();
         }
-
     }
 }

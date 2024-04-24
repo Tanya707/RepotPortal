@@ -1,8 +1,4 @@
-using Core.Helpers;
-using Core.Logger;
-using Core.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
 using Reqnroll;
 using UI.Business.Pages;
 

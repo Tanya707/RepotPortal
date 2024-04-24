@@ -1,8 +1,5 @@
-﻿using Core.Helpers;
-using Core.Logger;
-using Core.Models;
+﻿using Core.Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
 using Reqnroll;
 using UI.Business.Pages;
 
@@ -32,8 +29,8 @@ namespace UI.Business.StepsDefinitions
         [Then("Check Launch Names {string} contains")]
         public void CheckLaunchNameContains(string launchName)
         {
-            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.launchNames.First());
-            Assert.IsTrue(_allLaunchesPage.launchNames.First().Text.Contains(launchName));
+            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.LaunchNames.First());
+            Assert.IsTrue(_allLaunchesPage.LaunchNames.First().Text.Contains(launchName));
         }
 
         [When("Choose Filter By Total")]

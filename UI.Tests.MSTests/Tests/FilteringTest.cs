@@ -1,7 +1,6 @@
 using Core.Helpers;
-using Framework.Core.Tests;
 
-namespace ReportPortal
+namespace UI.Tests.MSTests
 {
     [TestClass]
     public class FilteringTest : BaseTestMSTest

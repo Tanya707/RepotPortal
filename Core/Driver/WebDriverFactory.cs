@@ -3,23 +3,23 @@ using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Framework.Core.Utilities
+namespace Core.WebDriverFactory
 {
     public class WebDriverFactory
     {
-        private IWebDriver driver;
+        private IWebDriver _driver;
         protected static ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
         public IWebDriver GetDriver()
         {
-            return driver;
+            return _driver;
         }
 
         public void CloseDriverAndFinishHim()
         {
-            driver.Quit();
-            driver?.Dispose();
-            driver = null;
+            _driver.Quit();
+            _driver?.Dispose();
+            _driver = null;
         }
         public IWebDriver InitializeDriver(string type)
         {
@@ -27,10 +27,10 @@ namespace Framework.Core.Utilities
             {
                 case "Chrome":
                     {
-                        driver = new ChromeDriver();
-                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);
-                        driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(configs.PageLoadTimeout);
-                        return driver;
+                        _driver = new ChromeDriver();
+                        _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);
+                        _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(configs.PageLoadTimeout);
+                        return _driver;
                     }
 
                 default:
@@ -38,9 +38,9 @@ namespace Framework.Core.Utilities
             }
         }
 
-        public void WindowMaximise()
+        public void WindowMaximize()
         {
-            driver.Manage().Window.Maximize();
+            _driver.Manage().Window.Maximize();
         }
 
     }
