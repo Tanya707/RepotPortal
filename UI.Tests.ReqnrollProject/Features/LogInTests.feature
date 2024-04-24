@@ -42,7 +42,7 @@ Scenario: FilterByTotal
 	And Click On Filter By Button
 	And Choose Filter By Total
 	And Select Equal
-	And Enter Second Filter Field '<total>'
+	And Enter Second Filter Field 'Total' '<total>'
 	Then Check Total Values '<total>' contains
 
 	Examples:
@@ -61,7 +61,7 @@ Scenario: FilterByPassed
 	And Click On Filter By Button
 	And Choose Filter By Passed
 	And Select Equal
-	And Enter Second Filter Field '<passed>'
+	And Enter Second Filter Field 'Passed' '<passed>'
 	Then Check Passed Values '<passed>' contains
 
 	Examples:
@@ -81,7 +81,7 @@ Scenario Outline: FilterByLaunchNameAndTotal
 	And Click On Filter By Button
 	And Choose Filter By Total
 	And Select Equal
-	And Enter Second Filter Field '<total>'
+	And Enter Second Filter Field 'Total' '<total>'
 	Then Check Launch Names '<launchName>' contains
 	Then Check Total Values '<total>' contains
 

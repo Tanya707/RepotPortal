@@ -57,10 +57,11 @@ namespace UI.Business.StepsDefinitions
             return _allLaunchesPage;
         }
 
-        [When("Enter Second Filter Field {string}")]
-        public AllLaunchesPage EnterSecondFilterField(string value)
+        [When("Enter Second Filter Field {string} {string}")]
+        public AllLaunchesPage EnterSecondFilterField(string launchname,string value)
         {
             _waiter.WaitFor(() => _allLaunchesPage.SecondFilterField.Enabled);
+            LogInfoExtensions.LogInfo(_logger, $"Enter {launchname}");
             _allLaunchesPage.EnterSecondFilterField(value);
             return _allLaunchesPage;
         }

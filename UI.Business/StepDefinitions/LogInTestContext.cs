@@ -10,7 +10,7 @@ namespace UI.Business.StepsDefinitions
     [Binding]
     public sealed class LogInTestContext:BaseContext
     {
-        public Settings settings = SettingHelper.LoadFromAppSettings();
+        private Settings _settings = SettingHelper.LoadFromAppSettings();
 
         public LogInTestContext(ScenarioContext scenarioContext) : base(scenarioContext) { }
 
@@ -19,7 +19,7 @@ namespace UI.Business.StepsDefinitions
         public LoginPage OpenLogInPage()
         {
             LogInfoExtensions.LogInfo(_logger, "Open page");
-            _loginPage.GoToBaseUrl(settings.ReportPortalUrl.LocalBaseUrl);
+            _loginPage.GoToBaseUrl(_settings.ReportPortalUrl.LocalBaseUrl);
             return _loginPage;
         }
 
@@ -34,8 +34,8 @@ namespace UI.Business.StepsDefinitions
         public AllDashboardsPage LogInSuperadmin()
         {
             LogInfoExtensions.LogInfo(_logger, "Enter credentials");
-            _loginPage.EnterLogin(settings.SuperadminUser.UserName);
-            _loginPage.EnterPassword(settings.SuperadminUser.Password);
+            _loginPage.EnterLogin(_settings.SuperadminUser.UserName);
+            _loginPage.EnterPassword(_settings.SuperadminUser.Password);
             _loginPage.LogInButton.Click();
             return _allDashboardsPage;
         }
@@ -44,8 +44,8 @@ namespace UI.Business.StepsDefinitions
         public AllDashboardsPage LogInDefaultUser()
         {
             LogInfoExtensions.LogInfo(_logger, "Enter credentials");
-            _loginPage.EnterLogin(settings.DefaultUser.UserName);
-            _loginPage.EnterPassword(settings.DefaultUser.Password);
+            _loginPage.EnterLogin(_settings.DefaultUser.UserName);
+            _loginPage.EnterPassword(_settings.DefaultUser.Password);
             _loginPage.LogInButton.Click();
             return _allDashboardsPage;
         }

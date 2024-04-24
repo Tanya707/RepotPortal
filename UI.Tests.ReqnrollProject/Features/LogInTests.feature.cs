@@ -359,7 +359,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync("Select Equal", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 45
- await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("Enter Second Filter Field \'Total\' \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 46
  await testRunner.ThenAsync(string.Format("Check Total Values \'{0}\' contains", total), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
@@ -474,7 +474,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync("Select Equal", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 64
- await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", passed), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("Enter Second Filter Field \'Passed\' \'{0}\'", passed), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 65
  await testRunner.ThenAsync(string.Format("Check Passed Values \'{0}\' contains", passed), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
@@ -596,7 +596,7 @@ await this.FeatureBackgroundAsync();
  await testRunner.AndAsync("Select Equal", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 84
- await testRunner.AndAsync(string.Format("Enter Second Filter Field \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("Enter Second Filter Field \'Total\' \'{0}\'", total), ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 85
  await testRunner.ThenAsync(string.Format("Check Launch Names \'{0}\' contains", launchName), ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
