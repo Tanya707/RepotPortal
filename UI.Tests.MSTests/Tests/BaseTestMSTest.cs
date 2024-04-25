@@ -1,9 +1,9 @@
-﻿using Core.Helpers;
+﻿using Core.Driver;
+using Core.Helpers;
 using Core.Models;
-using Core.WebDriverFactory;
 using UI.Business.Steps;
 
-namespace UI.Tests.MSTests
+namespace UI.Tests.MSTests.Tests
 {
     [TestClass]
     public class BaseTestMSTest

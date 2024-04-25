@@ -1,6 +1,6 @@
 using Core.Helpers;
 
-namespace UI.Tests.NUnit
+namespace UI.Tests.NUnit.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]

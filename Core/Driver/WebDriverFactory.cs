@@ -3,7 +3,7 @@ using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Core.WebDriverFactory
+namespace Core.Driver
 {
     public class WebDriverFactory
     {

@@ -7,7 +7,6 @@ namespace Core.Helpers
     public class Waiter
     {
         private IWebDriver _driver;
-        private WebDriverWait _wait;
         protected static ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
         private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(configs.Timeout);
 
@@ -18,8 +17,8 @@ namespace Core.Helpers
 
         public void WaitFor(Func<bool> condition, TimeSpan conditionTimeOut = default)
         {
-            _wait = new WebDriverWait(_driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
-            _wait.Until(_ => condition.Invoke());
+            WebDriverWait wait = new WebDriverWait(_driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
+            wait.Until(_ => condition.Invoke());
         }
          public void WaitForStaleElementReferenceException(IWebElement element)
             {

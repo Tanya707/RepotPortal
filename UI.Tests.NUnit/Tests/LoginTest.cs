@@ -1,6 +1,6 @@
 
 [assembly: LevelOfParallelism(6)]
-namespace UI.Tests.NUnit
+namespace UI.Tests.NUnit.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]

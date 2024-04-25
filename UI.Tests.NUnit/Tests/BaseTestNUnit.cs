@@ -1,9 +1,9 @@
-﻿using Core.Helpers;
+﻿using Core.Driver;
+using Core.Helpers;
 using Core.Models;
-using Core.WebDriverFactory;
 using UI.Business.Steps;
 
-namespace UI.Tests.NUnit
+namespace UI.Tests.NUnit.Tests
 {
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [TestFixture]
