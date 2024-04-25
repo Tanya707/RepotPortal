@@ -1,7 +1,7 @@
 
 [assembly: Parallelize(Workers = 5, Scope = ExecutionScope.MethodLevel)]
 
-namespace UI.Tests.MSTests
+namespace UI.Tests.MSTests.Tests
 {
     [TestClass]
     public class LoginTest : BaseTestMSTest
@@ -11,7 +11,7 @@ namespace UI.Tests.MSTests
         {
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
-            Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't dispalyed");
+            Assert.IsTrue(loginPage.IsLogInButtonDisplayed(), "Log in button isn't displayed");
         }
 
         [TestMethod]

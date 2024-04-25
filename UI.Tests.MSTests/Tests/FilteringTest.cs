@@ -1,6 +1,6 @@
 using Core.Helpers;
 
-namespace UI.Tests.MSTests
+namespace UI.Tests.MSTests.Tests
 {
     [TestClass]
     public class FilteringTest : BaseTestMSTest
