@@ -1,7 +1,7 @@
 ﻿using Core.Helpers;
 using Core.Models;
 using Reqnroll;
-using Core.WebDriverFactory;
+using Core.Driver;
 
 namespace UI.Business.Hooks
 {

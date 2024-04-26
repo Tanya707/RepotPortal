@@ -14,6 +14,7 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage EnterLaunchName(string launchName)
         {
             _waiter.WaitFor(() => _allLaunchesPage.LaunchNameField.Enabled);
+            LogInfoExtensions.LogDebug(_logger, $"Enter Launch Name {launchName}");
             _allLaunchesPage.EnterLaunchName(launchName);
             return _allLaunchesPage;
         }
@@ -37,9 +38,9 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage ChooseFilterByTotal()
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Click on More button");
+            LogInfoExtensions.LogDebug(_logger, "Click on More button");
             _allLaunchesPage.MoreButton.Click();
-            LogInfoExtensions.LogInfo(_logger, "Choose Total");
+            LogInfoExtensions.LogDebug(_logger, "Choose Total");
             _waiter.WaitFor(() => _allLaunchesPage.TotalCheckbox.Enabled);
             _allLaunchesPage.TotalCheckbox.Click();
             return _allLaunchesPage;
@@ -49,19 +50,19 @@ namespace UI.Business.StepsDefinitions
         public AllLaunchesPage ChooseFilterByPassed()
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled);
-            LogInfoExtensions.LogInfo(_logger, "Click on More button");
+            LogInfoExtensions.LogDebug(_logger, "Click on More button");
             _allLaunchesPage.MoreButton.Click();
-            LogInfoExtensions.LogInfo(_logger, "Choose Passed");
+            LogInfoExtensions.LogDebug(_logger, "Choose Passed");
             _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled);
             _allLaunchesPage.PassedCheckbox.Click();
             return _allLaunchesPage;
         }
 
         [When("Enter Second Filter Field {string} {string}")]
-        public AllLaunchesPage EnterSecondFilterField(string launchname,string value)
+        public AllLaunchesPage EnterSecondFilterField(string name,string value)
         {
             _waiter.WaitFor(() => _allLaunchesPage.SecondFilterField.Enabled);
-            LogInfoExtensions.LogInfo(_logger, $"Enter {launchname}");
+            LogInfoExtensions.LogDebug(_logger, $"Enter {name}");
             _allLaunchesPage.EnterSecondFilterField(value);
             return _allLaunchesPage;
         }
@@ -88,6 +89,12 @@ namespace UI.Business.StepsDefinitions
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
             Assert.IsTrue(_allLaunchesPage.PassedValues.First().Text.Contains(passed));
+        }
+
+        [Then("Actions button is disabled by default")]
+        public void ThenActionsButtonIsDisabledByDefault()
+        {
+            _allLaunchesPage.IsActionsDisabled();
         }
     }
 }

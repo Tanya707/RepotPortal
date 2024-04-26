@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ReqnrollObsoleteCodeBehindFiles Remove="Features\LogInTests - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Reqnroll.MsTest" Version="1.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.3.0" />
@@ -17,6 +21,19 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\UI.Business\UI.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\FilteringTests.feature.cs">
+      <DependentUpon>FilteringTests.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ReqnrollFeatureFiles Update="Features\FilteringTests.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </ReqnrollFeatureFiles>
   </ItemGroup>
 
 </Project>

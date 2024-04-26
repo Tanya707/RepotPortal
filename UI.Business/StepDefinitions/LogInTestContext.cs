@@ -18,7 +18,7 @@ namespace UI.Business.StepsDefinitions
         [Given("Open Log In Page")]
         public LoginPage OpenLogInPage()
         {
-            LogInfoExtensions.LogInfo(_logger, "Open page");
+            LogInfoExtensions.LogDebug(_logger, $"Open page {_settings.ReportPortalUrl.LocalBaseUrl}");
             _loginPage.GoToBaseUrl(_settings.ReportPortalUrl.LocalBaseUrl);
             return _loginPage;
         }
@@ -26,14 +26,14 @@ namespace UI.Business.StepsDefinitions
         [Then("Is Log In Button Displayed")]
         public void IsLogInButtonDisplayed()
         {
-            LogInfoExtensions.LogInfo(_logger, "Check button");
+            LogInfoExtensions.LogDebug(_logger, "Check button");
             Assert.IsTrue(_loginPage.LogInButton.Displayed);
         }
 
         [When("Log In Superadmin")]
         public AllDashboardsPage LogInSuperadmin()
         {
-            LogInfoExtensions.LogInfo(_logger, "Enter credentials");
+            LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.SuperadminUser.UserName}, password:{_settings.SuperadminUser.Password}");
             _loginPage.EnterLogin(_settings.SuperadminUser.UserName);
             _loginPage.EnterPassword(_settings.SuperadminUser.Password);
             _loginPage.LogInButton.Click();
@@ -43,11 +43,29 @@ namespace UI.Business.StepsDefinitions
         [When("Log In DefaultUser")]
         public AllDashboardsPage LogInDefaultUser()
         {
-            LogInfoExtensions.LogInfo(_logger, "Enter credentials");
+            LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.DefaultUser.UserName}, password:{_settings.DefaultUser.Password}");
             _loginPage.EnterLogin(_settings.DefaultUser.UserName);
             _loginPage.EnterPassword(_settings.DefaultUser.Password);
             _loginPage.LogInButton.Click();
             return _allDashboardsPage;
+        }
+
+        public void LogIn(string username, string password)
+        {
+            LogInfoExtensions.LogDebug(_logger, $"Enter credentials: username:{username}, password:{password}");
+            _loginPage.EnterLogin(username);
+            _loginPage.EnterPassword(password);
+            _loginPage.LogInButton.Click();
+            Assert.IsTrue(_loginPage.LogInButton.Displayed, $"User can't log in with such credentials: username:{username}, password:{password}");
+        }
+
+        [When(@"I can log in with such data:")]
+        public void ICanLogInWithSuchData(List<UserCredentials> credentials)
+        {
+            foreach (var row in credentials)
+            {
+                LogIn(row.UserName, row.Password);
+            }
         }
     }
 }
