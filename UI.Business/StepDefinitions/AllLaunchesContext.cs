@@ -31,7 +31,8 @@ namespace UI.Business.StepsDefinitions
         public void CheckLaunchNameContains(string launchName)
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.LaunchNames.First());
-            Assert.IsTrue(_allLaunchesPage.LaunchNames.First().Text.Contains(launchName));
+            Assert.IsTrue(_allLaunchesPage.TotalValues.Any(), "No launches found on the page.");
+            Assert.IsTrue(_allLaunchesPage.LaunchNames.First().Text.Contains(launchName), "Launch Name is incorrect");
         }
 
         [When("Choose Filter By Total")]
@@ -81,14 +82,16 @@ namespace UI.Business.StepsDefinitions
         public void CheckTotalValuesContains(string total)
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.TotalValues.First());
-            Assert.IsTrue(_allLaunchesPage.TotalValues.First().Text.Contains(total));
+            Assert.IsTrue(_allLaunchesPage.TotalValues.Any(), "No launches found on the page.");
+            Assert.IsTrue(_allLaunchesPage.TotalValues.First().Text.Contains(total), "Total value is incorrect");
         }
 
         [Then("Check Passed Values {string} contains")]
         public void CheckPassedValuesContains(string passed)
         {
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
-            Assert.IsTrue(_allLaunchesPage.PassedValues.First().Text.Contains(passed));
+            Assert.IsTrue(_allLaunchesPage.PassedValues.Any(), "No launches found on the page.");
+            Assert.IsTrue(_allLaunchesPage.PassedValues.First().Text.Contains(passed), "Passed value is incorrect");
         }
 
         [Then("Actions button is disabled by default")]
