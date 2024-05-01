@@ -1,4 +1,3 @@
-using API.Business.Models;
 using API.Business.Steps;
 using Core.Helpers;
 using Core.Models;
@@ -6,6 +5,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using API.Business.Models.Responses;
+using API.Business.Models;
 
 namespace API.Tests
 {

@@ -7,7 +7,6 @@ namespace API.Business.Steps
     public class AuthenticatedRestClient
     {
         private readonly RestClient _client;
-        private readonly Settings _settings = SettingHelper.LoadFromAppSettings();
 
         private readonly string _token;
 
