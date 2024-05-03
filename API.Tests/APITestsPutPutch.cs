@@ -1,7 +1,6 @@
 using System.Net;
 using API.Business.Models;
 using API.Business.Models.Requests;
-using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
 using Core.Helpers;
@@ -11,11 +10,10 @@ using RestSharp;
 
 namespace API.Tests
 {
-    public class APITestsPut:BaseTest
+    public class APITestsPutPatch:BaseTest
     {
-
         [Test]
-        public void API_Put_LaunchStop_Ok()
+        public void API_PutPatch_LaunchStop_Ok()
         {
             var getEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
             RestRequest requestGet = new RestRequest(getEndpoint, Method.Get);
@@ -32,20 +30,11 @@ namespace API.Tests
                 }
             }
 
-            var endpointPut = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, inProgressExecutions.First().Id);
-            RestRequest request = new RestRequest(endpointPut, Method.Put);
+            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, inProgressExecutions.First().Id);
+            RestRequest request = new RestRequest(putEndpoint, Method.Put);
             var requestBody = new PutLaunchesStopRequest
             {
-                Attributes = new List<AttributeItems>
-                {
-                    new AttributeItems {
-                        Key = "string",
-                        System = false,
-                        Value = "string PASSED" }
-                },
-                Description = contentGet.Content.First().Description,
                 EndTime = DateTime.UtcNow,
-                Status = "PASSED"
             };
             request.AddJsonBody(requestBody);
 
@@ -59,19 +48,14 @@ namespace API.Tests
         }
 
         [Test]
-        public void API_Put_LaunchStop_NotFound()
+        public void API_PutPatch_LaunchStop_NotFound()
         {
             var putEndpoint = string.Format(Endpoints.PutLaunchesStop, "1", 14);
             RestRequest requestPut = new RestRequest(putEndpoint, Method.Put);
+
             var requestBody = new PutLaunchesStopRequest
             {
-                Attributes = new List<AttributeItems>
-                {
-                    new AttributeItems { Key = "string", System = false, Value = "string" }
-                },
-                Description = "string",
                 EndTime = DateTime.UtcNow,
-                Status = "PASSED"
             };
             requestPut.AddJsonBody(requestBody);
             var response = client.Execute(requestPut);
@@ -85,7 +69,7 @@ namespace API.Tests
         }
 
         [Test]
-        public void API_Put_LaunchStop_BadRequest()
+        public void API_PutPatch_LaunchStop_BadRequest()
         {
             var putEndpoint = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, 14);
             RestRequest request = new RestRequest(putEndpoint, Method.Put);

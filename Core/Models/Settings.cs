@@ -6,5 +6,6 @@ namespace Core.Models
         public ReportPortalUrl ReportPortalUrl { get; set; }
         public UserCredentials SuperadminUser { get; set; }
         public UserCredentials DefaultUser { get; set; }
+        public string NameOfProject { get; set; }
     }
 }

@@ -1,27 +1,25 @@
-using API.Business.Steps;
+using API.Business.Models;
+using API.Business.Models.Responses;
 using Core.Helpers;
 using Core.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
-using API.Business.Models.Responses;
-using API.Business.Models;
 
 namespace API.Tests
 {
-    public class APITestsGet
+    public class APITestsGet:BaseTest
     {
         private Settings _settings = SettingHelper.LoadFromAppSettings();
 
-        [TestCase("DEMO2")]
-        public void API_Get_Launches_Ok(string nameOfProject)
-        { 
-            var endpoint = string.Format(Endpoints.GetLaunchesByFilter, nameOfProject);
-            var authenticatedClient = new AuthenticatedRestClient(_settings.ReportPortalUrl.LocalBaseUrl, _settings.SuperadminUser.UserName, _settings.SuperadminUser.Password);
-            RestRequest request = new RestRequest(endpoint, Method.Get);
-            var response = authenticatedClient.Execute(request);
+        [Test]
+        public void API_Get_Launches_Ok()
+        {
+            var getEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
+            RestRequest request = new RestRequest(getEndpoint, Method.Get);
+            var response = client.Execute(request);
             var content = JsonConvert.DeserializeObject<GetLaunchesResponse>(response.Content);
-
+            
             Assert.Multiple(() =>
             {
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK)); 
@@ -29,19 +27,18 @@ namespace API.Tests
             });
         }
 
-        [TestCase("1")]
-        public void API_Get_Launches_NotFound(string nameOfProject)
+        [Test]
+        public void API_Get_Launches_NotFound()
         {
-            var endpoint = string.Format(Endpoints.GetLaunchesByFilter, nameOfProject);
-            var authenticatedClient = new AuthenticatedRestClient(_settings.ReportPortalUrl.LocalBaseUrl, _settings.SuperadminUser.UserName, _settings.SuperadminUser.Password);
-            RestRequest request = new RestRequest(endpoint, Method.Get);
-            var response = authenticatedClient.Execute(request);
+            var GetEndpoint = string.Format(Endpoints.GetLaunchesByFilter, "1");
+            RestRequest request = new RestRequest(GetEndpoint, Method.Get);
+            var response = client.Execute(request);
             var content = JsonConvert.DeserializeObject<BadRequestResponse>(response.Content);
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound)); 
-                Assert.AreEqual(content.Message, $"Project '{nameOfProject}' not found. Did you use correct project name?");
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+                Assert.AreEqual(content.Message, $"Project '1' not found. Did you use correct project name?");
             });
         }
     }

@@ -1,21 +1,22 @@
 ﻿using RestSharp;
 using Newtonsoft.Json;
+using Core.Models;
 
 namespace Core.Helpers
 {
     public static class TokenService
     {
-        public static string GenerateToken(string baseUrl, string username, string password)
+        public static string GenerateToken(TokenRequestModel tokenRequest)
         {
-            var client = new RestClient(baseUrl);
+            var client = new RestClient(tokenRequest.BaseUrl);
             var request = new RestRequest("uat/sso/oauth/token", Method.Post);
 
             request.AddHeader("accept", "application/json");
             request.AddHeader("Authorization", $"Basic " + Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("ui:uiman")));
 
             request.AddParameter("grant_type", "password");
-            request.AddParameter("username", username);
-            request.AddParameter("password", password);
+            request.AddParameter("username", tokenRequest.Username);
+            request.AddParameter("password", tokenRequest.Password);
 
             var response = client.Execute(request);
 
