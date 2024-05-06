@@ -10,8 +10,6 @@ namespace API.Tests
 {
     public class APITestsGet:BaseTest
     {
-        private Settings _settings = SettingHelper.LoadFromAppSettings();
-
         [Test]
         public void API_Get_Launches_Ok()
         {
@@ -23,14 +21,14 @@ namespace API.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK)); 
-                Assert.AreEqual(content.Content.First().Owner, _settings.SuperadminUser.UserName);
+                Assert.AreEqual(content.Content.First().Owner, settings.SuperadminUser.UserName);
             });
         }
 
         [Test]
         public void API_Get_Launches_NotFound()
         {
-            var GetEndpoint = string.Format(Endpoints.GetLaunchesByFilter, "1");
+            var GetEndpoint = string.Format(Endpoints.GetLaunchesByFilter, incorrectProject);
             RestRequest request = new RestRequest(GetEndpoint, Method.Get);
             var response = client.Execute(request);
             var content = JsonConvert.DeserializeObject<BadRequestResponse>(response.Content);
@@ -38,7 +36,7 @@ namespace API.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(content.Message, $"Project '1' not found. Did you use correct project name?");
+                Assert.AreEqual(content.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
     }

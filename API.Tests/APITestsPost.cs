@@ -1,7 +1,5 @@
 using API.Business.Models;
 using API.Business.Models.Responses;
-using Core.Helpers;
-using Core.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
@@ -38,7 +36,7 @@ namespace API.Tests
         [TestCase( "Demo Api Tests")]
         public void API_Post_Launches_NotFound(string nameOfLaunch)
         {
-            var postEndpoint = string.Format(Endpoints.GetLaunchesByFilter, "1");
+            var postEndpoint = string.Format(Endpoints.GetLaunchesByFilter, incorrectProject);
 
             RestRequest request = new RestRequest(postEndpoint, Method.Post);
             var requestBody = new PostLaunchesRequest
@@ -53,7 +51,7 @@ namespace API.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(content.Message, $"Project '1' not found. Did you use correct project name?");
+                Assert.AreEqual(content.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
 

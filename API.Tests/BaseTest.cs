@@ -10,6 +10,8 @@ namespace API.Tests
     {
         protected Settings settings = SettingHelper.LoadFromAppSettings();
         protected RestClient client;
+        protected const string incorrectProject = "1";
+        protected const int launchNumber = 14;
 
         [SetUp]
         public void SetUp()

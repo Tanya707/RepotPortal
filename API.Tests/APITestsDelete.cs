@@ -2,8 +2,6 @@ using System.Net;
 using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
-using Core.Helpers;
-using Core.Models;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -39,7 +37,7 @@ namespace API.Tests
         [Test]
         public void API_Delete_Launches_NotFound()
         {
-            var deleteEndpoint = string.Format(Endpoints.GetLaunchesByFilter, "1");
+            var deleteEndpoint = string.Format(Endpoints.GetLaunchesByFilter, incorrectProject);
             RestRequest requestDelete = new RestRequest(deleteEndpoint, Method.Delete);
             
             var requestBodyDelete = new DeleteLaunchesRequest
@@ -53,7 +51,7 @@ namespace API.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(responseDelete.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(contentDelete.Message, $"Project '1' not found. Did you use correct project name?");
+                Assert.AreEqual(contentDelete.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
 

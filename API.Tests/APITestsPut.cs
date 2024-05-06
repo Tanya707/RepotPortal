@@ -4,8 +4,6 @@ using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
-using Core.Helpers;
-using Core.Models;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -61,7 +59,7 @@ namespace API.Tests
         [Test]
         public void API_Put_LaunchStop_NotFound()
         {
-            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, "1", 14);
+            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, incorrectProject, launchNumber);
             RestRequest requestPut = new RestRequest(putEndpoint, Method.Put);
             var requestBody = new PutLaunchesStopRequest
             {
@@ -80,14 +78,14 @@ namespace API.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(content.Message, $"Project '1' not found. Did you use correct project name?");
+                Assert.AreEqual(content.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
 
         [Test]
         public void API_Put_LaunchStop_BadRequest()
         {
-            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, 14);
+            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, launchNumber);
             RestRequest request = new RestRequest(putEndpoint, Method.Put);
             var response = client.Execute(request);
             var content = JsonConvert.DeserializeObject<BadRequestResponse>(response.Content);
