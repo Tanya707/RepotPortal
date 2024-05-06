@@ -23,7 +23,7 @@ namespace API.Tests
             var token = TokenService.GenerateToken(tokenRequest);
 
             client = new RestClient(settings.ReportPortalUrl.LocalBaseUrl);
-            RestTokenClient.AddDefaultAuthToken(client,token);
+            client.AddDefaultAuthToken(token);
         }
 
         [TearDown]
