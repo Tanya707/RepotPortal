@@ -1,5 +1,6 @@
 using System.Net;
 using API.Business.Models;
+using API.Business.Models.Enums;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
@@ -24,7 +25,7 @@ namespace API.Tests
 
             foreach (var execution in contentGet.Content)
             {
-                if (execution.Status == "IN_PROGRESS")
+                if (execution.Status == Status.IN_PROGRESS.ToString())
                 {
                     inProgressExecutions.Add(execution);
                 }
@@ -43,7 +44,7 @@ namespace API.Tests
                 },
                 Description = contentGet.Content.First().Description,
                 EndTime = DateTime.UtcNow,
-                Status = "PASSED"
+                Status = Status.PASSED.ToString()
             };
             request.AddJsonBody(requestBody);
 
@@ -69,7 +70,7 @@ namespace API.Tests
                 },
                 Description = "string",
                 EndTime = DateTime.UtcNow,
-                Status = "PASSED"
+                Status = Status.PASSED.ToString()
             };
             requestPut.AddJsonBody(requestBody);
             var response = client.Execute(requestPut);

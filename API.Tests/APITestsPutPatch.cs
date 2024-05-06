@@ -1,5 +1,6 @@
 using System.Net;
 using API.Business.Models;
+using API.Business.Models.Enums;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
@@ -22,7 +23,7 @@ namespace API.Tests
 
             foreach (var execution in contentGet.Content)
             {
-                if (execution.Status == "IN_PROGRESS")
+                if (execution.Status == Status.IN_PROGRESS.ToString())
                 {
                     inProgressExecutions.Add(execution);
                 }
