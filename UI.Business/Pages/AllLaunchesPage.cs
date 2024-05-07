@@ -16,6 +16,7 @@ namespace UI.Business.Pages
         private readonly By _equalCondition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]//*[text()='Equals']");
         private readonly By _totalValues = By.XPath("//*[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
         private readonly By _passedValues = By.XPath("//*[@statuses='PASSED']");
+        private readonly By _actionsButton = By.XPath("//*[./span[contains(text(),'Actions')]]");
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
@@ -28,6 +29,7 @@ namespace UI.Business.Pages
         public ReadOnlyCollection<IWebElement> LaunchNames => Driver.FindElements(_launchName);
         public IWebElement Condition => Driver.FindElement(_condition);
         public IWebElement EqualCondition => Driver.FindElement(_equalCondition);
+        public IWebElement ActionsButton => Driver.FindElement(_actionsButton);
         public ReadOnlyCollection<IWebElement> TotalValues => Driver.FindElements(_totalValues);
         public ReadOnlyCollection<IWebElement> PassedValues => Driver.FindElements(_passedValues);
 
@@ -39,5 +41,10 @@ namespace UI.Business.Pages
         public void EnterSecondFilterField(string value) => SecondFilterField.SendKeys(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
+
+        public bool IsActionsDisabled()
+        {
+            return ActionsButton.GetAttribute("class").Contains("disabled");
+        }
     }
 }

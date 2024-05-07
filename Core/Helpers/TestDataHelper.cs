@@ -16,6 +16,5 @@ namespace Core.Helpers
 
             return configuration.Get<TestData>();
         }
-
-     }
+    }
 }
