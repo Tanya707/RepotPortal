@@ -3,7 +3,6 @@
 
     "bindingAssemblies": [
       {
-        "assembly": "Core",
         "assembly": "UI.Business"
       }
     ]
