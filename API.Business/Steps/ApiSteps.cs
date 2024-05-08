@@ -1,8 +1,5 @@
 ﻿using API.Business.Controllers;
-using Core.Helpers;
-using Core.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace API.Business.Steps

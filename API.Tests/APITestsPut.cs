@@ -1,13 +1,8 @@
 using System.Net;
-using API.Business.Models;
 using API.Business.Models.Enums;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
-using API.Business.Models.Responses.Items;
-using API.Business.Steps;
-using Newtonsoft.Json;
-using RestSharp;
 
 namespace API.Tests
 {

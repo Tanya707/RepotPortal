@@ -1,8 +1,6 @@
-using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
-using RestSharp;
 using System.Net;
 
 namespace API.Tests
