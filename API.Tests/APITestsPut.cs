@@ -5,96 +5,82 @@ using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
+using API.Business.Steps;
 using Newtonsoft.Json;
 using RestSharp;
 
 namespace API.Tests
 {
-    public class APITestsPut:BaseTest
+    public class APITestsPut : BaseTest
     {
 
         [Test]
         public void API_Put_LaunchStop_Ok()
         {
-            var getEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
-            RestRequest requestGet = new RestRequest(getEndpoint, Method.Get);
-            var responseGet = client.Execute(requestGet);
-            var contentGet = JsonConvert.DeserializeObject<GetLaunchesResponse>(responseGet.Content);
+            var (dataGet, statusCodeGet) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
 
-            List<Execution> inProgressExecutions = new List<Execution>();
-
-            foreach (var execution in contentGet.Content)
-            {
-                if (execution.Status == Status.IN_PROGRESS.ToString())
-                {
-                    inProgressExecutions.Add(execution);
-                }
-            }
-
-            var endpointPut = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, inProgressExecutions.First().Id);
-            RestRequest request = new RestRequest(endpointPut, Method.Put);
             var requestBody = new PutLaunchesStopRequest
             {
                 Attributes = new List<AttributeItems>
                 {
                     new AttributeItems {
-                        Key = "string",
+                        Key = "Environment",
                         System = false,
-                        Value = "string PASSED" }
+                        Value = "12" }
                 },
-                Description = contentGet.Content.First().Description,
+                Description = dataGet.Content.First().Description,
                 EndTime = DateTime.UtcNow,
                 Status = Status.PASSED.ToString()
             };
-            request.AddJsonBody(requestBody);
 
-            var response = client.Execute(request);
-            var content = JsonConvert.DeserializeObject<PutLaunchesStopResponse>(response.Content);
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<PutLaunchesStopResponse>(settings.NameOfProject, inProgressExecutions.First().Id, requestBody);
+
             Assert.Multiple(() =>
             {
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(content.Message, $"Launch with ID = '{inProgressExecutions.First().Id}' successfully stopped.");
+                Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.OK));
+                Assert.AreEqual(dataPut.Message, $"Launch with ID = '{inProgressExecutions.First().Id}' successfully stopped.");
             });
         }
 
         [Test]
         public void API_Put_LaunchStop_NotFound()
         {
-            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, incorrectProject, launchNumber);
-            RestRequest requestPut = new RestRequest(putEndpoint, Method.Put);
             var requestBody = new PutLaunchesStopRequest
             {
                 Attributes = new List<AttributeItems>
                 {
-                    new AttributeItems { Key = "string", System = false, Value = "string" }
+                    new AttributeItems
+                    {
+                        Key = "Environment", 
+                        System = false, 
+                        Value = "12"
+                    }
                 },
                 Description = "string",
                 EndTime = DateTime.UtcNow,
                 Status = Status.PASSED.ToString()
             };
-            requestPut.AddJsonBody(requestBody);
-            var response = client.Execute(requestPut);
-            var content = JsonConvert.DeserializeObject<BadRequestResponse>(response.Content);
+
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<BadRequestResponse>(incorrectProject, launchNumber, requestBody);
+
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(content.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
+                Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.NotFound));
+                Assert.AreEqual(dataPut.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
 
         [Test]
         public void API_Put_LaunchStop_BadRequest()
         {
-            var putEndpoint = string.Format(Endpoints.PutLaunchesStop, settings.NameOfProject, launchNumber);
-            RestRequest request = new RestRequest(putEndpoint, Method.Put);
-            var response = client.Execute(request);
-            var content = JsonConvert.DeserializeObject<BadRequestResponse>(response.Content);
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<BadRequestResponse>(settings.NameOfProject, launchNumber);
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
-                Assert.IsTrue(content.Message.Contains("Incorrect Request."));
+                Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.BadRequest));
+                Assert.IsTrue(dataPut.Message.Contains("Incorrect Request."));
             });
         }
     }

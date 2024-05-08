@@ -1,57 +1,46 @@
-using System.Net;
 using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
-using Newtonsoft.Json;
 using RestSharp;
+using System.Net;
 
 namespace API.Tests
 {
-    public class APITestsDelete:BaseTest
+    public class APITestsDelete : BaseTest
     {
         [Test]
         public void API_Delete_Launches_Ok()
         {
-            var getEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
-            RestRequest request = new RestRequest(getEndpoint, Method.Get);
-            var responseGet = client.Execute(request);
-            var contentGet = JsonConvert.DeserializeObject<GetLaunchesResponse>(responseGet.Content);
+            var (dataGet, statusCodeGet) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
 
-            var deleteEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
-            RestRequest requestDelete = new RestRequest(deleteEndpoint, Method.Delete);
             var requestBodyDelete = new DeleteLaunchesRequest
             {
-                Ids = new List<int> { contentGet.Content.First().Id }
+                Ids = new List<int> { dataGet.Content.First().Id }
             };
-            requestDelete.AddJsonBody(requestBodyDelete);
-            var responseDelete = client.Execute(requestDelete);
-            var contentDelete = JsonConvert.DeserializeObject<DeleteLaunchesResponse>(responseDelete.Content);
+
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(settings.NameOfProject, requestBodyDelete);
 
             Assert.Multiple(() =>
             {
-                Assert.That(responseDelete.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(contentDelete.SuccessfullyDeleted.First(), contentGet.Content.First().Id);
+                Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.OK));
+                Assert.AreEqual(dataDelete.SuccessfullyDeleted.First(), dataGet.Content.First().Id);
             });
         }
 
         [Test]
         public void API_Delete_Launches_NotFound()
         {
-            var deleteEndpoint = string.Format(Endpoints.GetLaunchesByFilter, incorrectProject);
-            RestRequest requestDelete = new RestRequest(deleteEndpoint, Method.Delete);
-            
             var requestBodyDelete = new DeleteLaunchesRequest
             {
                 Ids = new List<int> { 13 }
             };
-            requestDelete.AddJsonBody(requestBodyDelete);
-            var responseDelete = client.Execute(requestDelete);
-            var contentDelete = JsonConvert.DeserializeObject<BadRequestResponse>(responseDelete.Content);
+
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(incorrectProject, requestBodyDelete);
 
             Assert.Multiple(() =>
             {
-                Assert.That(responseDelete.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(contentDelete.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
+                Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.NotFound));
+                Assert.AreEqual(dataDelete.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
             });
         }
 
@@ -59,15 +48,12 @@ namespace API.Tests
         [Test]
         public void API_Delete_Launches_BadRequest()
         {
-            var deleteEndpoint = string.Format(Endpoints.GetLaunchesByFilter, settings.NameOfProject);
-            RestRequest requestDelete = new RestRequest(deleteEndpoint, Method.Delete);
-            var responseDelete = client.Execute(requestDelete);
-            var contentDelete = JsonConvert.DeserializeObject<BadRequestResponse>(responseDelete.Content);
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(settings.NameOfProject);
 
             Assert.Multiple(() =>
             {
-                Assert.That(responseDelete.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
-                Assert.IsTrue(contentDelete.Message.Contains("Incorrect Request."));
+                Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.BadRequest));
+                Assert.IsTrue(dataDelete.Message.Contains("Incorrect Request."));
             });
         }
     }

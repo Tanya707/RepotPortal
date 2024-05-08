@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Net;
+using System.Text.Json.Serialization;
 
 namespace API.Business.Models.Responses
 {

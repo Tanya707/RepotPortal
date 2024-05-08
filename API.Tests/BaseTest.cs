@@ -1,7 +1,7 @@
 ﻿using API.Business.Controllers;
+using API.Business.Steps;
 using Core.Helpers;
 using Core.Models;
-using RestSharp;
 
 namespace API.Tests
 {
@@ -9,9 +9,9 @@ namespace API.Tests
     public abstract class BaseTest
     {
         protected Settings settings = SettingHelper.LoadFromAppSettings();
-        protected RestClient client;
         protected const string incorrectProject = "1";
         protected const int launchNumber = 14;
+        protected ApiSteps apiSteps;
 
         [SetUp]
         public void SetUp()
@@ -22,16 +22,8 @@ namespace API.Tests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            var token = TokenService.GenerateToken(tokenRequest);
-
-            client = new RestClient(settings.ReportPortalUrl.LocalBaseUrl);
-            client.AddDefaultAuthToken(token);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            client.Dispose();
+            var token = TokenService.GenerateToken(tokenRequest); 
+            apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl,token );
         }
     }
 }
