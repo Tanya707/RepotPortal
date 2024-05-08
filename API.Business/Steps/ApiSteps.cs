@@ -15,10 +15,5 @@ namespace API.Business.Steps
             _client.AddDefaultAuthToken(token);
             _request = new RestRequest();
         }
-
-        public T? DeserializeResponse<T>(RestResponse response)
-        {
-            return JsonConvert.DeserializeObject<T>(response.Content);
-        }
     }
 }
