@@ -1,7 +1,6 @@
-using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
-using RestSharp;
+
 using System.Net;
 
 namespace API.Tests
@@ -31,9 +30,6 @@ namespace API.Tests
         [TestCase("Demo Api Tests")]
         public void API_Post_Launches_NotFound(string nameOfLaunch)
         {
-            var postEndpoint = string.Format(Endpoints.Launches, incorrectProject);
-
-            RestRequest request = new RestRequest(postEndpoint, Method.Post);
             var requestBody = new PostLaunchesRequest
             {
                 Name = nameOfLaunch,
