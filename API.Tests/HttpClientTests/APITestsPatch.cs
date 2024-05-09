@@ -1,9 +1,9 @@
+using System.Net;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
-using System.Net;
 
-namespace API.Tests
+namespace API.Tests.HttpClientTests
 {
     public class APITestsPutPatch : BaseTest
     {

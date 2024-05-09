@@ -1,9 +1,9 @@
 using API.Business.Models.Responses;
 using System.Net;
 
-namespace API.Tests
+namespace API.Tests.RestSharpTests
 {
-    public class APITestsGet:BaseTest
+    public class APITestsGet : BaseTest
     {
         [Test]
         public void API_Get_Launches_Ok()
@@ -12,7 +12,7 @@ namespace API.Tests
 
             Assert.Multiple(() =>
             {
-                Assert.That(statusCode, Is.EqualTo(HttpStatusCode.OK)); 
+                Assert.That(statusCode, Is.EqualTo(HttpStatusCode.OK));
                 Assert.AreEqual(data.Content.First().Owner, settings.SuperadminUser.UserName);
             });
         }

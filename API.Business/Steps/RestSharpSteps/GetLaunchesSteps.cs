@@ -1,11 +1,11 @@
-﻿using API.Business.Models;
+﻿using System.Net;
+using API.Business.Models;
 using API.Business.Models.Enums;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
 using RestSharp;
-using System.Net;
 
-namespace API.Business.Steps
+namespace API.Business.Steps.RestSharpSteps
 {
     public partial class ApiSteps
     {

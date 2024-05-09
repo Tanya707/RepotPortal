@@ -1,8 +1,8 @@
-﻿using API.Business.Steps;
-using Core.Helpers;
+﻿using Core.Helpers;
 using Core.Models;
+using ApiSteps = API.Business.Steps.RestSharpSteps.ApiSteps;
 
-namespace API.Tests
+namespace API.Tests.RestSharpTests
 {
     [TestFixture]
     public abstract class BaseTest
@@ -21,8 +21,8 @@ namespace API.Tests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            var token = TokenService.GenerateToken(tokenRequest); 
-            apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl,token );
+            var token = TokenService.GenerateToken(tokenRequest);
+            apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl, token);
         }
     }
 }

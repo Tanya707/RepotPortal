@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Reqnroll;
 using UI.Business.Pages;
 
-namespace UI.Business.StepsDefinitions
+namespace UI.Business.StepDefinitions
 {
     [Binding]
     public sealed class AllDashboardsContext:BaseContext

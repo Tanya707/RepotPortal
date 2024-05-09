@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using Reqnroll;
 using UI.Business.Pages;
 
-namespace UI.Business.StepsDefinitions
+namespace UI.Business.StepDefinitions
 {
     public abstract class BaseContext
     {

@@ -1,8 +1,7 @@
 ﻿using API.Business.Controllers;
-using Newtonsoft.Json;
 using RestSharp;
 
-namespace API.Business.Steps
+namespace API.Business.Steps.RestSharpSteps
 {
     public partial class ApiSteps
     {

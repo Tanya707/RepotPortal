@@ -4,7 +4,7 @@ using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 
-namespace API.Tests
+namespace API.Tests.HttpClientTests
 {
     public class APITestsPut : BaseTest
     {
@@ -47,8 +47,8 @@ namespace API.Tests
                 {
                     new AttributeItems
                     {
-                        Key = "Environment", 
-                        System = false, 
+                        Key = "Environment",
+                        System = false,
                         Value = "12"
                     }
                 },

@@ -1,9 +1,9 @@
-﻿using API.Business.Models;
+﻿using System.Net;
+using API.Business.Models;
 using API.Business.Models.Requests;
 using RestSharp;
-using System.Net;
 
-namespace API.Business.Steps
+namespace API.Business.Steps.RestSharpSteps
 {
     public partial class ApiSteps
     {

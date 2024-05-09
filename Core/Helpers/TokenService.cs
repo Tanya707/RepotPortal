@@ -1,6 +1,7 @@
-﻿using RestSharp;
+﻿
 using Newtonsoft.Json;
 using Core.Models;
+using RestSharp;
 
 namespace Core.Helpers
 {
