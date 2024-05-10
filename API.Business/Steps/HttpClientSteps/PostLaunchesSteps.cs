@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using System.Text;
+using System.Net.Http.Json;
 using API.Business.Models;
 using API.Business.Models.Requests;
 using Newtonsoft.Json;
@@ -10,20 +10,13 @@ namespace API.Business.Steps.HttpClientSteps
     {
         public (T, HttpStatusCode) PostLaunchesResponse<T>(string nameOfProject, PostLaunchesRequest body)
         {
-
             var getEndpoint = string.Format(Endpoints.Launches, nameOfProject);
-            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(_client.BaseAddress, getEndpoint)))
-            {
 
-                var jsonBody = JsonConvert.SerializeObject(body);
-                _request.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+            var response = _client.PostAsJsonAsync(getEndpoint, body);
 
-                var response = _client.SendAsync(_request).GetAwaiter().GetResult();
+            var responseData = response.Result.Content.ReadAsStringAsync().Result;
 
-                var responseData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-                return (JsonConvert.DeserializeObject<T>(responseData), response.StatusCode);
-            }
+            return (JsonConvert.DeserializeObject<T>(responseData), response.Result.StatusCode);
         }
 
         public (T, HttpStatusCode) PostLaunchesResponse<T>(string nameOfProject)

@@ -14,5 +14,10 @@ namespace API.Business.Steps.RestSharpSteps
             _client.AddDefaultAuthToken(token);
             _request = new RestRequest();
         }
+
+        public void CleanUp()
+        {
+            _client.Dispose();
+        }
     }
 }

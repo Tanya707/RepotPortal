@@ -24,5 +24,11 @@ namespace API.Tests.RestSharpTests
             var token = TokenService.GenerateToken(tokenRequest);
             apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl, token);
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            apiSteps.CleanUp();
+        }
     }
 }

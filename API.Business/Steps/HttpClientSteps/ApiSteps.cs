@@ -5,7 +5,7 @@ namespace API.Business.Steps.HttpClientSteps
 {
     public partial class ApiSteps
     {
-        public HttpClient Client { get { return _client; } }
+        //public HttpClient Client { get { return _client; } }
 
         private HttpClient _client;
         private HttpRequestMessage _request;
@@ -16,6 +16,12 @@ namespace API.Business.Steps.HttpClientSteps
             _client.BaseAddress = new Uri(baseUrl);
             _client.AddDefaultHttpAuthToken(token);
             _request = new HttpRequestMessage();
+        }
+
+        public void CleanUp()
+        {
+            _client.CancelPendingRequests();
+            _client.Dispose();
         }
     }
 }

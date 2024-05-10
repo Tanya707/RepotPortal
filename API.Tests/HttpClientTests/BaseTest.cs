@@ -28,7 +28,7 @@ namespace API.Tests.HttpClientTests
         [TearDown]
         public void TearDown()
         {
-            apiSteps.Client.Dispose();
+            apiSteps.CleanUp();
         }
     }
 }

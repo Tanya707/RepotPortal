@@ -1,4 +1,3 @@
-using API.Business.Models.Requests;
 using API.Business.Models.Responses;
 using System.Net;
 
@@ -11,29 +10,19 @@ namespace API.Tests.RestSharpTests
         {
             var (dataGet, statusCodeGet) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
 
-            var requestBodyDelete = new DeleteLaunchesRequest
-            {
-                Ids = new List<int> { dataGet.Content.First().Id }
-            };
-
-            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(settings.NameOfProject, requestBodyDelete);
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(settings.NameOfProject, dataGet.Content.First().Id);
 
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(dataDelete.SuccessfullyDeleted.First(), dataGet.Content.First().Id);
+                Assert.AreEqual(dataDelete.Message, $"Launch with ID = '{dataGet.Content.First().Id}' successfully deleted.");
             });
         }
 
         [Test]
         public void API_Delete_Launches_NotFound()
         {
-            var requestBodyDelete = new DeleteLaunchesRequest
-            {
-                Ids = new List<int> { 13 }
-            };
-
-            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(incorrectProject, requestBodyDelete);
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(incorrectProject, launchNumber);
 
             Assert.Multiple(() =>
             {
@@ -42,17 +31,5 @@ namespace API.Tests.RestSharpTests
             });
         }
 
-
-        [Test]
-        public void API_Delete_Launches_BadRequest()
-        {
-            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(settings.NameOfProject);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.BadRequest));
-                Assert.IsTrue(dataDelete.Message.Contains("Incorrect Request."));
-            });
-        }
     }
 }
