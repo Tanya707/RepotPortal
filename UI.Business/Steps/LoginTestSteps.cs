@@ -18,7 +18,7 @@ namespace UI.Business.Steps
         public bool IsLogInButtonDisplayed()
         {
             LogInfoExtensions.LogInfo(_logger, "Check button");
-            return _loginPage.LogInButton.Displayed;
+            return _loginPage.LogInButton.Displayed();
         }
 
         public AllDashboardsPage LogIn(string username, string password)
@@ -32,12 +32,12 @@ namespace UI.Business.Steps
         public bool IsPasswordFieldDisplayed()
         {
             LogInfoExtensions.LogInfo(_logger, "Check Password Field");
-            return _loginPage.PasswordField.Displayed;
+            return _loginPage.PasswordField.Displayed();
         }
         public bool IsLogInFieldDisplayed()
         {
             LogInfoExtensions.LogInfo(_logger, "Log In Field");
-            return _loginPage.LogInField.Displayed;
+            return _loginPage.LogInField.Displayed();
         }
     }
 }

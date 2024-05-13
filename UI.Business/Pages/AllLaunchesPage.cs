@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Driver;
+using Core.Elements;
+using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 
 namespace UI.Business.Pages
@@ -20,31 +22,26 @@ namespace UI.Business.Pages
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
-        public IWebElement AddFilterButton => Driver.FindElement(_addFilterButton);
-        public IWebElement LaunchNameField => Driver.FindElement(_launchNameField);
-        public IWebElement MoreButton => Driver.FindElement(_moreButton);
-        public IWebElement TotalCheckbox => Driver.FindElement(_totalCheckbox);
-        public IWebElement SecondFilterField => Driver.FindElement(_secondFilterField);
-        public IWebElement PassedCheckbox => Driver.FindElement(_passedCheckbox);
-        public ReadOnlyCollection<IWebElement> LaunchNames => Driver.FindElements(_launchName);
-        public IWebElement Condition => Driver.FindElement(_condition);
-        public IWebElement EqualCondition => Driver.FindElement(_equalCondition);
-        public IWebElement ActionsButton => Driver.FindElement(_actionsButton);
-        public ReadOnlyCollection<IWebElement> TotalValues => Driver.FindElements(_totalValues);
-        public ReadOnlyCollection<IWebElement> PassedValues => Driver.FindElements(_passedValues);
+        public Button AddFilterButton => Driver.FindElement<Button>(_addFilterButton);
+        public TextField LaunchNameField => Driver.FindElement<TextField>(_launchNameField);
+        public Button MoreButton => Driver.FindElement<Button>(_moreButton);
+        public Checkbox TotalCheckbox => Driver.FindElement<Checkbox>(_totalCheckbox);
+        public TextField SecondFilterField => Driver.FindElement<TextField>(_secondFilterField);
+        public Checkbox PassedCheckbox => Driver.FindElement<Checkbox>(_passedCheckbox);
+        public ReadOnlyCollection<BasicElement> LaunchNames => Driver.FindElements<BasicElement>(_launchName);
+        public Button Condition => Driver.FindElement<Button>(_condition);
+        public Button EqualCondition => Driver.FindElement<Button>(_equalCondition);
+        public Button ActionsButton => Driver.FindElement<Button>(_actionsButton);
+        public ReadOnlyCollection<BasicElement> TotalValues => Driver.FindElements<BasicElement>(_totalValues);
+        public ReadOnlyCollection<BasicElement> PassedValues => Driver.FindElements<BasicElement>(_passedValues);
 
         public void ClickAddFilterButton() => AddFilterButton.Click();
         public void ClickMoreButton() => MoreButton.Click();
-        public void ClickTotalCheckbox() => TotalCheckbox.Click();
-        public void ClickPassedCheckbox() => PassedCheckbox.Click();
-        public void EnterLaunchName(string launchName) => LaunchNameField.SendKeys(launchName);
-        public void EnterSecondFilterField(string value) => SecondFilterField.SendKeys(value);
+        public void ClickTotalCheckbox() => TotalCheckbox.Check();
+        public void ClickPassedCheckbox() => PassedCheckbox.Check();
+        public void EnterLaunchName(string launchName) => LaunchNameField.EnterText(launchName);
+        public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
-
-        public bool IsActionsDisabled()
-        {
-            return ActionsButton.GetAttribute("class").Contains("disabled");
-        }
     }
 }

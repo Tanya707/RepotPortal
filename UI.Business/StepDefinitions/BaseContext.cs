@@ -1,4 +1,4 @@
-﻿using Core.Helpers;
+﻿using Core.Driver;
 using Core.Logger;
 using OpenQA.Selenium;
 using Reqnroll;
@@ -11,7 +11,7 @@ namespace UI.Business.StepDefinitions
         protected AllDashboardsPage _allDashboardsPage;
         protected AllLaunchesPage _allLaunchesPage;
         protected LoginPage _loginPage;
-        protected Waiter _waiter;
+        protected WebDriverWaiter _waiter;
         protected ILogger _logger = new ConsoleLogger();
         private readonly IWebDriver _driver;
         protected BaseContext(ScenarioContext scenarioContext)
@@ -20,7 +20,7 @@ namespace UI.Business.StepDefinitions
             _allDashboardsPage = new AllDashboardsPage(_driver);
             _allLaunchesPage = new AllLaunchesPage(_driver);
             _loginPage = new LoginPage(_driver);
-            _waiter = new Waiter(_driver);
+            _waiter = new WebDriverWaiter(_driver);
 
         }
     }

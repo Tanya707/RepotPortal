@@ -27,7 +27,7 @@ namespace UI.Business.StepDefinitions
         public void IsLogInButtonDisplayed()
         {
             LogInfoExtensions.LogDebug(_logger, "Check button");
-            Assert.IsTrue(_loginPage.LogInButton.Displayed);
+            Assert.IsTrue(_loginPage.LogInButton.Displayed());
         }
 
         [When("Log In Superadmin")]
@@ -56,7 +56,7 @@ namespace UI.Business.StepDefinitions
             _loginPage.EnterLogin(username);
             _loginPage.EnterPassword(password);
             _loginPage.LogInButton.Click();
-            Assert.IsTrue(_loginPage.LogInButton.Displayed, $"User can't log in with such credentials: username:{username}, password:{password}");
+            Assert.IsTrue(_loginPage.LogInButton.Displayed(), $"User can't log in with such credentials: username:{username}, password:{password}");
         }
 
         [When(@"I can log in with such data:")]

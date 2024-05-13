@@ -10,13 +10,13 @@ namespace UI.Business.Steps
 
         public bool IsLaunchesButtonDisplayed()
         {
-            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
-            return _allDashboardsPage.LaunchesButton.Displayed;
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled());
+            return _allDashboardsPage.LaunchesButton.Displayed();
         }
 
         public AllLaunchesPage CLickOnLaunchesButton()
         {
-            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled);
+            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled());
             LogInfoExtensions.LogInfo(_logger, "Click on launch button");
             _allDashboardsPage.LaunchesButton.Click();
             return _allLaunchesPage;

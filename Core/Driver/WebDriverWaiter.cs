@@ -1,36 +1,40 @@
-﻿using Core.Models;
+﻿using Core.Elements;
+using Core.Helpers;
+using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Core.Helpers
+namespace Core.Driver
 {
-    public class Waiter
+    public class WebDriverWaiter
     {
         private IWebDriver _driver;
         protected static ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
         private static readonly TimeSpan ConditionTimeOutDefault = TimeSpan.FromSeconds(configs.Timeout);
+        private static readonly TimeSpan PollingInterval = TimeSpan.FromSeconds(configs.PollingInterval);
 
-        public Waiter(IWebDriver driver)
+        public WebDriverWaiter(IWebDriver driver)
         {
             _driver = driver;
         }
 
         public void WaitFor(Func<bool> condition, TimeSpan conditionTimeOut = default)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, conditionTimeOut == default(TimeSpan) ? ConditionTimeOutDefault : conditionTimeOut);
+            WebDriverWait wait = new WebDriverWait(_driver, conditionTimeOut == default ? ConditionTimeOutDefault : conditionTimeOut);
             wait.Until(_ => condition.Invoke());
         }
-         public void WaitForStaleElementReferenceException(IWebElement element)
-            {
-            WebDriverWait wait = new WebDriverWait(_driver, ConditionTimeOutDefault);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+        public void WaitForStaleElementReferenceException(IBasicElement element)
+        {
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(_driver);
+            fluentWait.Timeout = ConditionTimeOutDefault;
+            fluentWait.PollingInterval = PollingInterval;
             try
             {
-                wait.Until(_driver =>
+                fluentWait.Until(_driver =>
                 {
                     try
                     {
-                        return !element.Displayed;
+                        return !element.Displayed();
                     }
                     catch (NoSuchElementException)
                     {
