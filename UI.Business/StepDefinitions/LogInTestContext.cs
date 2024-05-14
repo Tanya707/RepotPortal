@@ -31,23 +31,23 @@ namespace UI.Business.StepDefinitions
         }
 
         [When("Log In Superadmin")]
-        public AllDashboardsPage LogInSuperadmin()
+        public MenuPage LogInSuperadmin()
         {
             LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.SuperadminUser.UserName}, password:{_settings.SuperadminUser.Password}");
             _loginPage.EnterLogin(_settings.SuperadminUser.UserName);
             _loginPage.EnterPassword(_settings.SuperadminUser.Password);
             _loginPage.LogInButton.Click();
-            return _allDashboardsPage;
+            return _menuPage;
         }
 
         [When("Log In DefaultUser")]
-        public AllDashboardsPage LogInDefaultUser()
+        public MenuPage LogInDefaultUser()
         {
             LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.DefaultUser.UserName}, password:{_settings.DefaultUser.Password}");
             _loginPage.EnterLogin(_settings.DefaultUser.UserName);
             _loginPage.EnterPassword(_settings.DefaultUser.Password);
             _loginPage.LogInButton.Click();
-            return _allDashboardsPage;
+            return _menuPage;
         }
 
         public void LogIn(string username, string password)

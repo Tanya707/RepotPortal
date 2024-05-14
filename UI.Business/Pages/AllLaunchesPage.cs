@@ -19,6 +19,7 @@ namespace UI.Business.Pages
         private readonly By _totalValues = By.XPath("//*[contains(@statuses,'PASSED,FAILED,SKIPPED,INTERRUPTED')]");
         private readonly By _passedValues = By.XPath("//*[@statuses='PASSED']");
         private readonly By _actionsButton = By.XPath("//*[./span[contains(text(),'Actions')]]");
+        private readonly By _pageSizeButton = By.XPath("//*[contains(@class, 'pageSizeControl__size-text')]");
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
@@ -34,6 +35,7 @@ namespace UI.Business.Pages
         public Button ActionsButton => Driver.FindElement<Button>(_actionsButton);
         public ReadOnlyCollection<BasicElement> TotalValues => Driver.FindElements<BasicElement>(_totalValues);
         public ReadOnlyCollection<BasicElement> PassedValues => Driver.FindElements<BasicElement>(_passedValues);
+        public Button PageSizeButton => Driver.FindElement<Button>(_pageSizeButton);
 
         public void ClickAddFilterButton() => AddFilterButton.Click();
         public void ClickMoreButton() => MoreButton.Click();
@@ -43,5 +45,15 @@ namespace UI.Business.Pages
         public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
+        public void ScrollPageSizeButtonIntoView() => Driver.ScrollToElementJS(PageSizeButton.Element);
+
+        public bool IsPageSizeButtonScrolledIntoView() => Driver.IsElementScrolledIntoViewJS(PageSizeButton.Element);
+
+        //    public void aadf()
+        //    {
+        //        Actions actions = new Actions(Driver);
+        //        actions.DragAndDrop()
+        //}
+
     }
 }

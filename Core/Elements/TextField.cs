@@ -6,7 +6,7 @@ namespace Core.Elements
     {
         public void EnterText(string text)
         {
-            //element.Clear();
+            element.Clear();
             element.SendKeys(text);
         }
 

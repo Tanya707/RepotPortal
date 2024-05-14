@@ -4,6 +4,7 @@ namespace Core.Elements
 {
     public class Checkbox(IWebElement element) :ICheckbox
     {
+        public IWebElement Element => element;
         public void Check()
         {
             if (!element.Selected)

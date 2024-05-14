@@ -2,6 +2,5 @@
 {
     public interface IBasicElement
     {
-        bool Displayed();
     }
 }

@@ -21,7 +21,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
 
@@ -38,7 +38,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
@@ -57,7 +57,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
@@ -72,7 +72,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByTotal();
             allLaunchesPage.SelectEqual();
@@ -87,7 +87,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.ChooseFilterByPassed();
             allLaunchesPage.SelectEqual();
@@ -102,7 +102,7 @@ namespace UI.Tests.NUnit.Tests
             loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-            allDashboardsPage.CLickOnLaunchesButton();
+            menuPage.CLickOnLaunchesButton();
             allLaunchesPage.ClickOnFilterByButton();
             allLaunchesPage.EnterLaunchName(launchName);
 

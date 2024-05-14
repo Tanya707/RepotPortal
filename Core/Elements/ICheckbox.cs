@@ -1,6 +1,6 @@
 ﻿namespace Core.Elements
 {
-    internal interface ICheckbox:IBasicElement
+    internal interface ICheckbox
     {
         void Check();
 

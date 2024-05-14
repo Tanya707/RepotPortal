@@ -80,5 +80,17 @@ namespace UI.Business.Steps
             _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
             return _allLaunchesPage.PassedValues.First().GetText().Contains(passed);
         }
+
+        public AllLaunchesPage ScrollPageSizeButtonIntoView()
+        {
+            LogInfoExtensions.LogInfo(_logger, "Scroll PageSiz Button Into View");
+            _allLaunchesPage.ScrollPageSizeButtonIntoView();
+            return _allLaunchesPage;
+        }
+
+        public bool IsPageSizeButtonScrolledIntoView()
+        {
+            return _allLaunchesPage.IsPageSizeButtonScrolledIntoView();
+        }
     }
 }

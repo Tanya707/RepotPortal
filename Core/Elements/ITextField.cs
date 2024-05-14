@@ -1,6 +1,6 @@
 ﻿namespace Core.Elements
 {
-    public interface ITextField:IBasicElement
+    public interface ITextField
     {
         void EnterText(string text);
     }

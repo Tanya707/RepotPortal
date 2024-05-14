@@ -2,7 +2,7 @@
 
 namespace Core.Elements
 {
-    public class Button(IWebElement element) : IButton
+    public class Table(IWebElement element) : ITable
     {
         public IWebElement Element => element;
         public void Click()
@@ -10,6 +10,10 @@ namespace Core.Elements
             element.Click();
         }
 
+        public bool Displayed()
+        {
+            return element.Displayed;
+        }
         public bool Enabled()
         {
             return element.Enabled;
@@ -18,11 +22,6 @@ namespace Core.Elements
         public bool Disabled()
         {
             return !element.Enabled;
-        }
-
-        public bool Displayed()
-        {
-            return element.Displayed;
         }
     }
 }

@@ -1,25 +1,19 @@
-using Core.Logger;
+﻿using Core.Logger;
 using OpenQA.Selenium;
 using UI.Business.Pages;
 
 namespace UI.Business.Steps
 {
-    public class AllDashboardsSteps:BaseSteps
+    public class AllDashboardsSteps : BaseSteps
     {
         public AllDashboardsSteps(IWebDriver driver) : base(driver) { }
 
-        public bool IsLaunchesButtonDisplayed()
+        public DashboardPage ClickOnDashboardButton()
         {
-            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled());
-            return _allDashboardsPage.LaunchesButton.Displayed();
-        }
-
-        public AllLaunchesPage CLickOnLaunchesButton()
-        {
-            _waiter.WaitFor(() => _allDashboardsPage.LaunchesButton.Enabled());
-            LogInfoExtensions.LogInfo(_logger, "Click on launch button");
-            _allDashboardsPage.LaunchesButton.Click();
-            return _allLaunchesPage;
+            _waiter.WaitFor(() => _allDashboardsPage.DashboardButton.Enabled());
+            LogInfoExtensions.LogInfo(_logger, "Click on dashboard Button");
+            _allDashboardsPage.ClickOnDashboardButton();
+            return _dashboardPage;
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿namespace Core.Elements
 {
-    public interface IButton {
+    public interface ITable
+    {
         void Click();
-        bool Enabled();
     }
-
 }
