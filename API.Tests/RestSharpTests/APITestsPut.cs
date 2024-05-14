@@ -12,7 +12,7 @@ namespace API.Tests.RestSharpTests
         [Test]
         public void API_Put_LaunchStop_Ok()
         {
-            var (dataGet, statusCodeGet) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
             var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
 
             var requestBody = new PutLaunchesStopRequest
@@ -34,7 +34,7 @@ namespace API.Tests.RestSharpTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(dataPut.Message, $"Launch with ID = '{inProgressExecutions.First().Id}' successfully stopped.");
+                Assert.That(dataPut.Message, Is.EqualTo($"Launch with ID = '{inProgressExecutions.First().Id}' successfully stopped."));
             });
         }
 
@@ -63,7 +63,7 @@ namespace API.Tests.RestSharpTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(dataPut.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
+                Assert.That(dataPut.Message, Is.EqualTo($"Project '{incorrectProject}' not found. Did you use correct project name?"));
             });
         }
 

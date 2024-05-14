@@ -10,7 +10,7 @@ namespace API.Tests.HttpClientTests
         [Test]
         public void API_PutPatch_LaunchUpdate_Ok()
         {
-            var (dataGet, statusCodeGet) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
             var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
 
             var requestBody = new PatchLaunchesUpdateRequest
@@ -28,7 +28,7 @@ namespace API.Tests.HttpClientTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePatch, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(dataPatch.Message, $"Launch with ID = '{inProgressExecutions.First().Id}' successfully updated.");
+                Assert.That(dataPatch.Message, Is.EqualTo($"Launch with ID = '{inProgressExecutions.First().Id}' successfully updated."));
             });
         }
 
@@ -50,7 +50,7 @@ namespace API.Tests.HttpClientTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePatch, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(dataPatch.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
+                Assert.That(dataPatch.Message, Is.EqualTo($"Project '{incorrectProject}' not found. Did you use correct project name?"));
             });
         }
 

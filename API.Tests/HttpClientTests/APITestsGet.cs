@@ -13,7 +13,7 @@ namespace API.Tests.HttpClientTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.AreEqual(data.Content.First().Owner, settings.SuperadminUser.UserName);
+                Assert.That(data.Content.First().Owner, Is.EqualTo(settings.SuperadminUser.UserName));
             });
         }
 
@@ -25,7 +25,7 @@ namespace API.Tests.HttpClientTests
             Assert.Multiple(() =>
             {
                 Assert.That(statusCode, Is.EqualTo(HttpStatusCode.NotFound));
-                Assert.AreEqual(data.Message, $"Project '{incorrectProject}' not found. Did you use correct project name?");
+                Assert.That(data.Message, Is.EqualTo($"Project '{incorrectProject}' not found. Did you use correct project name?"));
             });
         }
     }
