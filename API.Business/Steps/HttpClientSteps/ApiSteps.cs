@@ -5,7 +5,6 @@ namespace API.Business.Steps.HttpClientSteps
 {
     public partial class ApiSteps
     {
-        //public HttpClient Client { get { return _client; } }
 
         private HttpClient _client;
         private HttpRequestMessage _request;

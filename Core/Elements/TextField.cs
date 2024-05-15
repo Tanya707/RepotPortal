@@ -2,7 +2,7 @@
 
 namespace Core.Elements
 {
-    public class TextField(IWebElement element) : ITextField
+    public class TextField(IWebElement element) : IBasicElement
     {
         public void EnterText(string text)
         {

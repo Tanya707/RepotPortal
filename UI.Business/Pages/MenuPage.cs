@@ -16,7 +16,7 @@ namespace UI.Business.Pages
 
         public void ClickOnLaunchButtonWithJs()
         {
-            Driver.ClickElementJS(LaunchesButton.Element);
+            LaunchesButton.ClickJS();
         }
     }
 }

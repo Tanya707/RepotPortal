@@ -15,7 +15,24 @@ namespace UI.Business.Pages
 
         public void DragAndDropElements(int firstElement, int secondElement)
         {
-            Actions.DragAndDrop(DashboardTables[firstElement].DashboardName.Element, DashboardTables[secondElement].DashboardName.Element);
+            DashboardTables[firstElement].DashboardWidget.DragAndDrop(DashboardTables[secondElement].DashboardWidget.Element);
+        }
+
+        public void GetDashboardNameByIndex(int table)
+        {
+            DashboardTables[table].DashboardNameText();
+        }
+
+        public void ResizeFirstTable(int xOffset, int yOffset)
+        {
+            DashboardTables.First().ResizeTable(xOffset, yOffset);
+        }
+
+        public (int height, int width) GetHeightAndWidthOfFirstTable()
+        {
+            var height = DashboardTables.First().FrameOfTable.Height();
+            var width = DashboardTables.First().FrameOfTable.Width();
+            return (height, width);
         }
     }
 }

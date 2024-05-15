@@ -45,15 +45,8 @@ namespace UI.Business.Pages
         public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
-        public void ScrollPageSizeButtonIntoView() => Driver.ScrollToElementJS(PageSizeButton.Element);
+        public void ScrollPageSizeButtonIntoView() => PageSizeButton.ScrollToElementJS();
 
-        public bool IsPageSizeButtonScrolledIntoView() => Driver.IsElementScrolledIntoViewJS(PageSizeButton.Element);
-
-        //    public void aadf()
-        //    {
-        //        Actions actions = new Actions(Driver);
-        //        actions.DragAndDrop()
-        //}
-
+        public bool IsPageSizeButtonScrolledIntoView() => PageSizeButton.IsElementScrolledIntoViewJS();
     }
 }

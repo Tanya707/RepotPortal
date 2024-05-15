@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Http.Json;
 using API.Business.Models;
 using API.Business.Models.Enums;
 using API.Business.Models.Responses;
@@ -13,15 +14,12 @@ namespace API.Business.Steps.HttpClientSteps
         {
 
             var getEndpoint = string.Format(Endpoints.Launches, nameOfProject);
+            
+            var response = _client.GetAsync(getEndpoint);
 
-            _request.RequestUri = new Uri(_client.BaseAddress,getEndpoint);
-            _request.Method = HttpMethod.Get;
+            var responseData = response.Result.Content.ReadAsStringAsync().Result;
 
-            var response = _client.SendAsync(_request).GetAwaiter().GetResult();
-
-            var responseData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-            return (JsonConvert.DeserializeObject<T>(responseData), response.StatusCode);
+            return (JsonConvert.DeserializeObject<T>(responseData), response.Result.StatusCode);
         }
 
         public List<Execution> InProgressExecutions(GetLaunchesResponse dataGet)

@@ -3,10 +3,10 @@
 namespace UI.Business.Components
 {
     public class BaseComponent {
-        protected IWebDriver Driver;
-        protected BaseComponent(IWebDriver driver)
+        protected ISearchContext SearchContext;
+        protected BaseComponent(ISearchContext searchContext)
         {
-            Driver = driver;
+            SearchContext = searchContext;
         }
 
     }

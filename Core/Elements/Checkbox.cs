@@ -2,7 +2,7 @@
 
 namespace Core.Elements
 {
-    public class Checkbox(IWebElement element) :ICheckbox
+    public class Checkbox(IWebElement element) : IBasicElement
     {
         public IWebElement Element => element;
         public void Check()
