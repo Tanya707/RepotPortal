@@ -8,7 +8,7 @@ namespace Core.Helpers
     {
         public static string GenerateToken(TokenRequestModel tokenRequest)
         {
-            var client = new HttpClient();
+            var client = new System.Net.Http.HttpClient();
             client.BaseAddress = new Uri(tokenRequest.BaseUrl);
             var request = new HttpRequestMessage(HttpMethod.Post, "uat/sso/oauth/token");
 

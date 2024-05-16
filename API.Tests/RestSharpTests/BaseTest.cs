@@ -21,8 +21,7 @@ namespace API.Tests.RestSharpTests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            var token = TokenService.GenerateToken(tokenRequest);
-            apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl, token);
+            apiSteps = new ApiSteps(tokenRequest);
         }
 
         [TearDown]

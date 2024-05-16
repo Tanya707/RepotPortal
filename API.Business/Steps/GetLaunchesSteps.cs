@@ -3,7 +3,6 @@ using API.Business.Models;
 using API.Business.Models.Enums;
 using API.Business.Models.Responses;
 using API.Business.Models.Responses.Items;
-using RestSharp;
 
 namespace API.Business.Steps.RestSharpSteps
 {
@@ -12,9 +11,7 @@ namespace API.Business.Steps.RestSharpSteps
         public (T, HttpStatusCode) GetLaunchesResponse<T>(string nameOfProject)
         {
             var getEndpoint = string.Format(Endpoints.Launches, nameOfProject);
-            _request.Resource = getEndpoint;
-            var response = _client.ExecuteGet<T>(_request);
-            return (response.Data, response.StatusCode);
+            return _apiSteps.Get<T>(getEndpoint);
         }
 
         public List<Execution> InProgressExecutions(GetLaunchesResponse dataGet)
