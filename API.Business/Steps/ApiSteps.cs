@@ -9,13 +9,14 @@ namespace API.Business.Steps.RestSharpSteps
 
         public ApiSteps(string type,TokenRequestModel tokenRequest)
         {
-            switch (type)
+            Enum.TryParse(type, out ClientList apiClient);
+            switch (apiClient)
             {
-                case "RestSharp":
+                case ClientList.RestSharp:
                     _apiSteps = new RestClient(tokenRequest);
                     break;
 
-                case "HttpClient":
+                case ClientList.HttpClient:
                     _apiSteps = new ClientOfHttp(tokenRequest);
                     break;
 

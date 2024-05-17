@@ -1,4 +1,5 @@
 ﻿using Core.Helpers;
+using Core.HttpClient;
 using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -23,9 +24,10 @@ namespace Core.Driver
         }
         public IWebDriver InitializeDriver(string type)
         {
-            switch (type)
+            Enum.TryParse(type, out BrowserList browser);
+            switch (browser)
             {
-                case "Chrome":
+                case BrowserList.Chrome:
                     {
                         _driver = new ChromeDriver();
                         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);

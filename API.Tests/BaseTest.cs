@@ -22,7 +22,7 @@ namespace API.Tests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            apiSteps = new ApiSteps(configs.HttpClient, tokenRequest);
+            apiSteps = new ApiSteps(configs.ApiClient, tokenRequest);
         }
 
         [TearDown]

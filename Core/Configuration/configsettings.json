@@ -1,6 +1,6 @@
 {
   "Browser": "Chrome",
-  "HttpClient": "RestSharp",
+  "ApiClient": "RestSharp",
   "Timeout": 10,
   "PageLoadTimeout": 30
 }
