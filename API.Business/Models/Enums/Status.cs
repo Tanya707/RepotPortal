@@ -4,5 +4,6 @@
     {
         PASSED,
         IN_PROGRESS,
+        INTERRUPTED
     }
 }

@@ -29,5 +29,33 @@ namespace API.Business.Steps.RestSharpSteps
             return inProgressExecutions;
         }
 
+        public List<Execution> InterruptedExecutions(GetLaunchesResponse dataGet)
+        {
+            List<Execution> inProgressExecutions = new List<Execution>();
+
+            foreach (var execution in dataGet.Content)
+            {
+                if (execution.Status == Status.INTERRUPTED.ToString())
+                {
+                    inProgressExecutions.Add(execution);
+                }
+            }
+            return inProgressExecutions;
+        }
+
+        public List<Execution> ExecutionsById(GetLaunchesResponse dataGet, int id)
+        {
+            List<Execution> inProgressExecutions = new List<Execution>();
+
+            foreach (var execution in dataGet.Content)
+            {
+                if (execution.Id == id)
+                {
+                    inProgressExecutions.Add(execution);
+                }
+            }
+            return inProgressExecutions;
+        }
+
     }
 }

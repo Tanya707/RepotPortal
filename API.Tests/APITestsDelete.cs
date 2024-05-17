@@ -22,11 +22,14 @@ namespace API.Tests
             };
 
             var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(request);
+            var (dataGetAfterDeleting, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
+            var executionsById = apiSteps.ExecutionsById(dataGetAfterDeleting, dataGet.Content.First().Id);
 
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodeDelete, Is.EqualTo(HttpStatusCode.OK));
                 Assert.That(dataDelete.Message, Is.EqualTo($"Launch with ID = '{dataGet.Content.First().Id}' successfully deleted."));
+                Assert.IsEmpty(executionsById);
             });
         }
 

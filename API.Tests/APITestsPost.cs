@@ -10,6 +10,13 @@ namespace API.Tests
         [Test]
         public void API_Post_Launches_Ok()
         {
+            var requestForGet = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
+
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
+
             var requestBody = new PostLaunchesRequest
             {
                 Name = "Demo Api Tests",
@@ -23,12 +30,14 @@ namespace API.Tests
             };
 
             var (data, statusCode) = apiSteps.PostLaunchesResponse<PostLaunchesResponse>(request);
+            var (dataGetAfterPost, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
 
             Assert.Multiple(() =>
             {
                 Assert.That(statusCode, Is.EqualTo(HttpStatusCode.Created));
                 Assert.IsNotEmpty(data.Id);
                 Assert.IsNotNull(data.Number);
+                Assert.False(dataGet.Content.Count== dataGetAfterPost.Content.Count);
             });
         }
 

@@ -16,7 +16,7 @@ namespace API.Tests
             };
 
             var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
-            var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
+            var interruptedExecutions = apiSteps.InterruptedExecutions(dataGet);
 
             var requestBody = new PatchLaunchesUpdateRequest
             {
@@ -24,23 +24,27 @@ namespace API.Tests
                 {
                     new AttributeItems {
                         Key = "Environment",
-                        Value = "1" }
+                        Value = "13" }
                 },
             };
 
             var request = new ApiRequest
             {
                 NameOfProject = settings.NameOfProject,
-                LaunchNumber = dataGet.Content.First().Id,
+                LaunchNumber = interruptedExecutions.First().Id,
                 BodyOfRequest = requestBody
             };
 
             var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<PatchLaunchesUpdateResponse>(request);
+            var (dataGetAfterPatch, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
+            var executionsById = apiSteps.ExecutionsById(dataGetAfterPatch, interruptedExecutions.First().Id);
 
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePatch, Is.EqualTo(HttpStatusCode.OK));
-                Assert.That(dataPatch.Message, Is.EqualTo($"Launch with ID = '{inProgressExecutions.First().Id}' successfully updated."));
+                Assert.That(dataPatch.Message, Is.EqualTo($"Launch with ID = '{interruptedExecutions.First().Id}' successfully updated."));
+                Assert.That(executionsById.First().Attributes.First().Key, Is.EqualTo("Environment"));
+                Assert.That(executionsById.First().Attributes.First().Value, Is.EqualTo("13"));
             });
         }
 

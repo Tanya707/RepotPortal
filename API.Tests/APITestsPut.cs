@@ -42,11 +42,17 @@ namespace API.Tests
             };
 
             var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<PutLaunchesStopResponse>(request);
+            var (dataGetAfterPut, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
+            var executionsById = apiSteps.ExecutionsById(dataGetAfterPut, inProgressExecutions.First().Id);
 
             Assert.Multiple(() =>
             {
                 Assert.That(statusCodePut, Is.EqualTo(HttpStatusCode.OK));
                 Assert.That(dataPut.Message, Is.EqualTo($"Launch with ID = '{inProgressExecutions.First().Id}' successfully stopped."));
+                Assert.That(executionsById.First().Attributes.First().Key, Is.EqualTo("Environment"));
+                Assert.That(executionsById.First().Attributes.First().Value, Is.EqualTo("12"));
+                Assert.That(executionsById.First().Description, Is.EqualTo(dataGet.Content.First().Description));
+                Assert.That(executionsById.First().Status, Is.EqualTo(Status.PASSED.ToString()));
             });
         }
 
