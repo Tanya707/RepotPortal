@@ -8,9 +8,9 @@ namespace API.Business.Steps.RestSharpSteps
 {
     public partial class ApiSteps
     {
-        public (T, HttpStatusCode) GetLaunchesResponse<T>(string nameOfProject)
+        public (T, HttpStatusCode) GetLaunchesResponse<T>(ApiRequest request)
         {
-            var getEndpoint = string.Format(Endpoints.Launches, nameOfProject);
+            var getEndpoint = string.Format(Endpoints.Launches, request.NameOfProject);
             return _apiSteps.Get<T>(getEndpoint);
         }
 

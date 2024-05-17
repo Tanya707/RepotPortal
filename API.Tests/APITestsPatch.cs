@@ -1,6 +1,8 @@
+using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
+using System.Data;
 using System.Net;
 
 namespace API.Tests
@@ -10,7 +12,12 @@ namespace API.Tests
         [Test]
         public void API_PutPatch_LaunchUpdate_Ok()
         {
-            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var requestForGet = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
+
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
             var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
 
             var requestBody = new PatchLaunchesUpdateRequest
@@ -23,7 +30,14 @@ namespace API.Tests
                 },
             };
 
-            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<PatchLaunchesUpdateResponse>(settings.NameOfProject, inProgressExecutions.First().Id, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                LaunchNumber = dataGet.Content.First().Id,
+                BodyOfRequest = requestBody
+            };
+
+            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<PatchLaunchesUpdateResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -45,7 +59,14 @@ namespace API.Tests
                 },
             };
 
-            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<BadRequestResponse>(incorrectProject, launchNumber, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = incorrectProject,
+                LaunchNumber = launchNumber,
+                BodyOfRequest = requestBody
+            };
+
+            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -57,7 +78,13 @@ namespace API.Tests
         [Test]
         public void API_PutPatch_LaunchStop_BadRequest()
         {
-            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponse<BadRequestResponse>(settings.NameOfProject, launchNumber);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                LaunchNumber = launchNumber,
+            };
+
+            var (dataPatch, statusCodePatch) = apiSteps.PatchLaunchesUpdateResponseBadRequest<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {

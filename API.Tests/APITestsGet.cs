@@ -1,3 +1,4 @@
+using API.Business.Models;
 using API.Business.Models.Responses;
 using System.Net;
 
@@ -8,7 +9,12 @@ namespace API.Tests
         [Test]
         public void API_Get_Launches_Ok()
         {
-            var (data, statusCode) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
+
+            var (data, statusCode) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -20,7 +26,11 @@ namespace API.Tests
         [Test]
         public void API_Get_Launches_NotFound()
         {
-            var (data, statusCode) = apiSteps.GetLaunchesResponse<BadRequestResponse>(incorrectProject);
+            var request = new ApiRequest
+            {
+                NameOfProject = incorrectProject,
+            };
+            var (data, statusCode) = apiSteps.GetLaunchesResponse<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {

@@ -1,4 +1,5 @@
 using System.Net;
+using API.Business.Models;
 using API.Business.Models.Enums;
 using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
@@ -12,7 +13,12 @@ namespace API.Tests
         [Test]
         public void API_Put_LaunchStop_Ok()
         {
-            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var requestForGet = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
+
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
             var inProgressExecutions = apiSteps.InProgressExecutions(dataGet);
 
             var requestBody = new PutLaunchesStopRequest
@@ -29,7 +35,14 @@ namespace API.Tests
                 Status = Status.PASSED.ToString()
             };
 
-            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<PutLaunchesStopResponse>(settings.NameOfProject, inProgressExecutions.First().Id, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                LaunchNumber = inProgressExecutions.First().Id,
+                BodyOfRequest = requestBody
+            };
+
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<PutLaunchesStopResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -57,7 +70,14 @@ namespace API.Tests
                 Status = Status.PASSED.ToString()
             };
 
-            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<BadRequestResponse>(incorrectProject, launchNumber, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = incorrectProject,
+                LaunchNumber = launchNumber,
+                BodyOfRequest = requestBody
+            };
+
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<BadRequestResponse>(request);
 
 
             Assert.Multiple(() =>
@@ -70,7 +90,13 @@ namespace API.Tests
         [Test]
         public void API_Put_LaunchStop_BadRequest()
         {
-            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponse<BadRequestResponse>(settings.NameOfProject, launchNumber);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                LaunchNumber = launchNumber,
+            };
+
+            var (dataPut, statusCodePut) = apiSteps.PutLaunchesStopResponseBadRequest<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {

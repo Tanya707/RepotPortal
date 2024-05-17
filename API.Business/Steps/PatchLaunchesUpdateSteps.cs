@@ -6,15 +6,15 @@ namespace API.Business.Steps.RestSharpSteps
 {
     public partial class ApiSteps
     {
-        public (T, HttpStatusCode) PatchLaunchesUpdateResponse<T>(string nameOfProject, int launchNumber, PatchLaunchesUpdateRequest body)
+        public (T, HttpStatusCode) PatchLaunchesUpdateResponse<T>(ApiRequest request)
         {
-            var getEndpoint = string.Format(Endpoints.PatchLaunchesUpdate, nameOfProject, launchNumber);
-            return _apiSteps.Put<T>(getEndpoint,body);
+            var getEndpoint = string.Format(Endpoints.PatchLaunchesUpdate, request.NameOfProject, request.LaunchNumber);
+            return _apiSteps.Put<T>(getEndpoint, request.BodyOfRequest);
         }
 
-        public (T, HttpStatusCode) PatchLaunchesUpdateResponse<T>(string nameOfProject, int launchNumber)
+        public (T, HttpStatusCode) PatchLaunchesUpdateResponseBadRequest<T>(ApiRequest request)
         {
-            var getEndpoint = string.Format(Endpoints.PatchLaunchesUpdate, nameOfProject, launchNumber);
+            var getEndpoint = string.Format(Endpoints.PatchLaunchesUpdate, request.NameOfProject, request.LaunchNumber);
             return _apiSteps.Put<T>(getEndpoint);
         }
     }

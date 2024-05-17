@@ -1,5 +1,7 @@
+using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
+using System.Data;
 using System.Net;
 
 namespace API.Tests
@@ -16,7 +18,13 @@ namespace API.Tests
                 StartTime = DateTime.UtcNow
             };
 
-            var (data, statusCode) = apiSteps.PostLaunchesResponse<PostLaunchesResponse>(settings.NameOfProject, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                BodyOfRequest = requestBody
+            };
+
+            var (data, statusCode) = apiSteps.PostLaunchesResponse<PostLaunchesResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -35,7 +43,13 @@ namespace API.Tests
                 StartTime = DateTime.UtcNow
             };
 
-            var (data, statusCode) = apiSteps.PostLaunchesResponse<BadRequestResponse>(incorrectProject, requestBody);
+            var request = new ApiRequest
+            {
+                NameOfProject = incorrectProject,
+                BodyOfRequest = requestBody
+            };
+
+            var (data, statusCode) = apiSteps.PostLaunchesResponse<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -48,7 +62,12 @@ namespace API.Tests
         [Test]
         public void API_Post_Launches_BadRequest()
         {
-            var (data, statusCode) = apiSteps.PostLaunchesResponse<BadRequestResponse>(settings.NameOfProject);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
+
+            var (data, statusCode) = apiSteps.PostLaunchesResponseBadRequest<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {

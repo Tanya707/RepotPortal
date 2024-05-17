@@ -1,5 +1,8 @@
+using API.Business.Models.Requests;
 using API.Business.Models.Responses;
 using System.Net;
+using API.Business.Models;
+using System.Data;
 
 namespace API.Tests
 {
@@ -8,9 +11,19 @@ namespace API.Tests
         [Test]
         public void API_Delete_Launches_Ok()
         {
-            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(settings.NameOfProject);
+            var requestForGet = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+            };
 
-            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(settings.NameOfProject, dataGet.Content.First().Id);
+            var (dataGet, _) = apiSteps.GetLaunchesResponse<GetLaunchesResponse>(requestForGet);
+            var request = new ApiRequest
+            {
+                NameOfProject = settings.NameOfProject,
+                LaunchNumber = dataGet.Content.First().Id
+            };
+
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<DeleteLaunchesResponse>(request);
 
             Assert.Multiple(() =>
             {
@@ -22,7 +35,12 @@ namespace API.Tests
         [Test]
         public void API_Delete_Launches_NotFound()
         {
-            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(incorrectProject, launchNumber);
+            var request = new ApiRequest
+            {
+                NameOfProject = incorrectProject,
+                LaunchNumber = launchNumber
+            };
+            var (dataDelete, statusCodeDelete) = apiSteps.DeleteLaunchesResponse<BadRequestResponse>(request);
 
             Assert.Multiple(() =>
             {
