@@ -1,6 +1,6 @@
-using API.Business.Models;
 using API.Business.Models.Responses;
 using System.Net;
+using API.Business.Models.Requests;
 
 namespace API.Tests
 {

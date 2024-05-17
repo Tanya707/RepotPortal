@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using API.Business.Models;
+using API.Business.Models.Requests;
 
 namespace API.Business.Steps.RestSharpSteps
 {

@@ -1,5 +1,4 @@
 ﻿using Core.Helpers;
-using Core.HttpClient;
 using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

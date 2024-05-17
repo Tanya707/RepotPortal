@@ -1,7 +1,5 @@
-using API.Business.Models;
 using API.Business.Models.Requests;
 using API.Business.Models.Responses;
-using System.Data;
 using System.Net;
 
 namespace API.Tests
