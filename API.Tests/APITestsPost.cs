@@ -2,17 +2,17 @@ using API.Business.Models.Requests;
 using API.Business.Models.Responses;
 using System.Net;
 
-namespace API.Tests.RestSharpTests
+namespace API.Tests
 {
     public class APITestsPost : BaseTest
     {
 
-        [TestCase("Demo Api Tests")]
-        public void API_Post_Launches_Ok(string nameOfLaunch)
+        [Test]
+        public void API_Post_Launches_Ok()
         {
             var requestBody = new PostLaunchesRequest
             {
-                Name = nameOfLaunch,
+                Name = "Demo Api Tests",
                 StartTime = DateTime.UtcNow
             };
 
@@ -26,12 +26,12 @@ namespace API.Tests.RestSharpTests
             });
         }
 
-        [TestCase("Demo Api Tests")]
-        public void API_Post_Launches_NotFound(string nameOfLaunch)
+        [Test]
+        public void API_Post_Launches_NotFound()
         {
             var requestBody = new PostLaunchesRequest
             {
-                Name = nameOfLaunch,
+                Name = "Demo Api Tests",
                 StartTime = DateTime.UtcNow
             };
 

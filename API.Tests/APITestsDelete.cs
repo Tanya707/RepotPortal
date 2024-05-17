@@ -1,7 +1,7 @@
 using API.Business.Models.Responses;
 using System.Net;
 
-namespace API.Tests.RestSharpTests
+namespace API.Tests
 {
     public class APITestsDelete : BaseTest
     {

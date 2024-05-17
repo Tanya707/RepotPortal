@@ -8,7 +8,7 @@ namespace Core.HttpClient
     public class RestClient : IHttpClient
     {
         private readonly RestSharp.RestClient _restClient;
-        private RestRequest _restRequest;
+        private RestRequest _restRequest = new RestRequest();
 
 
         public RestClient(string url)
@@ -21,7 +21,6 @@ namespace Core.HttpClient
             var token = TokenService.GenerateToken(tokenRequest);
             _restClient = new RestSharp.RestClient(tokenRequest.BaseUrl);
             _restClient.AddDefaultHeader("Authorization", $"Bearer {token}");
-            _restRequest = new RestRequest(); ;
         }
 
         public (T, HttpStatusCode) Get<T>(string getEndpoint)

@@ -4,7 +4,7 @@ using API.Business.Models.Requests;
 using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 
-namespace API.Tests.RestSharpTests
+namespace API.Tests
 {
     public class APITestsPut : BaseTest
     {

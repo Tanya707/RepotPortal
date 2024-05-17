@@ -3,7 +3,7 @@ using API.Business.Models.Requests.Items;
 using API.Business.Models.Responses;
 using System.Net;
 
-namespace API.Tests.RestSharpTests
+namespace API.Tests
 {
     public class APITestsPutPatch : BaseTest
     {

@@ -2,7 +2,7 @@
 using Core.Models;
 using ApiSteps = API.Business.Steps.RestSharpSteps.ApiSteps;
 
-namespace API.Tests.RestSharpTests
+namespace API.Tests
 {
     [TestFixture]
     public abstract class BaseTest
@@ -11,6 +11,7 @@ namespace API.Tests.RestSharpTests
         protected const string incorrectProject = "1";
         protected const int launchNumber = 14;
         protected ApiSteps apiSteps;
+        protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
         [SetUp]
         public void SetUp()
@@ -21,7 +22,7 @@ namespace API.Tests.RestSharpTests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            apiSteps = new ApiSteps(tokenRequest);
+            apiSteps = new ApiSteps(configs.HttpClient, tokenRequest);
         }
 
         [TearDown]
