@@ -1,6 +1,6 @@
 ﻿namespace Core.HttpClient
 {
-    public enum ClientList
+    public enum ApiClient
     {
         RestSharp,
         HttpClient
