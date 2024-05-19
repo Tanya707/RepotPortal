@@ -1,6 +1,6 @@
 ﻿namespace Core.Driver
 {
-    public enum BrowserList
+    public enum BrowserTypes
     {
         Firefox,
         Chrome
