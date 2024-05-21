@@ -23,9 +23,10 @@ namespace Core.Driver
         }
         public IWebDriver InitializeDriver(string type)
         {
-            switch (type)
+            Enum.TryParse(type, out BrowserTypes browser);
+            switch (browser)
             {
-                case "Chrome":
+                case BrowserTypes.Chrome:
                     {
                         _driver = new ChromeDriver();
                         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);

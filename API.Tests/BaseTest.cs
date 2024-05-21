@@ -1,8 +1,8 @@
 ﻿using Core.Helpers;
 using Core.Models;
-using ApiSteps = API.Business.Steps.HttpClientSteps.ApiSteps;
+using ApiSteps = API.Business.Steps.RestSharpSteps.ApiSteps;
 
-namespace API.Tests.HttpClientTests
+namespace API.Tests
 {
     [TestFixture]
     public abstract class BaseTest
@@ -11,6 +11,7 @@ namespace API.Tests.HttpClientTests
         protected const string incorrectProject = "1";
         protected const int launchNumber = 14;
         protected ApiSteps apiSteps;
+        protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
 
         [SetUp]
         public void SetUp()
@@ -21,8 +22,7 @@ namespace API.Tests.HttpClientTests
                 Username = settings.SuperadminUser.UserName,
                 Password = settings.SuperadminUser.Password
             };
-            var token = TokenServiceHttpClient.GenerateToken(tokenRequest);
-            apiSteps = new ApiSteps(settings.ReportPortalUrl.LocalBaseUrl, token);
+            apiSteps = new ApiSteps(configs.ApiClient, tokenRequest);
         }
 
         [TearDown]
