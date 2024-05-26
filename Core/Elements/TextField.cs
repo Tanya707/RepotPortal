@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Logger;
+using OpenQA.Selenium;
 
 namespace Core.Elements
 {
@@ -6,6 +7,7 @@ namespace Core.Elements
     {
         public void EnterText(string text)
         {
+            _logger.LogDebug($"Enter tex {text}");
             element.Clear();
             element.SendKeys(text);
         }

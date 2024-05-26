@@ -14,7 +14,7 @@ namespace UI.Business.StepDefinitions
         public AllLaunchesPage EnterLaunchName(string launchName)
         {
             _waiter.WaitFor(() => _allLaunchesPage.LaunchNameField.Enabled());
-            LogInfoExtensions.LogDebug(_logger, $"Enter Launch Name {launchName}");
+            _logger.LogDebug( $"Enter Launch Name {launchName}");
             _allLaunchesPage.EnterLaunchName(launchName);
             return _allLaunchesPage;
         }
@@ -38,9 +38,9 @@ namespace UI.Business.StepDefinitions
         public AllLaunchesPage ChooseFilterByTotal()
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled());
-            LogInfoExtensions.LogDebug(_logger, "Click on More button");
+            _logger.LogDebug( "Click on More button");
             _allLaunchesPage.MoreButton.Click();
-            LogInfoExtensions.LogDebug(_logger, "Choose Total");
+            _logger.LogDebug("Choose Total");
             _waiter.WaitFor(() => _allLaunchesPage.TotalCheckbox.Enabled());
             _allLaunchesPage.TotalCheckbox.Check();
             return _allLaunchesPage;
@@ -50,9 +50,9 @@ namespace UI.Business.StepDefinitions
         public AllLaunchesPage ChooseFilterByPassed()
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled());
-            LogInfoExtensions.LogDebug(_logger, "Click on More button");
+            _logger.LogDebug( "Click on More button");
             _allLaunchesPage.MoreButton.Click();
-            LogInfoExtensions.LogDebug(_logger, "Choose Passed");
+            _logger.LogDebug( "Choose Passed");
             _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled());
             _allLaunchesPage.PassedCheckbox.Check();
             return _allLaunchesPage;
@@ -62,7 +62,7 @@ namespace UI.Business.StepDefinitions
         public AllLaunchesPage EnterSecondFilterField(string name,string value)
         {
             _waiter.WaitFor(() => _allLaunchesPage.SecondFilterField.Enabled());
-            LogInfoExtensions.LogDebug(_logger, $"Enter {name}");
+            _logger.LogDebug( $"Enter {name}");
             _allLaunchesPage.EnterSecondFilterField(value);
             return _allLaunchesPage;
         }

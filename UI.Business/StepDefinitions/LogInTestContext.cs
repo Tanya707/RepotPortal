@@ -18,7 +18,7 @@ namespace UI.Business.StepDefinitions
         [Given("Open Log In Page")]
         public LoginPage OpenLogInPage()
         {
-            LogInfoExtensions.LogDebug(_logger, $"Open page {_settings.ReportPortalUrl.LocalBaseUrl}");
+            _logger.LogDebug($"Open page {_settings.ReportPortalUrl.LocalBaseUrl}");
             _loginPage.GoToBaseUrl(_settings.ReportPortalUrl.LocalBaseUrl);
             return _loginPage;
         }
@@ -26,14 +26,14 @@ namespace UI.Business.StepDefinitions
         [Then("Is Log In Button Displayed")]
         public void IsLogInButtonDisplayed()
         {
-            LogInfoExtensions.LogDebug(_logger, "Check button");
+            _logger.LogDebug( "Check button");
             Assert.IsTrue(_loginPage.LogInButton.Displayed());
         }
 
         [When("Log In Superadmin")]
         public MenuPage LogInSuperadmin()
         {
-            LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.SuperadminUser.UserName}, password:{_settings.SuperadminUser.Password}");
+            _logger.LogDebug( $"Enter credentials username:{_settings.SuperadminUser.UserName}, password:{_settings.SuperadminUser.Password}");
             _loginPage.EnterLogin(_settings.SuperadminUser.UserName);
             _loginPage.EnterPassword(_settings.SuperadminUser.Password);
             _loginPage.LogInButton.Click();
@@ -43,7 +43,7 @@ namespace UI.Business.StepDefinitions
         [When("Log In DefaultUser")]
         public MenuPage LogInDefaultUser()
         {
-            LogInfoExtensions.LogDebug(_logger, $"Enter credentials username:{_settings.DefaultUser.UserName}, password:{_settings.DefaultUser.Password}");
+            _logger.LogDebug( $"Enter credentials username:{_settings.DefaultUser.UserName}, password:{_settings.DefaultUser.Password}");
             _loginPage.EnterLogin(_settings.DefaultUser.UserName);
             _loginPage.EnterPassword(_settings.DefaultUser.Password);
             _loginPage.LogInButton.Click();
@@ -52,7 +52,7 @@ namespace UI.Business.StepDefinitions
 
         public void LogIn(string username, string password)
         {
-            LogInfoExtensions.LogDebug(_logger, $"Enter credentials: username:{username}, password:{password}");
+            _logger.LogDebug( $"Enter credentials: username:{username}, password:{password}");
             _loginPage.EnterLogin(username);
             _loginPage.EnterPassword(password);
             _loginPage.LogInButton.Click();
