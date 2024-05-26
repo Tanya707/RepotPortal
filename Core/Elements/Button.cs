@@ -6,12 +6,6 @@ namespace Core.Elements
 {
     public class Button(IWebElement element) : BasicElement(element)
     {
-        public void Click()
-        {
-            _logger.LogDebug("Click on button");
-            element.Click();
-        }
-        
         public void ClickJS()
         {
             _logger.LogDebug("Click on button with JS");

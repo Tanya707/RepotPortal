@@ -10,7 +10,7 @@ namespace Core.Elements
             if (!element.Selected)
             {
                 _logger.LogDebug("Checking checkbox");
-                element.Click();
+                Click();
             }
             _logger.LogDebug("Checkbox is already checked");
         }
@@ -20,7 +20,7 @@ namespace Core.Elements
             if (element.Selected)
             {
                 _logger.LogDebug("Unchecking checkbox");
-                element.Click();
+                Click();
             }
             _logger.LogDebug("Checkbox is already unchecked");
         }

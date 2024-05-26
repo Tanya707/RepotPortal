@@ -72,6 +72,12 @@ namespace Core.Elements
             return !element.Enabled;
         }
 
+        public void Click()
+        {
+            _logger.LogDebug("Click on element");
+            element.Click();
+        }
+
         public IJavaScriptExecutor JSExecutor()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
