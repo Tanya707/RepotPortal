@@ -1,7 +1,7 @@
 ﻿using Core.Driver;
-using Core.Elements;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
+using Core.Elements;
 
 namespace UI.Business.Pages
 {
@@ -45,8 +45,8 @@ namespace UI.Business.Pages
         public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
-        public void ScrollPageSizeButtonIntoView() => PageSizeButton.ScrollToElementJS();
+        public void ScrollPageSizeButtonIntoView() => PageSizeButton.ScrollToElementJavaScript();
 
-        public bool IsPageSizeButtonScrolledIntoView() => PageSizeButton.IsElementScrolledIntoViewJS();
+        public bool IsPageSizeButtonScrolledIntoView() => PageSizeButton.IsElementScrolledIntoViewJavaScript();
     }
 }

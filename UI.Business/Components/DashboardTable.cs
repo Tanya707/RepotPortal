@@ -1,6 +1,6 @@
-﻿using Core.Elements;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Core.Driver;
+using Core.Elements;
 
 namespace UI.Business.Components
 {

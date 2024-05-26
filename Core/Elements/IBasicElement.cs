@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Core.Elements
+﻿namespace Core.Elements
 {
     public interface IBasicElement
     {

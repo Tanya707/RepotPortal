@@ -71,13 +71,13 @@ namespace UI.Business.Steps
 
         public bool CheckTotalValue(string total)
         {
-            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.TotalValues.First());
+            _waiter.WaitForElementDisappared(_allLaunchesPage.TotalValues.First());
             return _allLaunchesPage.TotalValues.First().GetText().Contains(total);
         }
 
         public bool CheckPassedValue(string passed)
         {
-            _waiter.WaitForStaleElementReferenceException(_allLaunchesPage.PassedValues.First());
+            _waiter.WaitForElementDisappared(_allLaunchesPage.PassedValues.First());
             return _allLaunchesPage.PassedValues.First().GetText().Contains(passed);
         }
 

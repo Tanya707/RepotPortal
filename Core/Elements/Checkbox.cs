@@ -2,9 +2,8 @@
 
 namespace Core.Elements
 {
-    public class Checkbox(IWebElement element) : IBasicElement
+    public class Checkbox(IWebElement element) : BasicElement(element)
     {
-        public IWebElement Element => element;
         public void Check()
         {
             if (!element.Selected)
@@ -19,16 +18,6 @@ namespace Core.Elements
             {
                 element.Click();
             }
-        }
-
-        public bool Displayed()
-        {
-            return element.Displayed;
-        }
-
-        public bool Enabled()
-        {
-            return element.Enabled;
         }
     }
 }

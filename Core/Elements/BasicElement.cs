@@ -30,32 +30,49 @@ namespace Core.Elements
             return element.Size.Width;
         }
 
+       
+
         public void ScrollToElementJavaScript()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+            JSExecutor().ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 
-        public bool IsElementScrolledIntoView()
+        public bool IsElementScrolledIntoViewJavaScript()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
-            bool isScrolledIntoView = (bool)js.ExecuteScript("var elem = arguments[0],                 " +
-                                                             "  box = elem.getBoundingClientRect(),    " +
-                                                             "  cx = box.left + box.width / 2,         " +
-                                                             "  cy = box.top + box.height / 2,         " +
-                                                             "  e = document.elementFromPoint(cx, cy); " +
-                                                             "for (; e; e = e.parentElement) {         " +
-                                                             "  if (e === elem)                        " +
-                                                             "    return true;                         " +
-                                                             "}                                        " +
-                                                             "return false;                            ", element);
+            bool isScrolledIntoView = (bool)JSExecutor().ExecuteScript("var elem = arguments[0],                 " +
+                                                                     "  box = elem.getBoundingClientRect(),    " +
+                                                                     "  cx = box.left + box.width / 2,         " +
+                                                                     "  cy = box.top + box.height / 2,         " +
+                                                                     "  e = document.elementFromPoint(cx, cy); " +
+                                                                     "for (; e; e = e.parentElement) {         " +
+                                                                     "  if (e === elem)                        " +
+                                                                     "    return true;                         " +
+                                                                     "}                                        " +
+                                                                     "return false;                            ", element);
             return isScrolledIntoView;
         }
 
         public void DragAndDrop(IWebElement targetElement)
         {
-            Actions actions = new Actions(((IWrapsDriver)element).WrappedDriver);
+            Actions actions = new Actions(Driver());
             actions.DragAndDrop(element, targetElement).Build().Perform();
+        }
+
+        public bool Disabled()
+        {
+            return !element.Enabled;
+        }
+
+        public IJavaScriptExecutor JSExecutor()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
+            return js;
+        }
+
+        public IWebDriver Driver()
+        {
+            IWebDriver driver = ((IWrapsDriver)element).WrappedDriver;
+            return driver;
         }
 
     }
