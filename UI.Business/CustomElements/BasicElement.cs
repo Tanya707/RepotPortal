@@ -1,8 +1,9 @@
-﻿using Core.Logger;
+﻿using Core.Elements;
+using Core.Logger;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
-namespace Core.Elements
+namespace UI.Business.CustomElements
 {
     public class BasicElement(IWebElement element) : IBasicElement
     {

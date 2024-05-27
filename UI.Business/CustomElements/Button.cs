@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
-namespace Core.Elements
+namespace UI.Business.CustomElements
 {
     public class Button(IWebElement element) : BasicElement(element)
     {

@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 using Core.Elements;
+using UI.Business.CustomElements;
 
 namespace UI.Business.Pages
 {
@@ -20,6 +21,8 @@ namespace UI.Business.Pages
         private readonly By _passedValues = By.XPath("//*[@statuses='PASSED']");
         private readonly By _actionsButton = By.XPath("//*[./span[contains(text(),'Actions')]]");
         private readonly By _pageSizeButton = By.XPath("//*[contains(@class, 'pageSizeControl__size-text')]");
+        private readonly By _compareButton = By.XPath("//*[contains(text(),'Compare')]");
+        private readonly By _checkAllButton = By.XPath("//*[contains(@class,'checkboxHeaderCell__checkbox-header-cell')]//*[contains(@class,'checkIcon__centered--')]");
 
         public AllLaunchesPage(IWebDriver driver) : base(driver) { }
 
@@ -36,17 +39,20 @@ namespace UI.Business.Pages
         public ReadOnlyCollection<BasicElement> TotalValues => Driver.FindElements<BasicElement>(_totalValues);
         public ReadOnlyCollection<BasicElement> PassedValues => Driver.FindElements<BasicElement>(_passedValues);
         public Button PageSizeButton => Driver.FindElement<Button>(_pageSizeButton);
+        public Button CompareButton => Driver.FindElement<Button>(_compareButton);
+        public Button CheckAllButton => Driver.FindElement<Button>(_checkAllButton);
 
         public void ClickAddFilterButton() => AddFilterButton.Click();
         public void ClickMoreButton() => MoreButton.Click();
         public void ClickTotalCheckbox() => TotalCheckbox.Check();
         public void ClickPassedCheckbox() => PassedCheckbox.Check();
+        public void ClickCompareButton() => CompareButton.Click();
+
         public void EnterLaunchName(string launchName) => LaunchNameField.EnterText(launchName);
         public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
         public void ScrollPageSizeButtonIntoView() => PageSizeButton.ScrollToElementJavaScript();
-
         public bool IsPageSizeButtonScrolledIntoView() => PageSizeButton.IsElementScrolledIntoViewJavaScript();
     }
 }

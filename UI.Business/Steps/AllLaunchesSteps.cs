@@ -20,7 +20,7 @@ namespace UI.Business.Steps
         {
             _waiter.WaitFor(() => _allLaunchesPage.AddFilterButton.Enabled());
             LogInfoExtensions.LogInfo(_logger, "Click on filter button");
-            _allLaunchesPage.AddFilterButton.Click();
+            _allLaunchesPage.ClickAddFilterButton();
             return _allLaunchesPage;
         }
 
@@ -36,7 +36,7 @@ namespace UI.Business.Steps
             _allLaunchesPage.MoreButton.Click();
             LogInfoExtensions.LogInfo(_logger, "Choose Total");
             _waiter.WaitFor(() => _allLaunchesPage.TotalCheckbox.Enabled());
-            _allLaunchesPage.TotalCheckbox.Check();
+            _allLaunchesPage.ClickTotalCheckbox();
             return _allLaunchesPage;
         }
 
@@ -47,7 +47,7 @@ namespace UI.Business.Steps
             _allLaunchesPage.MoreButton.Click();
             LogInfoExtensions.LogInfo(_logger, "Choose Passe");
             _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled());
-            _allLaunchesPage.PassedCheckbox.Check();
+            _allLaunchesPage.ClickPassedCheckbox();
             return _allLaunchesPage;
         }
 

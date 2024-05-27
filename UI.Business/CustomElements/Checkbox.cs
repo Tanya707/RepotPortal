@@ -1,7 +1,7 @@
 ﻿using Core.Logger;
 using OpenQA.Selenium;
 
-namespace Core.Elements
+namespace UI.Business.CustomElements
 {
     public class Checkbox(IWebElement element) : BasicElement(element)
     {
