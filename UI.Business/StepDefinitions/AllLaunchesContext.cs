@@ -30,8 +30,8 @@ namespace UI.Business.StepDefinitions
         [Then("Check Launch Names {string} contains")]
         public void CheckLaunchNameContains(string launchName)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.LaunchNames.First());
-            Assert.IsTrue(_allLaunchesPage.LaunchNames.First().GetText().Contains(launchName));
+            _waiter.WaitForElementDisappared(_allLaunchesPage.LaunchNames().First());
+            Assert.IsTrue(_allLaunchesPage.LaunchNames().First().GetText().Contains(launchName));
         }
 
         [When("Choose Filter By Total")]
@@ -39,7 +39,7 @@ namespace UI.Business.StepDefinitions
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled());
             _logger.LogDebug( "Click on More button");
-            _allLaunchesPage.MoreButton.Click();
+            _allLaunchesPage.ClickMoreButton();
             _logger.LogDebug("Choose Total");
             _waiter.WaitFor(() => _allLaunchesPage.TotalCheckbox.Enabled());
             _allLaunchesPage.TotalCheckbox.Check();
@@ -51,7 +51,7 @@ namespace UI.Business.StepDefinitions
         {
             _waiter.WaitFor(() => _allLaunchesPage.MoreButton.Enabled());
             _logger.LogDebug( "Click on More button");
-            _allLaunchesPage.MoreButton.Click();
+            _allLaunchesPage.ClickMoreButton();
             _logger.LogDebug( "Choose Passed");
             _waiter.WaitFor(() => _allLaunchesPage.PassedCheckbox.Enabled());
             _allLaunchesPage.PassedCheckbox.Check();
@@ -80,15 +80,15 @@ namespace UI.Business.StepDefinitions
         [Then("Check Total Values {string} contains")]
         public void CheckTotalValuesContains(string total)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.TotalValues.First());
-            Assert.IsTrue(_allLaunchesPage.TotalValues.First().GetText().Contains(total));
+            _waiter.WaitForElementDisappared(_allLaunchesPage.TotalValues().First());
+            Assert.IsTrue(_allLaunchesPage.TotalValues().First().GetText().Contains(total));
         }
 
         [Then("Check Passed Values {string} contains")]
         public void CheckPassedValuesContains(string passed)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.PassedValues.First());
-            Assert.IsTrue(_allLaunchesPage.PassedValues.First().GetText().Contains(passed));
+            _waiter.WaitForElementDisappared(_allLaunchesPage.PassedValues().First());
+            Assert.IsTrue(_allLaunchesPage.PassedValues().First().GetText().Contains(passed));
         }
 
         [Then("Actions button is disabled by default")]

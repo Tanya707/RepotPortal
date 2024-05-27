@@ -38,8 +38,6 @@ namespace UI.Business.CustomElements
             return element.Size.Width;
         }
 
-       
-
         public void ScrollToElementJavaScript()
         {
             _logger.LogDebug("Scroll element into view");

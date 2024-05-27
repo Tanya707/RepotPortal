@@ -11,7 +11,7 @@ namespace UI.Business.Pages
 
         public DashboardPage(IWebDriver driver) : base(driver) { }
 
-        public ReadOnlyCollection<DashboardTable> DashboardTables => Driver.FindElements<DashboardTable>(_dashboardTable);
+        public ReadOnlyCollection<DashboardTableComponent> DashboardTables => Driver.FindElements<DashboardTableComponent>(_dashboardTable);
 
         public void DragAndDropElements(int firstElement, int secondElement)
         {
