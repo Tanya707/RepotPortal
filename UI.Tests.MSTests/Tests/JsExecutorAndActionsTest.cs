@@ -23,10 +23,13 @@ namespace UI.Tests.MSTests.Tests
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
             menuPage.CLickOnAllDashboardsButton();
             allDashboardsPage.ClickOnDashboardButton();
-            var nameDashboardBeforeChangingPlaces = dashboardPage.GetDashboardNameByIndex(0);
-            dashboardPage.ChangePlacesOfTwoTables(0, 1);
-            var nameDashboardAfterChangingPlaces = dashboardPage.GetDashboardNameByIndex(0);
-            Assert.IsFalse(nameDashboardBeforeChangingPlaces.Equals(nameDashboardAfterChangingPlaces), "The tables have not been swapped");
+            var nameFirstDashboardBeforeChangingPlaces = dashboardPage.GetDashboardNameByIndex(0);
+            var nameSecondDashboardBeforeChangingPlaces = dashboardPage.GetDashboardNameByIndex(1);
+            var dashboardAfterChanging = dashboardPage.ChangePlacesOfTwoTables(0, 1);
+            var nameFirstDashboardAfterChangingPlaces = dashboardAfterChanging.GetDashboardNameByIndex(0);
+            var nameSecondDashboardAfterChangingPlaces = dashboardAfterChanging.GetDashboardNameByIndex(1);
+            Assert.IsTrue(nameFirstDashboardBeforeChangingPlaces.Equals(nameFirstDashboardAfterChangingPlaces), "The tables have not been swapped");
+            Assert.IsTrue(nameSecondDashboardBeforeChangingPlaces.Equals(nameSecondDashboardAfterChangingPlaces), "The tables have not been swapped");
         }
 
 
@@ -42,8 +45,8 @@ namespace UI.Tests.MSTests.Tests
             dashboardPage.ResizeFirstTable(15, 15);
             var (heightAfterResizing, widthAfterResizing) = dashboardPage.GetHeightAndWidthOfFirstTable();
 
-            Assert.IsFalse(heightBeforeResizing.Equals(heightAfterResizing), "Height of table is incorrect");
-            Assert.IsFalse(widthBeforeResizing.Equals(widthAfterResizing), "Width of table is incorrect");
+            Assert.IsTrue(heightBeforeResizing < heightAfterResizing, "Height of table is incorrect");
+            Assert.IsTrue(widthBeforeResizing < widthAfterResizing, "Width of table is incorrect");
         }
     }
 }

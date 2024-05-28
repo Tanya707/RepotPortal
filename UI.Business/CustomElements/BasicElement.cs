@@ -62,7 +62,12 @@ namespace UI.Business.CustomElements
         public void DragAndDrop(IWebElement targetElement)
         {
             Actions actions = new Actions(Driver());
-            actions.DragAndDrop(element, targetElement).Build().Perform();
+
+            actions.ClickAndHold(element)
+                .MoveToElement(targetElement)
+                .Release()
+                .Build()
+                .Perform();
         }
 
         public bool Disabled()

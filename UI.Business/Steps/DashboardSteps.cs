@@ -16,12 +16,11 @@ namespace UI.Business.Steps
             return _dashboardPage;
         }
 
-        public DashboardPage GetDashboardNameByIndex(int table)
+        public string GetDashboardNameByIndex(int table)
         {
             _waiter.WaitFor(() => _dashboardPage.DashboardTables.First().DashboardName.Displayed());
             LogInfoExtensions.LogInfo(_logger, $"Get Dashboard Name By Index {table}");
-            _dashboardPage.GetDashboardNameByIndex(table);
-            return _dashboardPage;
+            return _dashboardPage.GetDashboardNameByIndex(table);
         }
 
         public DashboardPage ResizeFirstTable(int xOffset, int yOffset)

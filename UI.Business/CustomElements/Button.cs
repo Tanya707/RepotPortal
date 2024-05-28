@@ -18,7 +18,7 @@ namespace UI.Business.CustomElements
             Actions actions = new Actions(Driver());
             actions.ClickAndHold(element)
                 .MoveByOffset(xOffset, yOffset)
-                //.Release()
+                .Release()
                 .Build()
                 .Perform();
         }

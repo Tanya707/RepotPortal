@@ -8,7 +8,7 @@ namespace UI.Business.Components
     public class DashboardTableComponent : BaseComponent
     {
         private readonly By _dashboardName = By.XPath(".//*[contains(@class,'widgetHeader__widget-name-block')]");
-        private readonly By _dashboardWidget = By.XPath(".//*[contains(@class,'widgetHeader__info-block')]");
+        private readonly By _dashboardWidget = By.XPath(".//*[contains(@class,'draggable-field widget')]");
         private readonly By _resizeButton = By.XPath(".//*[contains(@class,'react-resizable-handle')]");
         private readonly By _frameOfTable = By.XPath(".//*[contains(@class,'azyload-wrapper widget__lazy-load-wrapper')]");
 
@@ -20,6 +20,5 @@ namespace UI.Business.Components
         public BasicElement FrameOfTable => SearchContext.FindElement<BasicElement>(_frameOfTable);
         public string DashboardNameText() => DashboardName.GetText();
         public void ResizeTable(int xOffset, int yOffset) => ResizeButton.ResizeElement(xOffset, yOffset);
-
     }
 }

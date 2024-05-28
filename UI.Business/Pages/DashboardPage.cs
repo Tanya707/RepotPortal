@@ -1,6 +1,8 @@
 ﻿using Core.Driver;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 using UI.Business.Components;
 
 namespace UI.Business.Pages
@@ -13,14 +15,16 @@ namespace UI.Business.Pages
 
         public ReadOnlyCollection<DashboardTableComponent> DashboardTables => Driver.FindElements<DashboardTableComponent>(_dashboardTable);
 
-        public void DragAndDropElements(int firstElement, int secondElement)
+        public DashboardPage DragAndDropElements(int firstElement, int secondElement)
         {
             DashboardTables[firstElement].DashboardWidget.DragAndDrop(DashboardTables[secondElement].DashboardWidget.Element);
+            return this;
         }
 
-        public void GetDashboardNameByIndex(int table)
+        public string GetDashboardNameByIndex(int table)
         {
-            DashboardTables[table].DashboardNameText();
+            var tableByIndex = DashboardTables[table];
+            return tableByIndex.DashboardNameText();
         }
 
         public void ResizeFirstTable(int xOffset, int yOffset)
