@@ -50,21 +50,16 @@ namespace UI.Tests.MSTests.Tests
             Assert.IsFalse(countOfLaunchesBeforeDeleting.Equals(countOfLaunchesAfterDeleting), "Launch isn't deleted");
         }
 
+        [TestMethod]
+        public void LaunchDetails()
+        {
+            loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
 
-        //[TestMethod]
-        //public void ResizeFirstTable()
-        //{
-        //    loginPage.OpenLogInPage(settings.ReportPortalUrl.LocalBaseUrl);
+            loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
+            menuPage.CLickOnLaunchesButton();
+            allLaunchesPage.ClickOnFirstLaunch();
 
-        //    loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
-        //    menuPage.CLickOnAllDashboardsButton();
-        //    allDashboardsPage.ClickOnDashboardButton();
-        //    var (heightBeforeResizing, widthBeforeResizing) = dashboardPage.GetHeightAndWidthOfFirstTable();
-        //    dashboardPage.ResizeFirstTable(15, 15);
-        //    var (heightAfterResizing, widthAfterResizing) = dashboardPage.GetHeightAndWidthOfFirstTable();
-
-        //    Assert.IsFalse(heightBeforeResizing.Equals(heightAfterResizing), "Height of table is incorrect");
-        //    Assert.IsFalse(widthBeforeResizing.Equals(widthAfterResizing), "Width of table is incorrect");
-        //}
+            Assert.IsTrue(launchDetailsPage.IsSuiteGroupDisplayed(), "Launch details page is not displayed");
+        }
     }
 }

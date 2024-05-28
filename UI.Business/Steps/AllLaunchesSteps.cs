@@ -109,6 +109,14 @@ namespace UI.Business.Steps
             return _allLaunchesPage;
         }
 
+        public LaunchDetailsPage ClickOnFirstLaunch()
+        {
+            _waiter.WaitFor(() => _allLaunchesPage.Launches.First().LaunchName.Displayed());
+            _logger.LogInfo("Click on first launch");
+            _allLaunchesPage.Launches.First().LaunchName.Click();
+            return _launchDetailsPage;
+        }
+
         public DeleteLaunchesPage ClickOnDeleteButton()
         {
             _waiter.WaitFor(() => _allLaunchesPage.ActionsButton.Enabled());

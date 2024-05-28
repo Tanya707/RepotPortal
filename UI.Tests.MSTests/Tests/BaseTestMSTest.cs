@@ -18,6 +18,7 @@ namespace UI.Tests.MSTests.Tests
         protected DashboardSteps dashboardPage => new DashboardSteps(_webDriverFactory.GetDriver());
         protected CompareLaunchesSteps compareLaunchesPage => new CompareLaunchesSteps(_webDriverFactory.GetDriver());
         protected DeleteLaunchesSteps deleteLaunchesPage => new DeleteLaunchesSteps(_webDriverFactory.GetDriver());
+        protected LaunchDetailsSteps launchDetailsPage => new LaunchDetailsSteps(_webDriverFactory.GetDriver());
 
         [TestInitialize]
         public void SetUp()

@@ -15,6 +15,7 @@ namespace UI.Business.Steps
         protected DashboardPage _dashboardPage;
         protected CompareLaunchesPage _compareLaunchesPage;
         protected DeleteLaunchesPage _deleteLaunchesPage;
+        protected LaunchDetailsPage _launchDetailsPage;
         protected ILogger _logger = new ConsoleLogger();
         protected BaseSteps(IWebDriver driver)
         {
@@ -25,6 +26,7 @@ namespace UI.Business.Steps
             _loginPage = new LoginPage(driver);
             _compareLaunchesPage = new CompareLaunchesPage(driver);
             _deleteLaunchesPage = new DeleteLaunchesPage(driver);
+            _launchDetailsPage = new LaunchDetailsPage(driver);
             _waiter = new WebDriverWaiter(driver);
         }
     }
