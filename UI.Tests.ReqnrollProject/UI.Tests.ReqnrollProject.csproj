@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<SonarQubeTestProject>false</SonarQubeTestProject>
+	</PropertyGroup>
+
   <ItemGroup>
     <ReqnrollObsoleteCodeBehindFiles Remove="Features\LogInTests - Copy.feature.cs" />
   </ItemGroup>

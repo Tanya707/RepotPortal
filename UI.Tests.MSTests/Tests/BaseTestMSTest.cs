@@ -19,6 +19,7 @@ namespace UI.Tests.MSTests.Tests
         protected CompareLaunchesSteps compareLaunchesPage => new CompareLaunchesSteps(_webDriverFactory.GetDriver());
         protected DeleteLaunchesSteps deleteLaunchesPage => new DeleteLaunchesSteps(_webDriverFactory.GetDriver());
         protected LaunchDetailsSteps launchDetailsPage => new LaunchDetailsSteps(_webDriverFactory.GetDriver());
+        protected readonly SlackService slackService = new SlackService();
 
         [TestInitialize]
         public void SetUp()
@@ -26,12 +27,14 @@ namespace UI.Tests.MSTests.Tests
             _webDriverFactory = new WebDriverFactory();
             _webDriverFactory.InitializeDriver(configs.Browser);
             _webDriverFactory.WindowMaximize();
+            slackService.PostNotification("Test has been started");
         }
 
         [TestCleanup]
         public void TearDown()
         {
             _webDriverFactory.CloseDriverAndFinishHim();
+            slackService.PostNotification("Test has been finished");
         }
     }
 }
