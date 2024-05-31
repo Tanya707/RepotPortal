@@ -1,7 +1,6 @@
 ﻿using Core.Driver;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
-using Core.Elements;
 using UI.Business.CustomElements;
 using UI.Business.Components;
 
@@ -18,7 +17,7 @@ namespace UI.Business.Pages
         private readonly By _condition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]");
         private readonly By _equalCondition = By.XPath("//*[@placeholder = 'Enter quantity']/following-sibling::*[contains(@class,'inputConditional__conditions-block')]//*[text()='Equals']");
         private readonly By _actionsButton = By.XPath("//*[./span[contains(text(),'Actions')]]");
-        private readonly By _pageSizeButton = By.XPath("//*[contains(@class, 'pageSizeControl__size-text')]");
+        private readonly By _perPageLaunchesCount = By.XPath("//*[contains(@class, 'pageSizeControl__size-text')]");
         private readonly By _compareButton = By.XPath("//*[contains(text(),'Compare')]");
         private readonly By _deleteButton = By.XPath("//*[contains(text(),'Delete')]");
         private readonly By _checkAllButton = By.XPath("//*[contains(@class,'checkboxHeaderCell__checkbox-header-cell')]//*[contains(@class,'checkIcon__centered--')]");
@@ -35,7 +34,7 @@ namespace UI.Business.Pages
         public Button Condition => Driver.FindElement<Button>(_condition);
         public Button EqualCondition => Driver.FindElement<Button>(_equalCondition);
         public Button ActionsButton => Driver.FindElement<Button>(_actionsButton);
-        public Button PageSizeButton => Driver.FindElement<Button>(_pageSizeButton);
+        public Button PageSizeButton => Driver.FindElement<Button>(_perPageLaunchesCount);
         public Button CompareButton => Driver.FindElement<Button>(_compareButton);
         public Button DeleteButton => Driver.FindElement<Button>(_deleteButton);
         public Checkbox CheckAllButton => Driver.FindElement<Checkbox>(_checkAllButton);

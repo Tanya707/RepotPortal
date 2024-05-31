@@ -1,8 +1,6 @@
 ﻿using Core.Driver;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using System.Collections.ObjectModel;
-using System.Xml.Linq;
 using UI.Business.Components;
 
 namespace UI.Business.Pages

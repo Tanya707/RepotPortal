@@ -30,7 +30,7 @@ namespace Core.Driver
             fluentWait.PollingInterval = PollingInterval;
             try
             {
-                fluentWait.Until(_driver =>
+                fluentWait.Until(_ =>
                 {
                     try
                     {

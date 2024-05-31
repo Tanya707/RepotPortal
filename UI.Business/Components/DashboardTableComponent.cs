@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using Core.Driver;
-using Core.Elements;
 using UI.Business.CustomElements;
 
 namespace UI.Business.Components

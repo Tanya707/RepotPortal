@@ -82,13 +82,13 @@ namespace UI.Business.CustomElements
             element.Click();
         }
 
-        public IJavaScriptExecutor JSExecutor()
+        protected IJavaScriptExecutor JSExecutor()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
             return js;
         }
 
-        public IWebDriver Driver()
+        protected IWebDriver Driver()
         {
             IWebDriver driver = ((IWrapsDriver)element).WrappedDriver;
             return driver;

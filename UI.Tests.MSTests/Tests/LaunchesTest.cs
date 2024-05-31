@@ -1,5 +1,3 @@
-using UI.Business.Pages;
-
 namespace UI.Tests.MSTests.Tests
 {
     [TestClass]
