@@ -9,14 +9,14 @@ namespace UI.Business.CustomElements
         public void ClickJS()
         {
             _logger.LogDebug("Click on button with JS");
-            JSExecutor().ExecuteScript("arguments[0].click();", element);
+            JSExecutor().ExecuteScript("arguments[0].click();", Element);
         }
 
         public void ResizeElement(int xOffset, int yOffset)
         {
             _logger.LogDebug("Resizing element");
             Actions actions = new Actions(Driver());
-            actions.ClickAndHold(element)
+            actions.ClickAndHold(Element)
                 .MoveByOffset(xOffset, yOffset)
                 .Release()
                 .Build()

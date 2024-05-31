@@ -7,7 +7,7 @@ namespace UI.Business.CustomElements
     {
         public void Check()
         {
-            if (!element.Selected)
+            if (!Element.Selected)
             {
                 _logger.LogDebug("Checking checkbox");
                 Click();
@@ -17,7 +17,7 @@ namespace UI.Business.CustomElements
 
         public void Uncheck()
         {
-            if (element.Selected)
+            if (Element.Selected)
             {
                 _logger.LogDebug("Unchecking checkbox");
                 Click();

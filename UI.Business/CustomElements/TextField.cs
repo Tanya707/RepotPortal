@@ -8,8 +8,8 @@ namespace UI.Business.CustomElements
         public void EnterText(string text)
         {
             _logger.LogDebug($"Enter tex {text}");
-            element.Clear();
-            element.SendKeys(text);
+            Element.Clear();
+            Element.SendKeys(text);
         }
     }
 }
