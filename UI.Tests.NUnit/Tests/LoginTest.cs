@@ -1,5 +1,7 @@
 
-[assembly: LevelOfParallelism(6)]
+using Core.Helpers;
+
+//[assembly: LevelOfParallelism(6)]
 namespace UI.Tests.NUnit.Tests
 {
     [TestFixture]
@@ -7,6 +9,7 @@ namespace UI.Tests.NUnit.Tests
 
     public class LoginTest : BaseTestNUnit
     {
+        [TestCaseId("REP-24")]
         [Test]
         public void LogInButtonDisplayedTest()
         {
