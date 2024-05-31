@@ -7,7 +7,7 @@ namespace UI.Business.Pages
 {
     public class DashboardPage : BasePage
     {
-        private readonly By _dashboardTable = By.XPath("//*[contains(@class,'react-grid-item widgetsGrid')]");
+        private readonly By _dashboardTable = By.XPath("//*[contains(class, 'react-grid-item') and contains(class,'widgetsGrid')]");
 
         public DashboardPage(IWebDriver driver) : base(driver) { }
 
