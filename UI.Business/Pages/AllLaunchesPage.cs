@@ -34,7 +34,7 @@ namespace UI.Business.Pages
         public Button Condition => Driver.FindElement<Button>(_condition);
         public Button EqualCondition => Driver.FindElement<Button>(_equalCondition);
         public Button ActionsButton => Driver.FindElement<Button>(_actionsButton);
-        public Button PageSizeButton => Driver.FindElement<Button>(_perPageLaunchesCount);
+        public Button PerPageLaunchesCountButton => Driver.FindElement<Button>(_perPageLaunchesCount);
         public Button CompareButton => Driver.FindElement<Button>(_compareButton);
         public Button DeleteButton => Driver.FindElement<Button>(_deleteButton);
         public Checkbox CheckAllButton => Driver.FindElement<Checkbox>(_checkAllButton);
@@ -52,8 +52,8 @@ namespace UI.Business.Pages
         public void EnterSecondFilterField(string value) => SecondFilterField.EnterText(value);
         public void ClickCondition() => Condition.Click();
         public void ClickEqualCondition() => EqualCondition.Click();
-        public void ScrollPageSizeButtonIntoView() => PageSizeButton.ScrollToElementJavaScript();
-        public bool IsPageSizeButtonScrolledIntoView() => PageSizeButton.IsElementScrolledIntoViewJavaScript();
+        public void ScrollPageSizeButtonIntoView() => PerPageLaunchesCountButton.ScrollToElementJavaScript();
+        public bool PerPageLaunchesCountButtonScrolledIntoView() => PerPageLaunchesCountButton.IsElementScrolledIntoViewJavaScript();
 
         public List<BasicElement> TotalValues()
         {

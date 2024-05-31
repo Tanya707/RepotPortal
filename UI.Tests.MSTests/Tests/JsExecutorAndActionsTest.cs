@@ -12,7 +12,7 @@ namespace UI.Tests.MSTests.Tests
             menuPage.CLickOnLaunchesButtonJS();
             allLaunchesPage.ScrollPageSizeButtonIntoView();
 
-            Assert.IsTrue(allLaunchesPage.IsPageSizeButtonScrolledIntoView(), "Page Size Button isn't Into View");
+            Assert.IsTrue(allLaunchesPage.PerPageLaunchesCountButtonScrolledIntoView(), "Page Size Button isn't Into View");
         }
 
         [TestMethod]

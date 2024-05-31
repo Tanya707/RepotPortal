@@ -88,9 +88,9 @@ namespace UI.Business.Steps
             return _allLaunchesPage;
         }
 
-        public bool IsPageSizeButtonScrolledIntoView()
+        public bool PerPageLaunchesCountButtonScrolledIntoView()
         {
-            return _allLaunchesPage.IsPageSizeButtonScrolledIntoView();
+            return _allLaunchesPage.PerPageLaunchesCountButtonScrolledIntoView();
         }
 
         public AllLaunchesPage CheckAllLaunches()
