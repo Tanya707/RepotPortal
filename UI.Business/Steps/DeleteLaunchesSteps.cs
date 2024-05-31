@@ -13,7 +13,7 @@ namespace UI.Business.Steps
             _waiter.WaitFor(() => _deleteLaunchesPage.DeleteButton.Enabled());
             _logger.LogInfo("Click on delete button");
             _deleteLaunchesPage.ClickDeleteButton();
-            _waiter.WaitForElementDisappared(_allLaunchesPage.Launches.First().LaunchName);
+            _waiter.WaitForElementDisappeared(_allLaunchesPage.Launches.First().LaunchName);
             return _allLaunchesPage;
         }
     }

@@ -30,7 +30,7 @@ namespace UI.Business.StepDefinitions
         [Then("Check Launch Names {string} contains")]
         public void CheckLaunchNameContains(string launchName)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.LaunchNames().First());
+            _waiter.WaitForElementDisappeared(_allLaunchesPage.LaunchNames().First());
             Assert.IsTrue(_allLaunchesPage.LaunchNames().First().GetText().Contains(launchName));
         }
 
@@ -80,14 +80,14 @@ namespace UI.Business.StepDefinitions
         [Then("Check Total Values {string} contains")]
         public void CheckTotalValuesContains(string total)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.TotalValues().First());
+            _waiter.WaitForElementDisappeared(_allLaunchesPage.TotalValues().First());
             Assert.IsTrue(_allLaunchesPage.TotalValues().First().GetText().Contains(total));
         }
 
         [Then("Check Passed Values {string} contains")]
         public void CheckPassedValuesContains(string passed)
         {
-            _waiter.WaitForElementDisappared(_allLaunchesPage.PassedValues().First());
+            _waiter.WaitForElementDisappeared(_allLaunchesPage.PassedValues().First());
             Assert.IsTrue(_allLaunchesPage.PassedValues().First().GetText().Contains(passed));
         }
 

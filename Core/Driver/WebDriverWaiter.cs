@@ -23,7 +23,7 @@ namespace Core.Driver
             WebDriverWait wait = new WebDriverWait(_driver, conditionTimeOut == default ? ConditionTimeOutDefault : conditionTimeOut);
             wait.Until(_ => condition.Invoke());
         }
-        public void WaitForElementDisappared(IBasicElement element)
+        public void WaitForElementDisappeared(IBasicElement element)
         {
             DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(_driver);
             fluentWait.Timeout = ConditionTimeOutDefault;
