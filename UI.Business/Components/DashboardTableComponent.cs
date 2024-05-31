@@ -7,9 +7,10 @@ namespace UI.Business.Components
     public class DashboardTableComponent : BaseComponent
     {
         private readonly By _dashboardName = By.XPath(".//*[contains(@class,'widgetHeader__widget-name-block')]");
-        private readonly By _dashboardWidget = By.XPath(".//*[contains(@class,'draggable-field widget')]");
+        private readonly By _dashboardWidget = By.XPath(".//*[contains(class, draggable-field') and contains(class,'widget')]");
         private readonly By _resizeButton = By.XPath(".//*[contains(@class,'react-resizable-handle')]");
-        private readonly By _frameOfTable = By.XPath(".//*[contains(@class,'azyload-wrapper widget__lazy-load-wrapper')]");
+        private readonly By _frameOfTable = By.XPath(".//*[contains(class, azyload-wrapper') and contains(class,'widget__lazy-load-wrapper')]");
+            
 
         public DashboardTableComponent(ISearchContext searchContext) : base(searchContext) { }
 
