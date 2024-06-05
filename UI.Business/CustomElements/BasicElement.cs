@@ -11,7 +11,6 @@ namespace UI.Business.CustomElements
         public IWebElement Element => element;
         public bool Displayed()
         {
-            _logger.LogDebug("Element is displayed");
             return element.Displayed;
         }
 
