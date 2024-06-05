@@ -78,17 +78,10 @@ namespace UI.Business.CustomElements
             element.Click();
         }
 
-        protected IJavaScriptExecutor JSExecutor()
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
-            return js;
-        }
+        protected IJavaScriptExecutor JSExecutor() => (IJavaScriptExecutor)((IWrapsDriver)element).WrappedDriver;
 
-        protected IWebDriver Driver()
-        {
-            IWebDriver driver = ((IWrapsDriver)element).WrappedDriver;
-            return driver;
-        }
+
+        protected IWebDriver Driver() => ((IWrapsDriver)element).WrappedDriver;
 
     }
 }
