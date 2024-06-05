@@ -17,24 +17,20 @@ namespace UI.Business.CustomElements
 
         public string GetText()
         {
-            _logger.LogDebug($"Get text {element.Text}");
             return element.Text;
         }
         public bool Enabled()
         {
-            _logger.LogDebug("Element is enabled");
             return element.Enabled;
         }
 
         public int Height()
         {
-            _logger.LogDebug($"Elements height is {element.Size.Height}");
             return element.Size.Height;
         }
 
         public int Width()
         {
-            _logger.LogDebug($"Elements width is {element.Size.Width}");
             return element.Size.Width;
         }
 
@@ -61,6 +57,7 @@ namespace UI.Business.CustomElements
 
         public void DragAndDrop(IWebElement targetElement)
         {
+            _logger.LogDebug("Drag And Drop element");
             Actions actions = new Actions(Driver());
 
             actions.ClickAndHold(element)
@@ -72,7 +69,6 @@ namespace UI.Business.CustomElements
 
         public bool Disabled()
         {
-            _logger.LogDebug("Element is disabled");
             return !element.Enabled;
         }
 
