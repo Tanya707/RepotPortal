@@ -7,5 +7,6 @@ namespace Core.Models
         public string ApiClient { get; set; }
         public int Timeout { get; set; }
         public int PageLoadTimeout { get; set; }
+        public int PollingInterval { get; set; }
     }
 }

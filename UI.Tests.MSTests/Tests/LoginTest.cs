@@ -21,7 +21,7 @@ namespace UI.Tests.MSTests.Tests
 
             loginPage.LogIn(settings.SuperadminUser.UserName, settings.SuperadminUser.Password);
 
-            Assert.IsTrue(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as superadmin");
+            Assert.IsTrue(menuPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as superadmin");
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace UI.Tests.MSTests.Tests
 
             loginPage.LogIn(settings.DefaultUser.UserName, settings.DefaultUser.Password);
 
-            Assert.IsFalse(allDashboardsPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as default user");
+            Assert.IsFalse(menuPage.IsLaunchesButtonDisplayed(), "Launches button isn't dispalyed after log in as default user");
         }
     }
 }

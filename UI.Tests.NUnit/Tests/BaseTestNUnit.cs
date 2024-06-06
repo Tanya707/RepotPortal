@@ -13,7 +13,7 @@ namespace UI.Tests.NUnit.Tests
         protected Settings settings = SettingHelper.LoadFromAppSettings();
         protected ConfigSettings configs = SettingHelper.LoadFromConfigSettings();
         protected LoginTestSteps loginPage => new LoginTestSteps(_webDriverFactory.GetDriver());
-        protected AllDashboardsSteps allDashboardsPage => new AllDashboardsSteps(_webDriverFactory.GetDriver());
+        protected MenuSteps menuPage => new MenuSteps(_webDriverFactory.GetDriver());
         protected AllLaunchesSteps allLaunchesPage => new AllLaunchesSteps(_webDriverFactory.GetDriver());
 
         [SetUp]

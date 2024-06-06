@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Driver;
+using OpenQA.Selenium;
+using UI.Business.CustomElements;
 
 namespace UI.Business.Pages
 {
@@ -9,10 +11,10 @@ namespace UI.Business.Pages
         private readonly By _logInField = By.XPath("//*[@type='text']");
         private readonly By _passwordField = By.XPath("//*[@type='password']");
 
-        public IWebElement LogInWithEpam => Driver.FindElement(_logInWithEpamButton);
-        public IWebElement LogInButton => Driver.FindElement(_logInButton);
-        public IWebElement LogInField => Driver.FindElement(_logInField);
-        public IWebElement PasswordField => Driver.FindElement(_passwordField);
+        public Button LogInWithEpam => Driver.FindElement<Button>(_logInWithEpamButton);
+        public Button LogInButton => Driver.FindElement<Button>(_logInButton);
+        public TextField LogInField => Driver.FindElement<TextField>(_logInField);
+        public TextField PasswordField => Driver.FindElement<TextField>(_passwordField);
 
         public LoginPage(IWebDriver driver) : base(driver) { }
 
@@ -24,14 +26,12 @@ namespace UI.Business.Pages
 
         public void EnterLogin(string login)
         {
-            LogInField.Clear();
-            LogInField.SendKeys(login);
+            LogInField.EnterText(login);
         }
 
         public void EnterPassword(string password)
         {
-            PasswordField.Clear();
-            PasswordField.SendKeys(password);
+            PasswordField.EnterText(password);
         }
 
     }
