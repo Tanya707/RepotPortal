@@ -20,7 +20,6 @@ namespace UI.Tests.NUnit.Tests
         [SetUp]
         public void SetUp()
         {
-            //JiraService.UpdateTestCaseStatus("In Progress");
             _webDriverFactory = new WebDriverFactory();
             _webDriverFactory.InitializeDriver(configs.Browser);
             _webDriverFactory.WindowMaximize();
@@ -29,15 +28,15 @@ namespace UI.Tests.NUnit.Tests
         [TearDown]
         public void TearDown()
         {
-            //var result = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed
-            //    ? "Passed"
-            //    : "Failed";
-
-            //JiraService.UpdateTestCaseStatus(result);
-            //if (result == "Failed")
-            //{
-            //    JiraService.AddCommentToTestCase(TestContext.CurrentContext.Result.Message);
-            //}
+            var testResult = TestContext.CurrentContext.Result.Outcome.Status;
+            var testCaseIds = TestContext.CurrentContext.Test.Properties["TestCaseId"].ToList();
+            if (testCaseIds.Any())
+            {
+                JiraClient.UpdateTestCaseStatus(testCaseIds.Single().ToString(), testResult);
+            }
+            var result = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed
+                ? "Passed"
+                : "Failed";
 
             _webDriverFactory.CloseDriverAndFinishHim();
         }

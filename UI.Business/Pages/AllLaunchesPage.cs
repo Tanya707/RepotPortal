@@ -1,7 +1,6 @@
 ﻿using Core.Driver;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
-using Core.Elements;
 using UI.Business.CustomElements;
 using UI.Business.Components;
 

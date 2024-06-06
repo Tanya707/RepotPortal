@@ -1,6 +1,4 @@
-﻿using Core.Logger;
-using OpenQA.Selenium;
-using UI.Business.Pages;
+﻿using OpenQA.Selenium;
 
 namespace UI.Business.Steps
 {

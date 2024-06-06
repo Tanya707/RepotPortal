@@ -9,7 +9,7 @@ namespace UI.Tests.NUnit.Tests
 
     public class LoginTest : BaseTestNUnit
     {
-        [TestCaseId("REP-24")]
+        [TestCaseId("TAF-1")]
         [Test]
         public void LogInButtonDisplayedTest()
         {

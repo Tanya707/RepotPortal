@@ -1,0 +1,27 @@
+﻿{
+
+  "enabled": true,
+
+  "server": {
+
+    "url": "https://reportportal.epam.com",
+
+    "project": "tatsiana_barbitskaya_personal",
+
+    "apiKey": "ReportPortal_BVs6ZEAsSI6QANIcjrLE4S32j5v8bsT_xITk3uUcJjc11Fq2qvy05wJ03U5bYbrd"
+
+  },
+
+  "launch": {
+
+    "name": ".NET Launch",
+
+    "description": "My awesome launch",
+
+    "debugMode": false,
+
+    "attributes": [ "tag1", "tag2", "platform:x64" ]
+
+  }
+
+}

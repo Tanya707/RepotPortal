@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 
 namespace Core.Helpers
 {
-    public class TestCaseIdAttribute:Attribute
+    [AttributeUsage(AttributeTargets.Method)]
+    public class TestCaseIdAttribute : PropertyAttribute
     {
-        public string Id;
-
-        public TestCaseIdAttribute(string id)
-        {
-            this.Id = id;
-        }
+        public TestCaseIdAttribute(string id) : base("TestCaseId", id) { }
     }
 }

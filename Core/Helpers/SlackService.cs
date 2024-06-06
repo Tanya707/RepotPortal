@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using Core.Models;
 using Newtonsoft.Json;
 
 namespace Core.Helpers
@@ -10,7 +7,8 @@ namespace Core.Helpers
     public class SlackService
     {
         private static readonly System.Net.Http.HttpClient Client = new System.Net.Http.HttpClient();
-        private static readonly string SlackUrl = "https://hooks.slack.com/services/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";
+        private static Settings settings = SettingHelper.LoadFromAppSettings();
+        private static readonly string SlackUrl = settings.SlackUrl;
 
         public async void PostNotification(string message)
         {

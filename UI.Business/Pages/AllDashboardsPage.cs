@@ -1,5 +1,4 @@
 ﻿using Core.Driver;
-using Core.Elements;
 using OpenQA.Selenium;
 using UI.Business.CustomElements;
 
