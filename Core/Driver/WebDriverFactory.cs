@@ -2,6 +2,8 @@
 using Core.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager;
 
 namespace Core.Driver
 {
@@ -28,7 +30,26 @@ namespace Core.Driver
             {
                 case BrowserTypes.Chrome:
                     {
-                        _driver = new ChromeDriver();
+
+                        var service = ChromeDriverService.CreateDefaultService(new DriverManager().SetUpDriver(new ChromeConfig()));
+                        var options = new ChromeOptions();
+                        options.AddArguments("--disable-web-security", "start-maximized", "--disable-extensions");
+                        options.AddUserProfilePreference("download.prompt_for_download", false);
+                        options.AddUserProfilePreference("disable-popup-blocking", true);
+                        options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
+                        options.AddUserProfilePreference("download.directory_upgrade", true);
+                        options.AddUserProfilePreference("safebrowsing.enabled", false);
+
+                        options.AddArgument("--safebrowsing-disable-download-protection");
+                        options.AddArgument("--safebrowsing-disable-extension-blacklist");
+                        options.AddArgument("--safebrowsing-disable-auto-update");
+                        options.AddArgument("--safebrowsing-manual-download-blacklist");
+                        options.AddArgument("--allow-unchecked-dangerous-downloads");
+                        options.AddArgument("--ignore-certificate-errors");
+                        options.AddArgument("--allow-running-insecure-content");
+                        options.AddArgument("--allow-insecure-localhost");
+                        options.AddArgument("--disable-popup-blocking");
+                        _driver = new ChromeDriver(service, options);
                         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(configs.Timeout);
                         _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(configs.PageLoadTimeout);
                         return _driver;
