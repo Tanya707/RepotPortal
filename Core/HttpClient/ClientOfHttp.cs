@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text;
 
 
 namespace Core.HttpClient
@@ -18,6 +19,7 @@ namespace Core.HttpClient
         {
             _httpClient = new System.Net.Http.HttpClient();
             _httpClient.BaseAddress = new Uri(url);
+            _httpRequest = new HttpRequestMessage();
         }
 
 
@@ -97,5 +99,15 @@ namespace Core.HttpClient
 
             return (JsonConvert.DeserializeObject<T>(responseData), response.StatusCode);
         }
+
+        public void Put(string url, object body, List<KeyValuePair<string, string>> headers)
+        {
+            _httpRequest.RequestUri = new Uri(_httpClient.BaseAddress, url);
+            _httpRequest.Method = HttpMethod.Put;
+            headers.ForEach(x => _httpRequest.Headers.Add(x.Key, x.Value));
+            _httpRequest.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+            _httpClient.SendAsync(_httpRequest).GetAwaiter().GetResult();
+        }
+
     }
 }

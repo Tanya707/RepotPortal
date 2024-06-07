@@ -67,6 +67,15 @@ namespace Core.HttpClient
             return (response.Data, response.StatusCode);
         }
 
+        public void Put(string url, object body, List<KeyValuePair<string, string>> headers)
+        {
+            _restRequest.Resource = url;
+            _restRequest.AddJsonBody(body);
+            headers.ForEach(x => _restRequest.AddHeader(x.Key, x.Value));
+            _restRequest.AddJsonBody(body);
+            _restClient.ExecutePut(_restRequest);
+        }
+
         public void CleanUp()
         {
             _restClient.Dispose();

@@ -1,6 +1,7 @@
 ﻿using Core.Driver;
 using Core.Helpers;
 using Core.Models;
+using NUnit.Framework.Interfaces;
 using UI.Business.Steps;
 
 namespace UI.Tests.NUnit.Tests
@@ -27,6 +28,16 @@ namespace UI.Tests.NUnit.Tests
         [TearDown]
         public void TearDown()
         {
+            var testResult = TestContext.CurrentContext.Result.Outcome.Status;
+            var testCaseIds = TestContext.CurrentContext.Test.Properties["TestCaseId"].ToList();
+            if (testCaseIds.Any())
+            {
+                JiraClient.UpdateTestCaseStatus(testCaseIds.Single().ToString(), testResult);
+            }
+            var result = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed
+                ? "Passed"
+                : "Failed";
+
             _webDriverFactory.CloseDriverAndFinishHim();
         }
 

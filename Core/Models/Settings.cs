@@ -7,5 +7,7 @@ namespace Core.Models
         public UserCredentials SuperadminUser { get; set; }
         public UserCredentials DefaultUser { get; set; }
         public string NameOfProject { get; set; }
+        public Jira Jira { get; set; }
+        public string SlackUrl { get; set; }
     }
 }
